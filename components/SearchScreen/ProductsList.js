@@ -4,11 +4,13 @@ import tw from "twrnc";
 import Products from "../../constants/Products";
 import ItemContainer from "../ItemContainer";
 
-export default function SearchProductsList() {
+export default function SearchProductsList({ AvailableProducts }) {
+  const _products = AvailableProducts || Products;
+
   return (
     <View style={tw`pb-29`}>
       <FlatList
-        data={Products}
+        data={_products}
         numColumns={2}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item, index }) => {

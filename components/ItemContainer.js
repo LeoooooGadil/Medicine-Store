@@ -22,7 +22,7 @@ export default function ItemContainer(props) {
 
   return (
     <TouchableOpacity
-      style={tw`flex-col items-start justify-center gap-2 ${styles()}`}
+      style={tw`flex-col items-start justify-center gap-1 ${styles()}`}
     >
       <View
         style={tw`w-36 h-36 bg-[${Colors.LavenderBlue}] rounded-xl justify-center items-center`}

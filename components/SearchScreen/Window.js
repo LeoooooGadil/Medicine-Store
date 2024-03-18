@@ -13,7 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Colors from "../../constants/Colors";
 import SearchProductsList from "./ProductsList";
 
-export default function SearchScreenHeader({ GoToCart }) {
+export default function SearchScreenWindow({ GoToCart }) {
   const [isSearchWindowOpen, setIsSearchWindowOpen] = useState(false);
 
   const ToggleSearchWindow = () => {
@@ -35,6 +35,8 @@ export default function SearchScreenHeader({ GoToCart }) {
 }
 
 function SearchWindow({ ToggleSearchWindow }) {
+  const [searchText, setSearchText] = useState("");
+
   const textInputRef = useRef();
 
   const onPress = () => {
@@ -65,9 +67,16 @@ function SearchWindow({ ToggleSearchWindow }) {
               style={tw`text-lg font-semibold mr-15`} // theres something wrong here
               textAlign="center"
               placeHolder="Search your medicine"
+              onChangeText={(text) => setSearchText(text)}
             />
           </View>
         </View>
+        {searchText && (
+          <View style={tw`pt-4 flex-row`}>
+            <Text style={tw`text-xl`}> Searching For: </Text>
+            <Text style={tw`text-xl font-bold`}>{searchText}</Text>
+          </View>
+        )}
       </View>
     </View>
   );

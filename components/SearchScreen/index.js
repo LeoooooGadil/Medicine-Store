@@ -1,3 +1,3 @@
-import SearchScreenHeader from "./Header";
+import SearchScreenWindow from "./Window";
 import SearchProductsList from "./ProductsList";
-export { SearchScreenHeader, SearchProductsList };
+export { SearchScreenWindow, SearchProductsList };
