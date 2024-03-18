@@ -7,13 +7,16 @@ import {
   ExploreOurProducts,
 } from "../components/HomeScreen";
 import { Seperator } from "../components";
-export default function HomeTabScreen() {
+export default function HomeTabScreen({ navigation }) {
   return (
     <SafeAreaView style={tw`gap-2`}>
-      <HomeScreenHeader />
+      <HomeScreenHeader
+        GoToSearch={() => navigation.navigate("Search")}
+        GoToCart={() => navigation.navigate("Cart")}
+      />
       <WelcomeBanner />
       <Seperator />
-      <ExploreOurProducts />
+      <ExploreOurProducts GoToSearch={() => navigation.navigate("Search")} />
     </SafeAreaView>
   );
 }

@@ -5,6 +5,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeTabScreen from "../screens/HomeTabScreen";
 import CartTabScreen from "../screens/CartTabScreen";
 import OrdersTabScreen from "../screens/OrdersTabScreen";
+import SearchTabScreen from "../screens/SearchTabScreen";
+import Colors from "../constants/Colors";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -16,6 +18,7 @@ export default function BottomTabNavigator() {
         tabBarLabelStyle: {
           fontSize: 12,
         },
+        tabBarActiveTintColor: Colors.SunsetOrange,
       }}
     >
       <BottomTab.Screen
@@ -23,7 +26,29 @@ export default function BottomTabNavigator() {
         component={HomeNavigator}
         options={{
           headerShown: false,
-          tabBarIcon: () => <TabBarIcon name="home-outline" />,
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon name="home" focused={focused} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Search"
+        component={SearchNavigator}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon name="search" focused={focused} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Cart"
+        component={CartNavigator}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon name="cart" focused={focused} />
+          ),
         }}
       />
       <BottomTab.Screen
@@ -31,7 +56,9 @@ export default function BottomTabNavigator() {
         component={OrdersNavigator}
         options={{
           headerShown: false,
-          tabBarIcon: () => <TabBarIcon name="cube-outline" />,
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon name="cube" focused={focused} />
+          ),
         }}
       />
     </BottomTab.Navigator>
@@ -41,7 +68,15 @@ export default function BottomTabNavigator() {
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
 function TabBarIcon(props) {
-  return <Ionicons size={25} style={{ marginBottom: -3 }} {...props} />;
+  return (
+    <Ionicons
+      size={props.focused ? 32 : 25}
+      style={{ marginBottom: -3 }}
+      {...props}
+      color={props.focused ? Colors.SunsetOrange : Colors.BrightGray}
+      name={`${props.name}${props.focused ? "" : "-outline"}`}
+    />
+  );
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -85,5 +120,19 @@ function CartNavigator() {
         options={{ headerShown: false }}
       />
     </CartStack.Navigator>
+  );
+}
+
+const SearchStack = createStackNavigator();
+
+function SearchNavigator() {
+  return (
+    <SearchStack.Navigator>
+      <SearchStack.Screen
+        name="SearchScreen"
+        component={SearchTabScreen}
+        options={{ headerShown: false }}
+      />
+    </SearchStack.Navigator>
   );
 }
