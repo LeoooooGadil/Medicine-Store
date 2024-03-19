@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, TextInput, TouchableOpacity, Keyboard } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Keyboard,
+} from "react-native";
 import tw from "twrnc";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
@@ -23,7 +29,7 @@ export default function SearchWindow({ ToggleSearchWindow }) {
       <View style={tw`px-8`}>
         <View style={tw`pt-2`}>
           <View
-            style={tw`relative w-full flex-row items-center bg-[${Colors.BrightGray}] rounded-xl shadow-md h-12`}
+            style={tw`flex-row bg-[${Colors.BrightGray}] rounded-xl shadow-md h-12`}
           >
             <TouchableOpacity onPress={onPress}>
               <Ionicons
@@ -34,8 +40,8 @@ export default function SearchWindow({ ToggleSearchWindow }) {
             </TouchableOpacity>
             <TextInput
               ref={textInputRef}
-              style={tw`text-lg font-semibold mr-15`} // theres something wrong here
-              textAlign="center"
+              style={tw`text-lg font-semibold w-60`} // theres something wrong here
+              textAlignVertical="center"
               placeHolder="Search your medicine"
               onChangeText={(text) => setSearchText(text)}
             />
