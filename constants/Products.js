@@ -10,6 +10,7 @@ export default [
     brandName: "Brand 1",
     isPrescriptionRequired: false,
     category: ["Category 1", "Category 2"],
+    manufacturer: "Manufacturer 1",
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ export default [
     brandName: "Brand 2",
     isPrescriptionRequired: false,
     category: ["Category 3", "Category 1"],
+    manufacturer: "Manufacturer 2",
   },
   {
     id: 3,
@@ -34,6 +36,7 @@ export default [
     brandName: "Brand 3",
     isPrescriptionRequired: true,
     category: ["Category 2", "Category 3"],
+    manufacturer: "Manufacturer 3",
   },
   {
     id: 4,
@@ -46,6 +49,7 @@ export default [
     brandName: "Brand 4",
     isPrescriptionRequired: false,
     category: ["Category 1", "Category 2"],
+    manufacturer: "Manufacturer 1",  
   },
   {
     id: 5,
@@ -58,6 +62,7 @@ export default [
     brandName: "Brand 5",
     isPrescriptionRequired: false,
     category: ["Category 3", "Category 1"],
+    manufacturer: "Manufacturer 2",
   },
   {
     id: 6,
@@ -70,6 +75,7 @@ export default [
     brandName: "Brand 6",
     isPrescriptionRequired: false,
     category: ["Category 2", "Category 3"],
+    manufacturer: "Manufacturer 3",
   },
   {
     id: 7,
@@ -82,5 +88,6 @@ export default [
     brandName: "Brand 6",
     isPrescriptionRequired: true,
     category: ["Category 1", "Category 2"],
+    manufacturer: "Manufacturer 1",
   },
 ];

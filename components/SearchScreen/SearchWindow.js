@@ -10,24 +10,37 @@ import tw from "twrnc";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function SearchWindow({ ToggleSearchWindow }) {
+export default function SearchWindow({
+  ToggleSearchWindow,
+  SetSearch,
+  SearchResult,
+}) {
   const [searchText, setSearchText] = useState("");
 
   const textInputRef = useRef();
 
   const onPress = () => {
     Keyboard.dismiss();
+    setSearchText("");
     ToggleSearchWindow();
   };
+
+  const onSearch = () => {
+    ToggleSearchWindow();
+  }
 
   useEffect(() => {
     textInputRef.current.focus();
   }, []);
 
+  useEffect(() => {
+    SetSearch(searchText);
+  }, [searchText]);
+
   return (
     <View>
       <View style={tw`px-8`}>
-        <View style={tw`pt-2`}>
+        <View style={tw`pt-2 pb-3`}>
           <View
             style={tw`flex-row bg-[${Colors.BrightGray}] rounded-xl shadow-md h-12`}
           >
@@ -44,15 +57,10 @@ export default function SearchWindow({ ToggleSearchWindow }) {
               textAlignVertical="center"
               placeHolder="Search your medicine"
               onChangeText={(text) => setSearchText(text)}
+              onSubmitEditing={onSearch}
             />
           </View>
         </View>
-        {searchText && (
-          <View style={tw`pt-4 flex-row`}>
-            <Text style={tw`text-xl`}> Searching For: </Text>
-            <Text style={tw`text-xl font-bold`}>{searchText}</Text>
-          </View>
-        )}
       </View>
     </View>
   );
