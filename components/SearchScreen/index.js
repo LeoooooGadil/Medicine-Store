@@ -1,3 +1,3 @@
 import SearchScreenWindow from "./Window";
-import SearchProductsList from "./ProductsList";
+import SearchProductsList from "./SearchProductsList";
 export { SearchScreenWindow, SearchProductsList };
