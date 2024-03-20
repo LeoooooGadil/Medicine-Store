@@ -61,6 +61,7 @@ export default function SearchScreenWindow({
           <>
             <ResultWindow
               ToggleSearchWindow={ToggleSearchWindow}
+              SetSearch={setSearchKeyword}
               SearchedResult={SearchResult}
             />
             <SearchProductsList

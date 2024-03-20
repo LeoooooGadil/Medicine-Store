@@ -79,6 +79,7 @@ export default function SearchProductsList({
               />
             );
           })}
+          {Products.length % 2 !== 0 && <View style={tw`w-41`} />}
       </View>
     </View>
   );
