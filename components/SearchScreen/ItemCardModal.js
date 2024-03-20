@@ -42,6 +42,30 @@ export default function ItemCard({ item }) {
         <Seperator />
         <Text>{item?.manufacturer}</Text>
       </View>
+      <View style={tw`px-8 pt-8 flex-row justify-between`}>
+        <View style={tw`flex-row`}>
+          <TouchableOpacity
+            style={tw`h-10 w-10 rounded-full justify-center items-center`}
+          >
+            <Text style={tw`text-2xl font-bold`}>-</Text>
+          </TouchableOpacity>
+          <View style={tw`justify-center items-center`}>
+            <Text style={tw`px-4 text-lg`}>1</Text>
+          </View>
+          <TouchableOpacity
+            style={tw`h-10 w-10 rounded-full justify-center items-center`}
+          >
+            <Text style={tw`text-2xl font-bold`}>+</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity
+            style={tw`bg-[${Colors.SunsetOrange}] rounded-lg p-3`}
+          >
+            <Text style={tw`text-white text-center`}>Add to Cart</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 }
