@@ -5,7 +5,7 @@ import Colors from "../../constants/Colors";
 
 export default function WelcomeBanner() {
   return (
-    <View style={tw`flex flex-col items-start justify-center px-8 pb-2`}>
+    <View style={tw`flex flex-col items-start justify-center px-8 pb-4`}>
       <TouchableOpacity
         style={tw`rounded-xl w-full p-4 bg-[${Colors.DarkBlueGray}] shadow-lg gap-2`}
       >

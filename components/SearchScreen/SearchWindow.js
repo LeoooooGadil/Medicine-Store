@@ -13,7 +13,6 @@ import { Ionicons } from "@expo/vector-icons";
 export default function SearchWindow({
   ToggleSearchWindow,
   SetSearch,
-  SearchResult,
 }) {
   const [searchText, setSearchText] = useState("");
 

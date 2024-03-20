@@ -10,8 +10,14 @@ import SearchProductsList from "./SearchProductsList";
 import Products from "../../constants/Products";
 import useFuzzySearch from "../../hooks/useFuzzySearch";
 
-export default function SearchScreenWindow({ GoToCart }) {
-  const [isSearchWindowOpen, setIsSearchWindowOpen] = useState(false);
+export default function SearchScreenWindow({
+  OpenBottomSheet,
+  CloseBottomSheet,
+  IsSearchWindowOpen,
+  SetIsSearchWindowOpen,
+  SetCurrentItem,
+}) {
+
   const [searchKeyword, setSearchKeyword] = useState("");
 
   const [SearchResult, search] = useFuzzySearch(Products, {
@@ -20,7 +26,8 @@ export default function SearchScreenWindow({ GoToCart }) {
   });
 
   const ToggleSearchWindow = () => {
-    setIsSearchWindowOpen(!isSearchWindowOpen);
+    CloseBottomSheet();
+    SetIsSearchWindowOpen(!IsSearchWindowOpen);
   };
 
   const SearchProducts = (text) => {
@@ -33,19 +40,22 @@ export default function SearchScreenWindow({ GoToCart }) {
 
   return (
     <>
-      {!isSearchWindowOpen && (
+      {!IsSearchWindowOpen && (
         <SearchScreenHeader GoToCart={() => navigation.navigate("Cart")} />
       )}
       <ScrollView keyboardShouldPersistTaps="handled" style={tw`h-full`}>
-        {isSearchWindowOpen ? (
+        {IsSearchWindowOpen ? (
           <>
             <SearchWindow
               ToggleSearchWindow={ToggleSearchWindow}
               SetSearch={(text) => setSearchKeyword(text)}
-              SearchResult={SearchResult}
-              AvailableProducts={Products}
             />
-            <SearchProductsList SearchedProducts={SearchResult} ShowResultOnly />
+            <SearchProductsList
+              SearchedProducts={SearchResult}
+              OpenBottomSheet={OpenBottomSheet}
+              SetCurrentItem={SetCurrentItem}
+              ShowResultOnly
+            />
           </>
         ) : (
           <>
@@ -53,7 +63,12 @@ export default function SearchScreenWindow({ GoToCart }) {
               ToggleSearchWindow={ToggleSearchWindow}
               SearchedResult={SearchResult}
             />
-            <SearchProductsList SearchedProducts={SearchResult} AvailableProducts={Products} />
+            <SearchProductsList
+              OpenBottomSheet={OpenBottomSheet}
+              SearchedProducts={SearchResult}
+              SetCurrentItem={SetCurrentItem}
+              AvailableProducts={Products}
+            />
             <View style={tw`w-full h-28`}></View>
           </>
         )}

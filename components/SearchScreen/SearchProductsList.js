@@ -9,6 +9,8 @@ export default function SearchProductsList({
   SearchedProducts,
   AvailableProducts,
   ShowResultOnly,
+  OpenBottomSheet,
+  SetCurrentItem,
 }) {
   const [Products, setProducts] = useState([]);
 
@@ -69,6 +71,8 @@ export default function SearchProductsList({
             return (
               <ItemContainer
                 key={_item.id}
+                OpenBottomSheet={OpenBottomSheet}
+                SetCurrentItem={SetCurrentItem}
                 item={_item}
                 isList
                 ListLocation={index % 2 == 0 ? 0 : 1}

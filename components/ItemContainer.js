@@ -6,6 +6,8 @@ import Colors from "../constants/Colors";
 export default function ItemContainer(props) {
   const {
     item,
+    OpenBottomSheet,
+    SetCurrentItem,
     isFeatured = false,
     isList = false,
     FeaturedLocation = 1,
@@ -20,9 +22,15 @@ export default function ItemContainer(props) {
     `;
   };
 
+  const OpenItem = () => {
+    SetCurrentItem(item);
+    OpenBottomSheet(item);
+  };
+
   return (
     <TouchableOpacity
       style={tw`flex-col items-start justify-center gap-1 ${styles()}`}
+      onPress={() => OpenItem()}
     >
       <View
         style={tw`w-36 h-36 bg-[${Colors.LavenderBlue}] rounded-xl justify-center items-center`}
