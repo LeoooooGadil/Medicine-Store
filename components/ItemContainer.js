@@ -16,9 +16,8 @@ export default function ItemContainer(props) {
 
   const styles = () => {
     return `
-      ${isList ? "pb-5" : "px-2"}
+      ${isList ? ListLocation == 0 ? "pb-5 pr-5" : "pb-5 pl-5" : "px-2"}
       ${isFeatured && FeaturedLocation == 0 ? "pl-8" : isFeatured && FeaturedLocation == 2 ? "pr-8" : ""}
-      ${isList && ListLocation == 0 ? "pr-5" : "pl-5"} 
     `;
   };
 

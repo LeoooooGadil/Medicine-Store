@@ -29,7 +29,7 @@ export default function HomeScreenHeader({ GoToSearch, GoToCart }) {
       </View>
       <View style={tw`pt-2`}>
         <TouchableOpacity
-          style={tw`flex-row items-center gap-3 bg-[${Colors.BrightGray}] rounded-xl p-3 shadow-md`}
+          style={tw`flex-row items-center gap-3 bg-[${Colors.BrightGray}] rounded-xl p-3 h-12 shadow-md`}
           onPress={GoToSearch}
         >
           <Ionicons name="search" size={20} />
