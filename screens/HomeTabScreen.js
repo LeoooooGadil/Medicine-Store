@@ -11,6 +11,7 @@ import { Seperator } from "../components";
 import BottomSheetModal from "../components/BottomSheetModal";
 export default function HomeTabScreen({ route, navigation }) {
   const [CurrentItem, setCurrentItem] = useState(null);
+  const [IsBottomSheetOpen, SetIsBottomSheetOpen] = useState(false); // [1]
   const bottomSheetRef = useRef(null);
 
   const SetCurrentItem = useCallback((item) => {
@@ -18,9 +19,15 @@ export default function HomeTabScreen({ route, navigation }) {
   });
 
   const openBottomSheet = useCallback(() => {
+    SetIsBottomSheetOpen(true);
     bottomSheetRef.current?.snapToIndex(0); // Open the bottom sheet
     Keyboard.dismiss();
   }, []);
+
+  const closeBottomSheet = useCallback(() => {
+    SetIsBottomSheetOpen(false);
+    bottomSheetRef.current?.close();
+  });
 
   return (
     <SafeAreaView style={tw`flex-1`}>
@@ -41,7 +48,9 @@ export default function HomeTabScreen({ route, navigation }) {
       </View>
       <BottomSheetModal
         bottomSheetRef={bottomSheetRef}
-        SetIsBottomSheetOpen={() => {}}
+        IsBottomSheetOpen={IsBottomSheetOpen}
+        CloseBottomSheet={closeBottomSheet}
+        SetIsBottomSheetOpen={SetIsBottomSheetOpen}
         CurrentItem={CurrentItem}
       />
     </SafeAreaView>

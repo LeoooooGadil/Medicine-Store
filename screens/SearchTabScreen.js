@@ -21,6 +21,7 @@ export default function SearchTabScreen({ navigation }) {
   }, [isSearchWindowOpen]);
 
   const closeBottomSheet = useCallback(() => {
+    setIsBottomSheetOpen(false);
     bottomSheetRef.current?.close();
   });
 
@@ -35,7 +36,9 @@ export default function SearchTabScreen({ navigation }) {
       />
       <BottomSheetModal
         bottomSheetRef={bottomSheetRef}
-        SetIsSearchWindowOpen={setIsBottomSheetOpen}
+        CloseBottomSheet={closeBottomSheet}
+        IsBottomSheetOpen={isBottomSheetOpen}
+        SetIsBottomSheetOpen={setIsBottomSheetOpen} // Corrected prop name
         CurrentItem={CurrentItem}
       />
     </SafeAreaView>

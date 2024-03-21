@@ -4,6 +4,8 @@ import { ItemCard } from "./SearchScreen";
 
 export default function BottomSheetModal({
   bottomSheetRef,
+  CloseBottomSheet,
+  IsBottomSheetOpen,
   SetIsBottomSheetOpen,
   CurrentItem,
 }) {
@@ -37,7 +39,7 @@ export default function BottomSheetModal({
       enablePanDownToClose
     >
       <BottomSheetView>
-        <ItemCard item={CurrentItem} />
+        <ItemCard item={CurrentItem} CloseBottomSheet={CloseBottomSheet} IsBottomSheetOpen={IsBottomSheetOpen} />
       </BottomSheetView>
     </BottomSheet>
   );
