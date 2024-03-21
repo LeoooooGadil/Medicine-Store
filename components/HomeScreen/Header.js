@@ -1,6 +1,12 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from "react-native";
 import tw from "twrnc";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 import Colors from "../../constants/Colors";
 
@@ -27,16 +33,26 @@ export default function HomeScreenHeader({ GoToSearch, GoToCart }) {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={tw`pt-2`}>
-        <TouchableOpacity
-          style={tw`flex-row items-center gap-3 bg-[${Colors.BrightGray}] rounded-xl p-3 h-12 shadow-md`}
-          onPress={GoToSearch}
+      <View style={tw`pt-2 flex-row`}>
+        <LinearGradient
+          colors={["#DA1212", "#11468F", "#041562"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={tw`rounded-2xl shadow-md p-0.7 flex-1 h-13.5`}
         >
-          <Ionicons name="search" size={20} />
-          <Text style={tw`font-semibold opacity-50`}>
-            Search your medicine
-          </Text>
-        </TouchableOpacity>
+          <TouchableWithoutFeedback
+            onPress={GoToSearch}
+          >
+            <View
+              style={tw`flex-1 flex-row items-center gap-3 bg-[${Colors.BrightGray}] rounded-xl `}
+            >
+              <Ionicons name="search" size={20} style={tw`pl-3 py-3`} />
+              <Text style={tw`font-semibold opacity-50`}>
+                Search your medicine
+              </Text>
+            </View>
+          </TouchableWithoutFeedback>
+        </LinearGradient>
       </View>
     </View>
   );

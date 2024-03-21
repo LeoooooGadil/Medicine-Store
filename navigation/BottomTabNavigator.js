@@ -17,8 +17,9 @@ export default function BottomTabNavigator() {
       screenOptions={{
         tabBarLabelStyle: {
           fontSize: 12,
+          fontWeight: "bold",
         },
-        tabBarActiveTintColor: Colors.SunsetOrange,
+        tabBarActiveTintColor: Colors.Lava,
       }}
     >
       <BottomTab.Screen
@@ -73,7 +74,7 @@ function TabBarIcon(props) {
       size={props.focused ? 32 : 25}
       style={{ marginBottom: -3 }}
       {...props}
-      color={props.focused ? Colors.SunsetOrange : Colors.BrightGray}
+      color={props.focused ? Colors.Lava : Colors.BrightGray}
       name={`${props.name}${props.focused ? "" : "-outline"}`}
     />
   );

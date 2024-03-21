@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback } from "react";
 import { SafeAreaView, Keyboard, View } from "react-native";
 import tw from "twrnc";
+import Colors from "../constants/Colors";
 
 import {
   HomeScreenHeader,
@@ -35,7 +36,7 @@ export default function HomeTabScreen({ navigation }) {
   });
 
   return (
-    <SafeAreaView style={tw`flex-1`}>
+    <SafeAreaView style={tw`flex-1 bg-[${Colors.BrightGray}]`}>
       <View style={`gap-2 `}>
         <HomeScreenHeader
           GoToSearch={() =>

@@ -3,5 +3,9 @@ export default {
   LavenderBlue: "#CDDEFF",
   DarkBlueGray: "#676FA3",
   SunsetOrange: "#FF5959",
-  BrightGray: "#E5E7EB",
+
+  BrightGray: "#EEEEEE",
+  White: "#FFFFFF",
+  YaleBlue: "#11468F",
+  Lava: "#DA1212"
 };

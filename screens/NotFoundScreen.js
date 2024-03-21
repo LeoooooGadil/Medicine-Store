@@ -1,8 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import tw from "twrnc";
+import Colors from "../constants/Colors";
 
 export default function NotFoundScreen({ navigation }) {
   return (
-    <View style={styles.container}>
+    <View style={tw`bg-[${Colors.BrightGray}]`}>
       <Text style={styles.title}>This screen doesn't exist.</Text>
       <TouchableOpacity
         onPress={() => navigation.replace("Root")}

@@ -16,8 +16,14 @@ export default function ItemContainer(props) {
 
   const styles = () => {
     return `
-      ${isList ? ListLocation == 0 ? "pb-5 pr-5" : "pb-5 pl-5" : "px-2"}
-      ${isFeatured && FeaturedLocation == 0 ? "pl-8" : isFeatured && FeaturedLocation == 2 ? "pr-8" : ""}
+      ${isList ? (ListLocation == 0 ? "mr-1" : "ml-1") + " mb-3" : "mx-2"}
+      ${
+        isFeatured && FeaturedLocation == 0
+          ? "ml-8"
+          : isFeatured && FeaturedLocation == 2
+          ? "mr-8"
+          : ""
+      }
     `;
   };
 
@@ -28,15 +34,17 @@ export default function ItemContainer(props) {
 
   return (
     <TouchableOpacity
-      style={tw`flex-col items-start justify-center gap-1 ${styles()}`}
+      style={tw`flex-col bg-[${
+        Colors.White
+      }] rounded-xl shadow-md items-start justify-center gap-1 ${styles()}`}
       onPress={() => OpenItem()}
     >
       <View
-        style={tw`w-36 h-36 bg-[${Colors.LavenderBlue}] rounded-xl justify-center items-center`}
+        style={tw`w-40 h-36 bg-[${Colors.YaleBlue}] rounded-t-xl shadow-md justify-center items-center`}
       >
-        <Text>Image</Text>
+        <Text style={tw`text-2xl text-[${Colors.White}]`}>Image</Text>
       </View>
-      <View style={tw`px-1`}>
+      <View style={tw`px-3 pb-2`}>
         <Text style={tw`text-lg font-bold`}>{item.name}</Text>
         <View>
           <View>

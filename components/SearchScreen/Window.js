@@ -11,6 +11,7 @@ import Products from "../../constants/Products";
 import useFuzzySearch from "../../hooks/useFuzzySearch";
 
 export default function SearchScreenWindow({
+  navigation,
   OpenBottomSheet,
   CloseBottomSheet,
   IsSearchWindowOpen,

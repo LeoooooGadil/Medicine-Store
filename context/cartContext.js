@@ -7,6 +7,7 @@ export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [isCartBeenUpdated, setIsCartBeenUpdated] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const getCartItems = async () => {
@@ -24,6 +25,7 @@ export const CartProvider = ({ children }) => {
 
   const addCartItem = async (item, quantity = 1) => {
     setLoading(true);
+    setIsCartBeenUpdated(true);
     try {
       const items = [...cartItems];
       const index = items.findIndex((i) => i.item.id === item.id);
@@ -73,6 +75,7 @@ export const CartProvider = ({ children }) => {
 
   const clearCartItems = async () => {
     setLoading(true);
+    setIsCartBeenUpdated(true);
     try {
       await AsyncStorage.removeItem("cartItems");
       setCartItems([]);
@@ -88,6 +91,7 @@ export const CartProvider = ({ children }) => {
       value={{
         cartItems,
         loading,
+        isCartBeenUpdated,
         getCartItems,
         addCartItem,
         removeCartItem,

@@ -22,9 +22,14 @@ const Stack = createStackNavigator();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+      options={{
+        animationTypeForReplace: "none",
+      }}
+    >
       <Stack.Screen name="Root" component={BottomTabNavigator} />
-      <Stack.Screen name="Checkout" component={CheckoutScreen} />
+      <Stack.Screen name="Checkout" component={CheckoutScreen}/>
       <Stack.Screen name="NotFound" component={NotFoundScreen} />
     </Stack.Navigator>
   );

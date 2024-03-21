@@ -20,10 +20,10 @@ export default function ExploreOurProducts({
           style={tw`flex-row gap-1 items-center`}
           onPress={GoToSearch}
         >
-          <Text style={tw`text-[${Colors.SunsetOrange}]`}>View All</Text>
+          <Text style={tw`text-[${Colors.Lava}]`}>View All</Text>
           <Ionicons
             name="chevron-forward-outline"
-            color={Colors.SunsetOrange}
+            color={Colors.Lava}
             size={15}
           />
         </TouchableOpacity>
@@ -68,6 +68,7 @@ function FeaturedProducts({ OpenBottomSheet, SetCurrentItem }) {
             />
           );
         }}
+        style={tw`pb-2`}
       />
     </View>
   );

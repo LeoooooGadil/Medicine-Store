@@ -94,7 +94,7 @@ function CartSettings({ quantity, handleQuantityChange, handleRemoveItem }) {
             <Ionicons
               name="trash-outline"
               size={20}
-              color={Colors.SunsetOrange}
+              color={Colors.Lava}
             />
           </TouchableOpacity>
         </View>

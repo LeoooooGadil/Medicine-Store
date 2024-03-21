@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useFocusEffect } from "@react-navigation/native";
-import {
-  Text,
-  SafeAreaView,
-  View,
-  ScrollView,
-} from "react-native";
+import { Text, SafeAreaView, View, ScrollView } from "react-native";
 import tw from "twrnc";
+import Colors from "../constants/Colors";
 import { useCart } from "../context/cartContext";
 
 import {
@@ -17,7 +13,17 @@ import {
 } from "../components/CartScreen";
 
 export default function CartTabScreen({ navigation }) {
-  const { cartItems, loading, getCartItems, clearCartItems } = useCart();
+  const {
+    cartItems,
+    isCartBeenUpdated,
+    loading,
+    getCartItems,
+    clearCartItems,
+  } = useCart();
+
+  const goToCheckout = () => {
+    navigation.navigate("Checkout");
+  };
 
   const refreshCartItems = async () => {
     console.log("Refreshing cart items...");
@@ -32,11 +38,10 @@ export default function CartTabScreen({ navigation }) {
   // use UseFocusEffect to refresh the cart items when the screen is focused
   useFocusEffect(
     React.useCallback(() => {
-      console.log("Cart Tab Screen focused");
-      refreshCartItems();
-      return () => {
-        console.log("Cart Tab Screen unfocused");
-      };
+      if (isCartBeenUpdated) {
+        refreshCartItems();
+      }
+      return () => {};
     }, [])
   );
 
@@ -45,7 +50,7 @@ export default function CartTabScreen({ navigation }) {
   }, []);
 
   return (
-    <SafeAreaView style={tw`gap-2`}>
+    <SafeAreaView style={tw`gap-2 bg-[${Colors.CosmicLatte}]`}>
       <CartScreenHeader
         refreshCartItems={refreshCartItems}
         clearCart={clearCart}
@@ -55,9 +60,7 @@ export default function CartTabScreen({ navigation }) {
           <View
             style={tw`px-8 py-2 items-center justify-center w-full h-80 gap-6`}
           >
-            <Text style={tw`text-lg font-bold opacity-25`}>
-              Loading...
-            </Text>
+            <Text style={tw`text-lg font-bold opacity-25`}>Loading...</Text>
           </View>
         </>
       ) : (
@@ -67,7 +70,7 @@ export default function CartTabScreen({ navigation }) {
             GoToSearchScreen={() => navigation.navigate("Search")}
           />
           <CartInformation cartItems={cartItems} />
-          <CartControls cartItems={cartItems} />
+          <CartControls cartItems={cartItems} GoToCheckout={goToCheckout} />
         </ScrollView>
       )}
     </SafeAreaView>

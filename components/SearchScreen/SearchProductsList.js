@@ -49,7 +49,7 @@ export default function SearchProductsList({
   return (
     <View style={tw`pt-2`}>
       {SearchedProducts?.SearchTerm.length > 0 && (
-        <View style={tw`px-8 py-2 flex-row justify-between`}>
+        <View style={tw`px-10 py-2 flex-row justify-between`}>
           <View style={tw`flex-row gap-1`}>
             <Text>searched for:</Text>
             <Text style={tw`font-bold`}>{SearchedProducts.SearchTerm}</Text>
