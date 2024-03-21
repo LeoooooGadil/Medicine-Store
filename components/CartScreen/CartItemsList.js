@@ -9,7 +9,7 @@ export default function CartItemsList({ cartItems, GoToSearchScreen }) {
   if (cartItems.length === 0) {
     return (
       <View style={tw`px-8 py-2 items-center justify-center w-full h-80 gap-6`}>
-        <Text style={tw`text-lg font-bold opacity-25`}>No Items In Cart</Text>
+        <Text style={tw`font-bold opacity-25`}>No Items In Cart</Text>
         <TouchableOpacity
             style={tw`bg-[${Colors.SunsetOrange}] rounded-lg p-3`}
             onPress={GoToSearchScreen}

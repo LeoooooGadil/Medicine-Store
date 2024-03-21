@@ -44,7 +44,7 @@ export default function ItemContainer(props) {
             <Text>{item.dosage}ml</Text>
           </View>
         </View>
-        <Text style={tw`text-sm font-bold`}>₱{item.price}</Text>
+        <Text style={tw`font-bold`}>₱{item.price}</Text>
       </View>
     </TouchableOpacity>
   );

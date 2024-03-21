@@ -4,6 +4,7 @@ import tw from "twrnc";
 import { useCart } from "../../context/cartContext";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import Seperator from "../Seperator";
 
 export default function CartItem({ item, quantity, index }) {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -32,16 +33,20 @@ export default function CartItem({ item, quantity, index }) {
       key={index}
       onPress={toggleSettings}
     >
-      <View style={tw`p-4 py-5 ${isSettingsOpen ? "pb-0" : ""} flex-row justify-between items-center`}>
+      <View
+        style={tw`p-4 ${
+          isSettingsOpen ? "pb-0" : ""
+        } flex-row justify-between items-center`}
+      >
         <View style={tw`flex-row gap-3 items-center`}>
           <View style={tw`flex-row items-center`}>
             <Text style={tw`text-xl`}>{_quantity}</Text>
             <Text style={tw`text-lg opacity-30`}>x</Text>
           </View>
-          <Text style={tw`font-bold text-lg`}>{item.name}</Text>
+          <Text style={tw`font-bold`}>{item.name}</Text>
         </View>
         <View>
-          <Text style={tw`font-bold text-lg`}>${item.price}</Text>
+          <Text style={tw`font-bold`}>${item.price}</Text>
         </View>
       </View>
       {isSettingsOpen && (
@@ -60,36 +65,40 @@ function CartSettings({ quantity, handleQuantityChange, handleRemoveItem }) {
   const inputRef = useRef();
 
   return (
-    <View style={tw`px-4 flex-row justify-between items-center`}>
-      <View>
-        <View style={tw`flex-row`}>
-          <TouchableOpacity
-            style={tw`h-7 w-10 rounded-lg justify-center items-center`}
-            onPress={() => handleQuantityChange(quantity - 1)}
-          >
-            <Ionicons name="remove-outline" size={15} />
-          </TouchableOpacity>
-          <View style={tw`justify-center items-center w-6`}>
-            <Text ref={inputRef} style={tw`text-lg`}>
-              {quantity}
-            </Text>
+    <>
+      <View style={tw`px-4 flex-row justify-between items-center`}>
+        <View>
+          <View style={tw`flex-row`}>
+            <TouchableOpacity
+              style={tw`p-3 pl-0 rounded-lg justify-center items-center`}
+              onPress={() => handleQuantityChange(quantity - 1)}
+            >
+              <Ionicons name="remove-outline" size={13} />
+            </TouchableOpacity>
+            <View style={tw`justify-center items-center w-6`}>
+              <Text ref={inputRef}>{quantity}</Text>
+            </View>
+            <TouchableOpacity
+              style={tw`p-3 rounded-lg justify-center items-center`}
+              onPress={() => handleQuantityChange(quantity + 1)}
+            >
+              <Ionicons name="add-outline" size={13} />
+            </TouchableOpacity>
           </View>
+        </View>
+        <View>
           <TouchableOpacity
-            style={tw`h-7 w-10 rounded-lg justify-center items-center`}
-            onPress={() => handleQuantityChange(quantity + 1)}
+            style={tw`rounded-lg py-3`}
+            onPress={handleRemoveItem}
           >
-            <Ionicons name="add-outline" size={15} />
+            <Ionicons
+              name="trash-outline"
+              size={20}
+              color={Colors.SunsetOrange}
+            />
           </TouchableOpacity>
         </View>
       </View>
-      <View>
-        <TouchableOpacity
-          style={tw`rounded-lg p-3`}
-          onPress={handleRemoveItem}
-        >
-          <Ionicons name="trash-outline" size={20} color={Colors.SunsetOrange} />
-        </TouchableOpacity>
-      </View>
-    </View>
+    </>
   );
 }

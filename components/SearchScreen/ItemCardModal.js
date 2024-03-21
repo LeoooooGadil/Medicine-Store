@@ -91,13 +91,16 @@ export default function ItemCard({
             <Text style={tw`text-2xl font-bold`}>+</Text>
           </TouchableOpacity>
         </View>
-        <View>
-          <TouchableOpacity
-            style={tw`bg-[${Colors.SunsetOrange}] rounded-lg p-3`}
-            onPress={AddToCart}
-          >
-            <Text style={tw`text-white text-center`}>Add to Cart</Text>
-          </TouchableOpacity>
+        <View style={tw`flex-row justify-center items-center gap-2`}>
+          <Text style={tw`text-lg ${quantity > 1 ? "font-bold" : ""}`}>₱ {item?.price * quantity}</Text>
+          <View>
+            <TouchableOpacity
+              style={tw`bg-[${Colors.SunsetOrange}] rounded-lg p-3`}
+              onPress={AddToCart}
+            >
+              <Text style={tw`text-white text-center`}>Add to Cart</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>

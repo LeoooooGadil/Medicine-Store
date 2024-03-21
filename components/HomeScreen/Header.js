@@ -33,7 +33,7 @@ export default function HomeScreenHeader({ GoToSearch, GoToCart }) {
           onPress={GoToSearch}
         >
           <Ionicons name="search" size={20} />
-          <Text style={tw`text-lg font-semibold opacity-50`}>
+          <Text style={tw`font-semibold opacity-50`}>
             Search your medicine
           </Text>
         </TouchableOpacity>

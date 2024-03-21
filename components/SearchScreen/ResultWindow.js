@@ -18,7 +18,7 @@ export default function ResultWindow({
           >
             <Ionicons name="search" size={20} style={tw`pl-3 py-3`} />
             <Text
-              style={tw`text-lg font-semibold mr-15 ${
+              style={tw`font-semibold mr-15 ${
                 SearchedResult?.SearchTerm.length > 0 ? null : "opacity-50"
               }`}
             >

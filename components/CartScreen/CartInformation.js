@@ -30,18 +30,18 @@ export default function CartInformation({ cartItems }) {
   }
 
   return (
-    <View style={tw`px-8 py-4 pt-10 gap-1`}>
+    <View style={tw`px-8 py-4 pt-6 gap-1`}>
       <View style={tw`flex-row justify-between items-center`}>
-        <Text style={tw`text-lg`}>Subtotal</Text>
-        <Text style={tw`text-lg font-bold`}>₱{subTotal}</Text>
+        <Text>Subtotal</Text>
+        <Text style={tw`font-bold`}>₱{subTotal}</Text>
       </View>
       <View style={tw`flex-row justify-between items-center`}>
-        <Text style={tw`text-lg`}>Shipping Fee</Text>
-        <Text style={tw`text-lg font-bold`}>₱50</Text>
+        <Text>Shipping Fee</Text>
+        <Text style={tw`font-bold`}>₱50</Text>
       </View>
       <View style={tw`flex-row justify-between items-center`}>
-        <Text style={tw`text-2xl`}>Total</Text>
-        <Text style={tw`text-2xl font-bold`}>₱{total}</Text>
+        <Text style={tw`text-xl`}>Total</Text>
+        <Text style={tw`text-xl font-bold`}>₱{total}</Text>
       </View>
     </View>
   );

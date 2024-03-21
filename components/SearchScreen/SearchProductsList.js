@@ -31,19 +31,19 @@ export default function SearchProductsList({
   }, [SearchedProducts]);
 
   useEffect(() => {
-    if(!ShowResultOnly){
-      setProducts(AvailableProducts)
+    if (!ShowResultOnly) {
+      setProducts(AvailableProducts);
     } else {
-      setProducts([])
+      setProducts([]);
     }
   }, []);
 
-  if(Products.length == 0 && SearchedProducts?.SearchTerm.length > 0){
+  if (Products.length == 0 && SearchedProducts?.SearchTerm.length > 0) {
     return (
       <View style={tw`px-8 py-2 items-center justify-center w-full h-50`}>
-        <Text style={tw`text-lg font-bold opacity-25`}>No results found</Text>
+        <Text style={tw`font-bold opacity-25`}>No results found</Text>
       </View>
-    )
+    );
   }
 
   return (
@@ -51,14 +51,12 @@ export default function SearchProductsList({
       {SearchedProducts?.SearchTerm.length > 0 && (
         <View style={tw`px-8 py-2 flex-row justify-between`}>
           <View style={tw`flex-row gap-1`}>
-            <Text style={tw`text-lg`}>searched for:</Text>
-            <Text style={tw`text-lg font-bold`}>
-              {SearchedProducts.SearchTerm}
-            </Text>
+            <Text>searched for:</Text>
+            <Text style={tw`font-bold`}>{SearchedProducts.SearchTerm}</Text>
           </View>
           <View style={tw`flex-row gap-1`}>
-            <Text style={tw`text-lg`}>found</Text>
-            <Text style={tw`text-lg font-bold`}>
+            <Text>found</Text>
+            <Text style={tw`font-bold`}>
               {SearchedProducts.SearchResultsCount}
             </Text>
           </View>
@@ -79,7 +77,7 @@ export default function SearchProductsList({
               />
             );
           })}
-          {Products.length % 2 !== 0 && <View style={tw`w-41`} />}
+        {Products.length % 2 !== 0 && <View style={tw`w-41`} />}
       </View>
     </View>
   );

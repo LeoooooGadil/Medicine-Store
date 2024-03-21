@@ -52,7 +52,7 @@ export default function SearchWindow({
             </TouchableOpacity>
             <TextInput
               ref={textInputRef}
-              style={tw`text-lg font-semibold w-60`} // theres something wrong here
+              style={tw`font-semibold w-60`} // theres something wrong here
               textAlignVertical="center"
               placeHolder="Search your medicine"
               onChangeText={(text) => setSearchText(text)}

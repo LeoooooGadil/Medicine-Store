@@ -9,10 +9,10 @@ export default function WelcomeBanner() {
       <TouchableOpacity
         style={tw`rounded-xl w-full p-4 bg-[${Colors.DarkBlueGray}] shadow-lg gap-2`}
       >
-        <Text style={tw`text-4xl font-bold text-white`}>
+        <Text style={tw`text-2xl font-bold text-white`}>
           Welcome to PhilBox
         </Text>
-        <Text style={tw`text-xl text-white opacity-75`}>
+        <Text style={tw`text-white opacity-75`}>
           Your one stop shop for all your pharmaceutical needs
         </Text>
       </TouchableOpacity>
