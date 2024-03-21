@@ -7,6 +7,7 @@ import { useLoadedAssets } from "./hooks/useLoadedAssets";
 import Navigation from "./navigation";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { CartProvider } from "./context/cartContext";
+import { SearchProvider } from "./context/searchContext";
 
 export default function App() {
   const isLoadingComplete = useLoadedAssets();
@@ -15,14 +16,16 @@ export default function App() {
     return null;
   } else {
     return (
-      <CartProvider>
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <SafeAreaProvider>
-            <Navigation />
-            <StatusBar />
-          </SafeAreaProvider>
-        </GestureHandlerRootView>
-      </CartProvider>
+      <SearchProvider>
+        <CartProvider>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <SafeAreaProvider>
+              <Navigation />
+              <StatusBar />
+            </SafeAreaProvider>
+          </GestureHandlerRootView>
+        </CartProvider>
+      </SearchProvider>
     );
   }
 }

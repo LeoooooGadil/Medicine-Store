@@ -11,16 +11,11 @@ export default {
     screens: {
       Root: {
         screens: {
-          Home: {
-            screens: {
-              HomeTabSceen: "home",
-            },
-          },
-          Cart: {
-            screens: {
-              CartTabScreen: "cart",
-            },
-          },
+          HomeTabScreen: "home",
+          SearchTabScreen: "search",
+          CartTabScreen: "cart",
+          OrdersTabScreen: "orders",
+          CheckoutScreen: "checkout",
         },
       },
       NotFound: "*",

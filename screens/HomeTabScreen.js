@@ -9,7 +9,12 @@ import {
 } from "../components/HomeScreen";
 import { Seperator } from "../components";
 import BottomSheetModal from "../components/BottomSheetModal";
-export default function HomeTabScreen({ route, navigation }) {
+import { useSearch } from "../context/searchContext";
+
+export default function HomeTabScreen({ navigation }) {
+
+  const { startSearch } = useSearch(); 
+
   const [CurrentItem, setCurrentItem] = useState(null);
   const [IsBottomSheetOpen, SetIsBottomSheetOpen] = useState(false); // [1]
   const bottomSheetRef = useRef(null);
@@ -34,12 +39,17 @@ export default function HomeTabScreen({ route, navigation }) {
       <View style={`gap-2 `}>
         <HomeScreenHeader
           GoToSearch={() =>
-            navigation.navigate("Search", { startSearch: true })
+            {
+              startSearch();
+              navigation.navigate("Search");
+            }
           }
           GoToCart={() => navigation.navigate("Cart")}
         />
         <WelcomeBanner />
-        <Seperator />
+        <View style={tw`px-8`}>
+          <Seperator />
+        </View>
         <ExploreOurProducts
           GoToSearch={() => navigation.navigate("Search")}
           OpenBottomSheet={openBottomSheet}

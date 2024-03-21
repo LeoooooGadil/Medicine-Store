@@ -1,11 +1,15 @@
-import React, { useRef, useCallback, useState } from "react";
+import React, { useRef, useCallback, useState, useEffect } from "react";
 import { SafeAreaView, Keyboard, Text } from "react-native";
 import tw from "twrnc";
 import { SearchScreenWindow, ItemCard } from "../components/SearchScreen";
 import BottomSheetModal from "../components/BottomSheetModal";
+import { useFocusEffect } from "@react-navigation/native";
+import { useSearch } from "../context/searchContext";
 
-export default function SearchTabScreen({ navigation }) {
-  const [isSearchWindowOpen, setIsSearchWindowOpen] = useState(false);
+export default function SearchTabScreen() {
+  const { startSearching, stopSearch } = useSearch();
+
+  const [isSearchWindowOpen, setIsSearchWindowOpen] = useState(startSearching);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [CurrentItem, setCurrentItem] = useState(null);
   const bottomSheetRef = useRef(null);
@@ -24,6 +28,20 @@ export default function SearchTabScreen({ navigation }) {
     setIsBottomSheetOpen(false);
     bottomSheetRef.current?.close();
   });
+
+  useEffect(() => {
+    if (!isSearchWindowOpen) {
+      stopSearch();
+    }
+  }, [isSearchWindowOpen]);
+
+  useFocusEffect(
+    useCallback(() => {
+      if (startSearching) {
+        setIsSearchWindowOpen(true);
+      }
+    }, [startSearching])
+  );
 
   return (
     <SafeAreaView style={tw`flex-1`}>
