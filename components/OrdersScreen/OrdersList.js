@@ -15,7 +15,7 @@ export default function OrdersList({ Orders }) {
   return (
     <View style={tw`px-8 pt-12 flex-col gap-3`}>
       {Orders.map((_item, index) => {
-        return <OrdersItem item={_item} />;
+        return <OrdersItem item={_item} key={index} />;
       })}
     </View>
   );

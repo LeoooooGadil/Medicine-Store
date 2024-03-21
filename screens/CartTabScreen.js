@@ -5,7 +5,6 @@ import {
   SafeAreaView,
   View,
   ScrollView,
-  ActivityIndicator,
 } from "react-native";
 import tw from "twrnc";
 import { useCart } from "../context/cartContext";
@@ -14,8 +13,8 @@ import {
   CartInformation,
   CartItemsList,
   CartScreenHeader,
+  CartControls,
 } from "../components/CartScreen";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function CartTabScreen({ navigation }) {
   const { cartItems, loading, getCartItems, clearCartItems } = useCart();
@@ -68,6 +67,7 @@ export default function CartTabScreen({ navigation }) {
             GoToSearchScreen={() => navigation.navigate("Search")}
           />
           <CartInformation cartItems={cartItems} />
+          <CartControls cartItems={cartItems} />
         </ScrollView>
       )}
     </SafeAreaView>
