@@ -44,14 +44,19 @@ export default function ItemContainer(props) {
       >
         <Text style={tw`text-2xl text-[${Colors.White}]`}>Image</Text>
       </View>
-      <View style={tw`px-3 pb-2`}>
-        <Text style={tw`text-lg font-bold`}>{item.name}</Text>
-        <View>
-          <View>
-            <Text>{item.dosage}ml</Text>
+      <View style={tw`px-3 pb-3.5 w-full`}>
+        <Text style={tw`text-lg font-bold`}>{item?.brandName}</Text>
+        <View style={tw`flex-row justify-between items-center`}>
+          <View style={tw`relative pb-4`}>
+            <View style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.Lava}]`}>
+              <Text style={tw`text-white`}>
+                {item?.dosage}
+                {item?.dosageType}
+              </Text>
+            </View>
           </View>
+          <Text style={tw`font-bold`}>₱{item?.price}</Text>
         </View>
-        <Text style={tw`font-bold`}>₱{item.price}</Text>
       </View>
     </TouchableOpacity>
   );

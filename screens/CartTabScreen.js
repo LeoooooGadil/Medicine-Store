@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useFocusEffect } from "@react-navigation/native";
-import { Text, SafeAreaView, View, ScrollView } from "react-native";
+import { Text, SafeAreaView, View, ScrollView, Alert } from "react-native";
 import tw from "twrnc";
 import Colors from "../constants/Colors";
 import { useCart } from "../context/cartContext";
@@ -22,7 +22,27 @@ export default function CartTabScreen({ navigation }) {
   } = useCart();
 
   const goToCheckout = () => {
-    navigation.navigate("Checkout");
+    if (cartItems.length === 0) {
+      Alert.alert("Cart is empty", "Please add items to cart first.");
+      return;
+    }
+
+    Alert.alert(
+      "Proceed to checkout?",
+      "Are you sure you want to proceed to checkout?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Proceed",
+          onPress: () => {
+            navigation.navigate("Checkout");
+          },
+        },
+      ]
+    );
   };
 
   const refreshCartItems = async () => {
@@ -31,8 +51,19 @@ export default function CartTabScreen({ navigation }) {
   };
 
   const clearCart = async () => {
-    await clearCartItems();
-    refreshCartItems();
+    Alert.alert("Clear cart?", "Are you sure you want to clear your cart?", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Clear",
+        onPress: async () => {
+          await clearCartItems();
+          refreshCartItems();
+        },
+      },
+    ]);
   };
 
   // use UseFocusEffect to refresh the cart items when the screen is focused
@@ -50,8 +81,9 @@ export default function CartTabScreen({ navigation }) {
   }, []);
 
   return (
-    <SafeAreaView style={tw`gap-2 bg-[${Colors.CosmicLatte}]`}>
+    <SafeAreaView style={tw`gap-2 bg-[${Colors.BrightGray}]`}>
       <CartScreenHeader
+        cartItems={cartItems}
         refreshCartItems={refreshCartItems}
         clearCart={clearCart}
       />

@@ -35,7 +35,7 @@ export default function CartItem({ item, quantity, index }) {
     >
       <View
         style={tw`p-4 ${
-          isSettingsOpen ? "pb-0" : ""
+          isSettingsOpen ? "pb-4" : ""
         } flex-row justify-between items-center`}
       >
         <View style={tw`flex-row gap-3 items-center`}>
@@ -46,15 +46,18 @@ export default function CartItem({ item, quantity, index }) {
           <Text style={tw`font-bold`}>{item.name}</Text>
         </View>
         <View>
-          <Text style={tw`font-bold`}>${item.price}</Text>
+          <Text style={tw`font-bold opacity-75`}>₱ {item.price}</Text>
         </View>
       </View>
       {isSettingsOpen && (
-        <CartSettings
-          quantity={_quantity}
-          handleQuantityChange={handleQuantityChange}
-          handleRemoveItem={handleRemoveItem}
-        />
+        <View>
+          <View style={tw`h-0.3 bg-gray-200 rounded-lg mx-4`}></View>
+          <CartSettings
+            quantity={_quantity}
+            handleQuantityChange={handleQuantityChange}
+            handleRemoveItem={handleRemoveItem}
+          />
+        </View>
       )}
     </TouchableOpacity>
   );
@@ -91,11 +94,7 @@ function CartSettings({ quantity, handleQuantityChange, handleRemoveItem }) {
             style={tw`rounded-lg py-3`}
             onPress={handleRemoveItem}
           >
-            <Ionicons
-              name="trash-outline"
-              size={20}
-              color={Colors.Lava}
-            />
+            <Ionicons name="trash-outline" size={20} color={Colors.Lava} />
           </TouchableOpacity>
         </View>
       </View>

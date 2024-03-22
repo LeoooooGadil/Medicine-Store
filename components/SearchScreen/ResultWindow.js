@@ -1,4 +1,9 @@
-import { View, Text, TouchableWithoutFeedback, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+} from "react-native";
 import tw from "twrnc";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
@@ -19,13 +24,13 @@ export default function ResultWindow({
             end={{ x: 1, y: 1 }}
             style={tw`rounded-2xl shadow-md p-0.7 flex-1 h-13.5`}
           >
-            <TouchableWithoutFeedback
-              onPress={ToggleSearchWindow}
-            >
-              <View style={tw`flex-1 flex-row items-center gap-3 bg-[${Colors.BrightGray}] rounded-xl `}>
+            <TouchableWithoutFeedback onPress={ToggleSearchWindow}>
+              <View
+                style={tw`flex-1 flex-row items-center gap-3 bg-[${Colors.White}] rounded-xl `}
+              >
                 <Ionicons name="search" size={20} style={tw`pl-3 py-3`} />
                 <Text
-                  style={tw`font-semibold mr-15 ${
+                  style={tw`flex-1 font-semibold mr-15 ${
                     SearchedResult?.SearchTerm.length > 0 ? null : "opacity-50"
                   }`}
                 >
@@ -33,21 +38,17 @@ export default function ResultWindow({
                     ? SearchedResult?.SearchTerm
                     : "Search your medicine"}
                 </Text>
+                {SearchedResult?.SearchTerm.length > 0 && (
+                  <TouchableOpacity
+                    style={tw`pr-3 py-3`}
+                    onPress={() => SetSearch("")}
+                  >
+                    <Ionicons name="close-outline" size={20} />
+                  </TouchableOpacity>
+                )}
               </View>
             </TouchableWithoutFeedback>
           </LinearGradient>
-          {SearchedResult?.SearchTerm.length > 0 && (
-            <TouchableOpacity
-              style={tw`flex-row items-center gap-3 bg-[${Colors.Lava}] rounded-xl shadow-md h-13.5 px-4`}
-              onPress={() => SetSearch("")}
-            >
-              <Ionicons
-                name="close-outline"
-                size={25}
-                color={Colors.BrightGray}
-              />
-            </TouchableOpacity>
-          )}
         </View>
       </View>
     </View>

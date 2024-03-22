@@ -19,10 +19,10 @@ export default function CartInformation({ cartItems }) {
 
       subTotal += item.price * quantity;
     });
-    setSubTotal(subTotal);
+    setSubTotal(subTotal.toFixed(2));
 
     let total = subTotal + shippingFee;
-    setTotal(total);
+    setTotal(total.toFixed(2));
   }, [cartItems]);
 
   if (cartItems.length === 0) {

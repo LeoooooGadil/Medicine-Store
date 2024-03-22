@@ -2,8 +2,12 @@ import { View, Text, TouchableOpacity } from "react-native";
 import tw from "twrnc";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import { useCart } from "../../context/cartContext";
 
 export default function SearchScreenHeader({ GoToCart }) {
+
+  const { cartItems } = useCart();
+
   return (
     <View style={tw`px-8 pt-10 pb-4`}>
       <View style={tw`flex-row items-center justify-between`}>
@@ -19,7 +23,10 @@ export default function SearchScreenHeader({ GoToCart }) {
             <Ionicons name="call-outline" size={25} />
           </TouchableOpacity>
           <TouchableOpacity style={tw`p-1`} onPress={GoToCart}>
-            <Ionicons name="cart-outline" size={25} />
+            <Ionicons
+              name={`cart${cartItems.length == 0 ? "-outline" : ""}`}
+              size={25}
+            />
           </TouchableOpacity>
         </View>
       </View>

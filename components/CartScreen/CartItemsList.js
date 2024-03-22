@@ -33,7 +33,6 @@ export default function CartItemsList({ cartItems, GoToSearchScreen }) {
             : _item.item
           : _item;
         let quantity = _item.quantity;
-        console.log("item: ", item);
 
         return (
           <CartItem key={index} item={item} quantity={quantity} index={index} />

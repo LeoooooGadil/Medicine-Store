@@ -37,7 +37,7 @@ const DUMMY_ORDERS = [
 
 export default function OrdersTabScreen() {
   return (
-    <SafeAreaView style={tw`bg-[${Colors.CosmicLatte}]`}>
+    <SafeAreaView style={tw`bg-[${Colors.BrightGray}]`}>
       <OrdersScreenHeader />
       <ScrollView style={tw`h-full`}>
         <OrdersList Orders={DUMMY_ORDERS} />

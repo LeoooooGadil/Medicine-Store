@@ -8,12 +8,10 @@ import {
 } from "react-native";
 import tw from "twrnc";
 import Colors from "../../constants/Colors";
+import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function SearchWindow({
-  ToggleSearchWindow,
-  SetSearch,
-}) {
+export default function SearchWindow({ ToggleSearchWindow, SetSearch }) {
   const [searchText, setSearchText] = useState("");
 
   const textInputRef = useRef();
@@ -26,7 +24,7 @@ export default function SearchWindow({
 
   const onSearch = () => {
     ToggleSearchWindow();
-  }
+  };
 
   useEffect(() => {
     textInputRef.current.focus();
@@ -40,25 +38,32 @@ export default function SearchWindow({
     <View>
       <View style={tw`px-8`}>
         <View style={tw`pt-2 pb-3`}>
-          <View
-            style={tw`flex-row bg-[${Colors.BrightGray}] rounded-xl shadow-md h-12`}
+          <LinearGradient
+            colors={["#DA1212", "#041562"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={tw`rounded-2xl shadow-md p-0.7 flex-1 h-13.5`}
           >
-            <TouchableOpacity onPress={onPress}>
-              <Ionicons
-                name="chevron-back-outline"
-                size={20}
-                style={tw`pl-3 pr-3 py-3`}
+            <View
+              style={tw`flex-1 flex-row bg-[${Colors.White}] rounded-xl shadow-md items-center gap-1`}
+            >
+              <TouchableOpacity onPress={onPress}>
+                <Ionicons
+                  name="chevron-back-outline"
+                  size={20}
+                  style={tw`pl-3 pr-2 py-3`}
+                />
+              </TouchableOpacity>
+              <TextInput
+                ref={textInputRef}
+                style={tw`font-semibold w-60`} // theres something wrong here
+                textAlignVertical="center"
+                placeHolder="Search your medicine"
+                onChangeText={(text) => setSearchText(text)}
+                onSubmitEditing={onSearch}
               />
-            </TouchableOpacity>
-            <TextInput
-              ref={textInputRef}
-              style={tw`font-semibold w-60`} // theres something wrong here
-              textAlignVertical="center"
-              placeHolder="Search your medicine"
-              onChangeText={(text) => setSearchText(text)}
-              onSubmitEditing={onSearch}
-            />
-          </View>
+            </View>
+          </LinearGradient>
         </View>
       </View>
     </View>

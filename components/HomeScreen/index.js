@@ -1,4 +1,5 @@
 import HomeScreenHeader from "./Header";
 import WelcomeBanner from "./WelcomeBanner";
 import ExploreOurProducts from "./ExploreOurProducts";
-export { HomeScreenHeader, WelcomeBanner, ExploreOurProducts };
+import ExploreOurCategories from "./ExploreOurCategories";
+export { HomeScreenHeader, WelcomeBanner, ExploreOurProducts, ExploreOurCategories};

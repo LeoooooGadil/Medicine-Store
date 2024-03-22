@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { ScrollView, View } from "react-native";
 import tw from "twrnc";
 
@@ -9,6 +9,8 @@ import SearchProductsList from "./SearchProductsList";
 
 import Products from "../../constants/Products";
 import useFuzzySearch from "../../hooks/useFuzzySearch";
+import { useSearch } from "../../context/searchContext";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function SearchScreenWindow({
   navigation,
@@ -18,8 +20,7 @@ export default function SearchScreenWindow({
   SetIsSearchWindowOpen,
   SetCurrentItem,
 }) {
-
-  const [searchKeyword, setSearchKeyword] = useState("");
+  const { searchQuery, setSearch } = useSearch();
 
   const [SearchResult, search] = useFuzzySearch(Products, {
     keys: ["name", "dosage", "brandName", "category", "manufacturer"],
@@ -36,8 +37,16 @@ export default function SearchScreenWindow({
   };
 
   useEffect(() => {
-    SearchProducts(searchKeyword);
-  }, [searchKeyword]);
+    SearchProducts(searchQuery);
+  }, [searchQuery]);
+
+  useFocusEffect(
+    useCallback(() => {
+      if (searchQuery !== "") {
+        SearchProducts(searchQuery);
+      }
+    }, [searchQuery])
+  );
 
   return (
     <>
@@ -49,7 +58,7 @@ export default function SearchScreenWindow({
           <>
             <SearchWindow
               ToggleSearchWindow={ToggleSearchWindow}
-              SetSearch={(text) => setSearchKeyword(text)}
+              SetSearch={(text) => setSearch(text)}
             />
             <SearchProductsList
               SearchedProducts={SearchResult}
@@ -62,7 +71,7 @@ export default function SearchScreenWindow({
           <>
             <ResultWindow
               ToggleSearchWindow={ToggleSearchWindow}
-              SetSearch={setSearchKeyword}
+              SetSearch={setSearch}
               SearchedResult={SearchResult}
             />
             <SearchProductsList

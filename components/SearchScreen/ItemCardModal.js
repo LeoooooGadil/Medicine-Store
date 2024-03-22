@@ -51,7 +51,7 @@ export default function ItemCard({
           <View
             style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.Lava}]`}
           >
-            <Text style={tw`text-white`}>{item?.dosage}ml</Text>
+            <Text style={tw`text-white`}>{item?.dosage}{item?.dosageType}</Text>
           </View>
         </View>
         <Seperator />
@@ -66,10 +66,10 @@ export default function ItemCard({
         </Text>
         <Seperator />
         <View>
-          <Text>{item?.description}</Text>
+          <Text style={tw`opacity-75`}>{item?.description}</Text>
         </View>
         <Seperator />
-        <Text>{item?.manufacturer}</Text>
+        <Text style={tw`opacity-75 font-bold`}>{item?.manufacturer}</Text>
       </View>
       <View style={tw`px-8 pt-20 flex-row justify-between`}>
         <View style={tw`flex-row`}>
@@ -92,7 +92,7 @@ export default function ItemCard({
           </TouchableOpacity>
         </View>
         <View style={tw`flex-row justify-center items-center gap-4`}>
-          <Text style={tw`text-lg ${quantity > 1 ? "font-bold" : ""}`}>₱ {item?.price * quantity}</Text>
+          <Text style={tw`text-lg ${quantity > 1 ? "font-bold" : ""}`}>₱ {(item?.price * quantity).toFixed(2)}</Text>
           <View>
             <TouchableOpacity
               style={tw`bg-[${Colors.Lava}] rounded-lg p-3`}

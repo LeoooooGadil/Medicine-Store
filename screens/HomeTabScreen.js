@@ -7,14 +7,14 @@ import {
   HomeScreenHeader,
   WelcomeBanner,
   ExploreOurProducts,
+  ExploreOurCategories,
 } from "../components/HomeScreen";
 import { Seperator } from "../components";
 import BottomSheetModal from "../components/BottomSheetModal";
 import { useSearch } from "../context/searchContext";
 
 export default function HomeTabScreen({ navigation }) {
-
-  const { startSearch } = useSearch(); 
+  const { startSearch } = useSearch();
 
   const [CurrentItem, setCurrentItem] = useState(null);
   const [IsBottomSheetOpen, SetIsBottomSheetOpen] = useState(false); // [1]
@@ -39,12 +39,10 @@ export default function HomeTabScreen({ navigation }) {
     <SafeAreaView style={tw`flex-1 bg-[${Colors.BrightGray}]`}>
       <View style={`gap-2 `}>
         <HomeScreenHeader
-          GoToSearch={() =>
-            {
-              startSearch();
-              navigation.navigate("Search");
-            }
-          }
+          GoToSearch={() => {
+            startSearch();
+            navigation.navigate("Search");
+          }}
           GoToCart={() => navigation.navigate("Cart")}
         />
         <WelcomeBanner />
@@ -55,6 +53,9 @@ export default function HomeTabScreen({ navigation }) {
           GoToSearch={() => navigation.navigate("Search")}
           OpenBottomSheet={openBottomSheet}
           SetCurrentItem={SetCurrentItem}
+        />
+        <ExploreOurCategories
+          GoToSearch={() => navigation.navigate("Search")}
         />
       </View>
       <BottomSheetModal

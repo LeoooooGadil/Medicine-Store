@@ -45,7 +45,7 @@ export default function SearchTabScreen({ navigation }) {
   );
 
   return (
-    <SafeAreaView style={tw`flex-1 bg-[${Colors.CosmicLatte}]`}>
+    <SafeAreaView style={tw`flex-1 bg-[${Colors.BrightGray}]`}>
       <SearchScreenWindow
         navigation={navigation}
         OpenBottomSheet={openBottomSheet}
