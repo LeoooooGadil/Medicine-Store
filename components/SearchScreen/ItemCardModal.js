@@ -38,18 +38,18 @@ export default function ItemCard({
   return (
     <View>
       <View
-        style={tw`w-full h-42 bg-[${Colors.LavenderBlue}] justify-center items-center`}
+        style={tw`w-full h-42 bg-[${Colors.YaleBlue}] justify-center items-center`}
       >
         <Text>Image</Text>
       </View>
       <View style={tw`px-8 gap-2`}>
         <View style={tw`py-2 pb-0`}>
-          <Text style={tw`opacity-50 text-lg`}>{item?.brandName}</Text>
+          <Text style={tw``}>{item?.brandName}</Text>
           <Text style={tw`font-bold text-4xl`}>{item?.name}</Text>
         </View>
         <View style={tw`relative pb-4`}>
           <View
-            style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.SunsetOrange}]`}
+            style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.Lava}]`}
           >
             <Text style={tw`text-white`}>{item?.dosage}ml</Text>
           </View>
@@ -91,11 +91,11 @@ export default function ItemCard({
             <Text style={tw`text-2xl font-bold`}>+</Text>
           </TouchableOpacity>
         </View>
-        <View style={tw`flex-row justify-center items-center gap-2`}>
+        <View style={tw`flex-row justify-center items-center gap-4`}>
           <Text style={tw`text-lg ${quantity > 1 ? "font-bold" : ""}`}>₱ {item?.price * quantity}</Text>
           <View>
             <TouchableOpacity
-              style={tw`bg-[${Colors.SunsetOrange}] rounded-lg p-3`}
+              style={tw`bg-[${Colors.Lava}] rounded-lg p-3`}
               onPress={AddToCart}
             >
               <Text style={tw`text-white text-center`}>Add to Cart</Text>

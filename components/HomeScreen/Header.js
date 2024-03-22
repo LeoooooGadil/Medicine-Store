@@ -35,7 +35,7 @@ export default function HomeScreenHeader({ GoToSearch, GoToCart }) {
       </View>
       <View style={tw`pt-2 flex-row`}>
         <LinearGradient
-          colors={["#DA1212", "#11468F", "#041562"]}
+          colors={["#DA1212", "#041562"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={tw`rounded-2xl shadow-md p-0.7 flex-1 h-13.5`}
