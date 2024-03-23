@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Alert } from "react-native";
 import tw from "twrnc";
 import { useCart } from "../../context/cartContext";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
-import Seperator from "../Seperator";
 
 export default function CartItem({ item, quantity, index }) {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -24,7 +23,18 @@ export default function CartItem({ item, quantity, index }) {
   };
 
   const handleRemoveItem = () => {
-    removeCartItem(item);
+    Alert.alert(`Remove ${item?.name}`, `Are you sure you want to remove ${item?.name}?`, [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Remove",
+        onPress: () => {
+          removeCartItem(item);
+        },
+      },
+    ]);
   };
 
   return (

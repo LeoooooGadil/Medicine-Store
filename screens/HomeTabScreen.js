@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from "react";
-import { SafeAreaView, Keyboard, View } from "react-native";
+import { SafeAreaView, Keyboard, View, ScrollView } from "react-native";
 import tw from "twrnc";
 import Colors from "../constants/Colors";
 
@@ -37,7 +37,7 @@ export default function HomeTabScreen({ navigation }) {
 
   return (
     <SafeAreaView style={tw`flex-1 bg-[${Colors.BrightGray}]`}>
-      <View style={`gap-2 `}>
+      <View style={tw`h-full`}>
         <HomeScreenHeader
           GoToSearch={() => {
             startSearch();
@@ -45,18 +45,21 @@ export default function HomeTabScreen({ navigation }) {
           }}
           GoToCart={() => navigation.navigate("Cart")}
         />
-        <WelcomeBanner />
-        <View style={tw`px-8`}>
-          <Seperator />
-        </View>
-        <ExploreOurProducts
-          GoToSearch={() => navigation.navigate("Search")}
-          OpenBottomSheet={openBottomSheet}
-          SetCurrentItem={SetCurrentItem}
-        />
-        <ExploreOurCategories
-          GoToSearch={() => navigation.navigate("Search")}
-        />
+        <ScrollView style={tw`h-full`}>
+          <WelcomeBanner />
+          <View style={tw`px-8`}>
+            <Seperator />
+          </View>
+          <ExploreOurProducts
+            GoToSearch={() => navigation.navigate("Search")}
+            OpenBottomSheet={openBottomSheet}
+            SetCurrentItem={SetCurrentItem}
+          />
+          <ExploreOurCategories
+            GoToSearch={() => navigation.navigate("Search")}
+          />
+          <View style={tw`w-full h-28`}></View>
+        </ScrollView>
       </View>
       <BottomSheetModal
         bottomSheetRef={bottomSheetRef}

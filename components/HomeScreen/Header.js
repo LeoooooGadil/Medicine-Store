@@ -39,7 +39,7 @@ export default function HomeScreenHeader({ GoToSearch, GoToCart }) {
           </TouchableOpacity> */}
         </View>
       </View>
-      <View style={tw`pt-2 flex-row`}>
+      <View style={tw`pt-2 flex-row `}>
         <LinearGradient
           colors={["#DA1212", "#041562"]}
           start={{ x: 0, y: 0 }}

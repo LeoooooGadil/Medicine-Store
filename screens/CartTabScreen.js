@@ -66,7 +66,6 @@ export default function CartTabScreen({ navigation }) {
     ]);
   };
 
-  // use UseFocusEffect to refresh the cart items when the screen is focused
   useFocusEffect(
     React.useCallback(() => {
       if (isCartBeenUpdated) {
