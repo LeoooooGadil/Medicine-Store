@@ -17,6 +17,7 @@
     "expo-status-bar": "~1.11.1",
     "expo-web-browser": "~12.8.1",
     "fuse.js": "^7.0.0",
+    "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "^0.73.6",
@@ -29,7 +30,9 @@
     "twrnc": "^4.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.3"
+    "@babel/core": "^7.19.3",
+    "deprecated-react-native-prop-types": "^5.0.0",
+    "patch-package": "^8.0.0"
   },
   "name": "medicine-store",
   "version": "1.0.0",
