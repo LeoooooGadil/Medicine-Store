@@ -6,7 +6,9 @@ import HomeTabScreen from "../screens/HomeTabScreen";
 import CartTabScreen from "../screens/CartTabScreen";
 import OrdersTabScreen from "../screens/OrdersTabScreen";
 import SearchTabScreen from "../screens/SearchTabScreen";
+import AccountSettings from "../screens/Account&Settings";
 import Colors from "../constants/Colors";
+import { View, Text } from "react-native";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -20,6 +22,7 @@ export default function BottomTabNavigator() {
           fontWeight: "bold",
         },
         tabBarActiveTintColor: Colors.Lava,
+        tabBarInactiveTintColor: Colors.QuickSilver,
       }}
     >
       <BottomTab.Screen
@@ -62,6 +65,16 @@ export default function BottomTabNavigator() {
           ),
         }}
       />
+      <BottomTab.Screen
+        name="Menu"
+        component={AccountNavigator}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <AccountIcon name="Jann Leo" focused={focused} />
+          ),
+        }}
+      />
     </BottomTab.Navigator>
   );
 }
@@ -71,12 +84,35 @@ export default function BottomTabNavigator() {
 function TabBarIcon(props) {
   return (
     <Ionicons
-      size={props.focused ? 32 : 25}
+      size={27}
       style={{ marginBottom: -3 }}
       {...props}
-      color={props.focused ? Colors.Lava : Colors.BrightGray}
+      color={props.focused ? Colors.Lava : Colors.QuickSilver}
       name={`${props.name}${props.focused ? "" : "-outline"}`}
     />
+  );
+}
+
+// a circle icon with the user's first name initial like
+// John Leo -> J
+// Jann Leo Gadil -> J
+// Alyssa Mae -> A
+function AccountIcon(props) {
+  return (
+    <View
+      style={{
+        width: 27,
+        height: 27,
+        borderRadius: 20,
+        backgroundColor: props.focused ? Colors.Lava : Colors.QuickSilver,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Text style={{ color: Colors.White, fontSize: 16 }}>
+        {props.name[0]}
+        </Text>
+    </View>
   );
 }
 
@@ -135,5 +171,19 @@ function SearchNavigator() {
         options={{ headerShown: false }}
       />
     </SearchStack.Navigator>
+  );
+}
+
+const AccountStack = createStackNavigator();
+
+function AccountNavigator() {
+  return (
+    <AccountStack.Navigator>
+      <AccountStack.Screen
+        name="AccountAndSettingsScreen"
+        component={AccountSettings}
+        options={{ headerShown: false }}
+      />
+    </AccountStack.Navigator>
   );
 }
