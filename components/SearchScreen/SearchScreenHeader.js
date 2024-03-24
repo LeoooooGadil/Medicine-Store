@@ -1,22 +1,27 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import tw from "twrnc";
-import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useCart } from "../../context/cartContext";
 
 export default function SearchScreenHeader({ GoToCart }) {
-
   const { cartItems } = useCart();
 
   return (
     <View style={tw`px-8 pt-10 pb-4`}>
       <View style={tw`flex-row items-center justify-between`}>
-        <View style={tw`flex-row justify-center items-center`}>
-          <Text style={tw`text-3xl font-bold`}>Phil</Text>
-          <Text style={tw`text-3xl`}>Box</Text>
-          <Text style={tw`text-3xl font-bold text-[${Colors.SunsetOrange}]`}>
-            💊
-          </Text>
+        <View style={tw`flex-row justify-center items-center gap-2`}>
+          <Image
+            source={require("../../assets/images/philcure-logo.png")}
+            style={{
+              width: 40,
+              height: 40,
+              resizeMode: "contain",
+            }}
+          />
+          <View style={tw`flex-row`}>
+            <Text style={tw`font-bold text-2xl tracking-wide`}>PHIL</Text>
+            <Text style={tw`text-2xl tracking-wide`}>CURE</Text>
+          </View>
         </View>
         <View style={tw`flex-row items-center`}>
           <TouchableOpacity style={tw`p-1`}>

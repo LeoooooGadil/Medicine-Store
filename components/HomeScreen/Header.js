@@ -1,6 +1,7 @@
 import {
   View,
   Text,
+  Image,
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native";
@@ -17,12 +18,19 @@ export default function HomeScreenHeader({ GoToSearch, GoToCart }) {
   return (
     <View style={tw`px-8 pt-10 pb-3 gap-4`}>
       <View style={tw`flex-row items-center justify-between`}>
-        <View style={tw`flex-row justify-center items-center`}>
-          <Text style={tw`text-3xl font-bold`}>Phil</Text>
-          <Text style={tw`text-3xl`}>Box</Text>
-          <Text style={tw`text-3xl font-bold text-[${Colors.SunsetOrange}]`}>
-            💊
-          </Text>
+        <View style={tw`flex-row justify-center items-center gap-2`}>
+          <Image
+            source={require("../../assets/images/philcure-logo.png")}
+            style={{
+              width: 40,
+              height: 40,
+              resizeMode: "contain",
+            }}
+          />
+          <View style={tw`flex-row`}>
+            <Text style={tw`font-bold text-2xl tracking-wide`}>PHIL</Text>
+            <Text style={tw`text-2xl tracking-wide`}>CURE</Text>
+          </View>
         </View>
         <View style={tw`flex-row items-center`}>
           <TouchableOpacity style={tw`p-1`}>
