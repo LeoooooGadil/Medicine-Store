@@ -39,7 +39,7 @@ export default function SearchWindow({ ToggleSearchWindow, SetSearch }) {
       <View style={tw`px-8`}>
         <View style={tw`pt-2 pb-3`}>
           <LinearGradient
-            colors={["#DA1212", "#041562"]}
+            colors={[Colors.DarkOrange, Colors.LightBlue]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={tw`rounded-2xl shadow-md p-0.7 flex-1 h-13.5`}

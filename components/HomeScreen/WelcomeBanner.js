@@ -24,14 +24,14 @@ export default function WelcomeBanner() {
   const { width } = Dimensions.get("window");
 
   return (
-    <View style={tw`pb-6 pt-3`}>
+    <View style={tw`pb-2 pt-3`}>
       <Carousel
         ref={carouselRef}
         data={data}
         renderItem={({ item }) => {
           return (
             <View
-              style={tw`bg-[${Colors.YaleBlue}] rounded-xl shadow-md h-40 flex-col gap-2 py-8`} 
+              style={tw`bg-[${Colors.LightBlue}] rounded-xl shadow-md h-40 flex-col gap-2 py-8`} 
             >
               <View style={tw`flex-1 justify-center`}>
                 <Text style={tw`text-4xl font-bold text-left text-white`}>

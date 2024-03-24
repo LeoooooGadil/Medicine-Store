@@ -13,17 +13,17 @@ export default function ExploreOurProducts({
   SetCurrentItem,
 }) {
   return (
-    <View style={tw`pb-2 pt-8`}>
+    <View style={tw`pb-2 pt-6`}>
       <View style={tw`flex-row justify-between items-center w-full px-8`}>
         <Text style={tw`text-2xl font-bold`}>Explore Our Products</Text>
         <TouchableOpacity
           style={tw`flex-row gap-1 items-center`}
           onPress={GoToSearch}
         >
-          <Text style={tw`text-[${Colors.Lava}]`}>View All</Text>
+          <Text style={tw`text-[${Colors.DarkOrange}]`}>View All</Text>
           <Ionicons
             name="chevron-forward-outline"
-            color={Colors.Lava}
+            color={Colors.DarkOrange}
             size={15}
           />
         </TouchableOpacity>

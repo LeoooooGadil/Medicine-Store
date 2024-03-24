@@ -104,7 +104,7 @@ function CartSettings({ quantity, handleQuantityChange, handleRemoveItem }) {
             style={tw`rounded-lg py-3`}
             onPress={handleRemoveItem}
           >
-            <Ionicons name="trash-outline" size={20} color={Colors.Lava} />
+            <Ionicons name="trash-outline" size={20} color={Colors.DarkOrange} />
           </TouchableOpacity>
         </View>
       </View>

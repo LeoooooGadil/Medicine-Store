@@ -38,7 +38,7 @@ export default function ItemCard({
   return (
     <View>
       <View
-        style={tw`w-full h-42 bg-[${Colors.YaleBlue}] justify-center items-center`}
+        style={tw`w-full h-42 bg-[${Colors.DarkBlue}] justify-center items-center`}
       >
         <Text>Image</Text>
       </View>
@@ -49,7 +49,7 @@ export default function ItemCard({
         </View>
         <View style={tw`relative pb-4`}>
           <View
-            style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.Lava}]`}
+            style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.DarkOrange}]`}
           >
             <Text style={tw`text-white`}>{item?.dosage}{item?.dosageType}</Text>
           </View>
@@ -95,7 +95,7 @@ export default function ItemCard({
           <Text style={tw`text-lg ${quantity > 1 ? "font-bold" : ""}`}>₱ {(item?.price * quantity).toFixed(2)}</Text>
           <View>
             <TouchableOpacity
-              style={tw`bg-[${Colors.Lava}] rounded-lg p-3`}
+              style={tw`bg-[${Colors.DarkOrange}] rounded-lg p-3`}
               onPress={AddToCart}
             >
               <Text style={tw`text-white text-center`}>Add to Cart</Text>

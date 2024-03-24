@@ -54,7 +54,6 @@ export default function HomeTabScreen({ navigation }) {
             }}
           />
           <WelcomeBanner />
-          <BoldSeperator />
           <ExploreOurProducts
             GoToSearch={() => navigation.navigate("Search")}
             OpenBottomSheet={openBottomSheet}

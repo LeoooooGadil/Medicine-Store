@@ -1,3 +1,5 @@
 import MenuHeader from "./Header";
+import AccountButton from "./AccountButton";
+import AppSettingsMenu from "./AppSettingsMenu";
 
-export { MenuHeader };
+export { MenuHeader, AccountButton, AppSettingsMenu};

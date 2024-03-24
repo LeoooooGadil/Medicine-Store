@@ -8,7 +8,7 @@ export default function SearchScreenHeader({ GoToCart }) {
   const { cartItems } = useCart();
 
   return (
-    <View style={tw`px-8 pb-4 h-13 bg-[${Colors.BrightGray}]`}>
+    <View style={tw`px-8 pb-4 pt-2 h-13 bg-[${Colors.BrightGray}]`}>
       <View style={tw`flex-row items-center justify-between`}>
         <View style={tw`flex-row justify-center items-center gap-2`}>
           <Image
@@ -20,8 +20,8 @@ export default function SearchScreenHeader({ GoToCart }) {
             }}
           />
           <View style={tw`flex-row`}>
-            <Text style={tw`font-bold text-2xl tracking-wide`}>PHIL</Text>
-            <Text style={tw`text-2xl tracking-wide`}>CURE</Text>
+            <Text style={tw`font-bold text-3xl tracking-wide`}>Phil</Text>
+            <Text style={tw`text-3xl tracking-wide`}>Cure</Text>
           </View>
         </View>
         <View style={tw`flex-row items-center`}>

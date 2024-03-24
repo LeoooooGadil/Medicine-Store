@@ -9,5 +9,10 @@ export default {
   QuickSilver: "#A6A6A6",
   White: "#FFFFFF",
   YaleBlue: "#11468F",
-  Lava: "#DA1212"
+  Lava: "#DA1212",
+  
+  DarkOrange: "#EC312C",
+  LightOrange: "#EF822F",
+  DarkBlue: "#364E98",
+  LightBlue: "#64AACA"
 };

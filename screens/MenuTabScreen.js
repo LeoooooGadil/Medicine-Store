@@ -1,12 +1,17 @@
 import { View, Text } from "react-native";
 import React from "react";
-import { MenuHeader } from "../components/MenuScreen";
+import { AccountButton, AppSettingsMenu, MenuHeader } from "../components/MenuScreen";
 import SafeAreaView from "react-native-safe-area-view";
+import tw from "twrnc";
 
 export default function AccountSettings() {
   return (
     <SafeAreaView forceInset={{ top: "always" }}>
       <MenuHeader />
+      <View style={tw`pt-12`}>
+        <AccountButton />
+        <AppSettingsMenu />
+      </View>
     </SafeAreaView>
   );
 }

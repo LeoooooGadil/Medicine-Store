@@ -57,11 +57,15 @@ export default function SearchScreenWindow({
         stickyHeaderIndices={[0]}
       >
         {!IsSearchWindowOpen && (
-          <View>
-            <SearchScreenHeader GoToCart={() => navigation.navigate("Cart")} />
-          </View>
+          <>
+            <View>
+              <SearchScreenHeader
+                GoToCart={() => navigation.navigate("Cart")}
+              />
+            </View>
+          </>
         )}
-        <BoldSeperator />
+
         {IsSearchWindowOpen ? (
           <>
             <SearchWindow
@@ -77,6 +81,7 @@ export default function SearchScreenWindow({
           </>
         ) : (
           <>
+            <BoldSeperator />
             <ResultWindow
               ToggleSearchWindow={ToggleSearchWindow}
               SetSearch={setSearch}

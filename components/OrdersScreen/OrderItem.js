@@ -59,7 +59,7 @@ export default function OrdersItem({ item }) {
     >
       <View>
         <View style={tw`pb-2`}>
-          <Text style={tw`text-[${Colors.Lava}] font-bold`}>{item.id}</Text>
+          <Text style={tw`text-[${Colors.DarkOrange}] font-bold`}>{item.id}</Text>
         </View>
         <Seperator />
         <View style={tw`pt-2 gap-1`}>
@@ -87,7 +87,7 @@ export default function OrdersItem({ item }) {
           </View>
         </View>
         <View style={tw`pt-4`}>
-          <View style={tw`bg-[${Colors.Lava}] p-3 rounded-lg justify-center items-center`}>
+          <View style={tw`bg-[${Colors.DarkOrange}] p-3 rounded-lg justify-center items-center`}>
             <Text style={tw`text-white`}>{item.orderStatus}</Text>
           </View>
         </View>

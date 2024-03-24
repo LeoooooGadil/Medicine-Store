@@ -40,7 +40,7 @@ export default function ItemContainer(props) {
       onPress={() => OpenItem()}
     >
       <View
-        style={tw`w-40 h-36 bg-[${Colors.YaleBlue}] rounded-t-xl shadow-md justify-center items-center`}
+        style={tw`w-40 h-36 bg-[${Colors.DarkBlue}] rounded-t-xl shadow-md justify-center items-center`}
       >
         <Text style={tw`text-2xl text-[${Colors.White}]`}>Image</Text>
       </View>
@@ -48,7 +48,7 @@ export default function ItemContainer(props) {
         <Text style={tw`text-lg font-bold`}>{item?.brandName}</Text>
         <View style={tw`flex-row justify-between items-center`}>
           <View style={tw`relative pb-4`}>
-            <View style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.Lava}]`}>
+            <View style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.LightBlue}]`}>
               <Text style={tw`text-white`}>
                 {item?.dosage}
                 {item?.dosageType}

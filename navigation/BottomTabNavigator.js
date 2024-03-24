@@ -67,7 +67,7 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Account"
+        name="Menu"
         component={AccountNavigator}
         options={{
           headerShown: false,
