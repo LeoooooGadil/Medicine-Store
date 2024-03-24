@@ -14,6 +14,7 @@ import {
 import { Seperator } from "../components";
 import BottomSheetModal from "../components/BottomSheetModal";
 import { useSearch } from "../context/searchContext";
+import { BoldSeperator } from "../components/Seperator";
 
 export default function HomeTabScreen({ navigation }) {
   const { startSearch } = useSearch();
@@ -43,8 +44,9 @@ export default function HomeTabScreen({ navigation }) {
       forceInset={{ top: "always" }}
     >
       <View style={tw`h-full`}>
-        <HomeScreenHeader GoToCart={() => navigation.navigate("Cart")} />
-        <ScrollView style={tw`h-full`}>
+        <ScrollView stickyHeaderIndices={[0]} style={tw`h-full`}>
+          <HomeScreenHeader GoToCart={() => navigation.navigate("Cart")} />
+          <BoldSeperator />
           <SearchBar
             GoToSearch={() => {
               startSearch();
@@ -52,9 +54,7 @@ export default function HomeTabScreen({ navigation }) {
             }}
           />
           <WelcomeBanner />
-          <View style={tw`px-8`}>
-            <Seperator />
-          </View>
+          <BoldSeperator />
           <ExploreOurProducts
             GoToSearch={() => navigation.navigate("Search")}
             OpenBottomSheet={openBottomSheet}

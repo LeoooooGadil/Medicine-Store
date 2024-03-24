@@ -2,12 +2,13 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import tw from "twrnc";
 import { Ionicons } from "@expo/vector-icons";
 import { useCart } from "../../context/cartContext";
+import Colors from "../../constants/Colors";
 
 export default function SearchScreenHeader({ GoToCart }) {
   const { cartItems } = useCart();
 
   return (
-    <View style={tw`px-8 pb-4 h-14`}>
+    <View style={tw`px-8 pb-4 h-13 bg-[${Colors.BrightGray}]`}>
       <View style={tw`flex-row items-center justify-between`}>
         <View style={tw`flex-row justify-center items-center gap-2`}>
           <Image

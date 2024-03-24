@@ -7,7 +7,7 @@ import Colors from "../../constants/Colors";
 
 export default function SearchBar({ GoToSearch }) {
   return (
-    <View style={tw`px-8 pt-1 pb-4`}>
+    <View style={tw`px-8 pt-1 pb-3`}>
       <View style={tw`pt-2 flex-row `}>
         <LinearGradient
           colors={["#DA1212", "#041562"]}

@@ -24,7 +24,7 @@ export default function WelcomeBanner() {
   const { width } = Dimensions.get("window");
 
   return (
-    <View style={tw`pb-2`}>
+    <View style={tw`pb-6 pt-3`}>
       <Carousel
         ref={carouselRef}
         data={data}

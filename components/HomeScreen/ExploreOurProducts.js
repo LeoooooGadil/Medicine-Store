@@ -13,7 +13,7 @@ export default function ExploreOurProducts({
   SetCurrentItem,
 }) {
   return (
-    <View style={tw`pb-2 pt-2`}>
+    <View style={tw`pb-2 pt-8`}>
       <View style={tw`flex-row justify-between items-center w-full px-8`}>
         <Text style={tw`text-2xl font-bold`}>Explore Our Products</Text>
         <TouchableOpacity

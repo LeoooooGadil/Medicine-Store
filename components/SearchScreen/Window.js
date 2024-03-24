@@ -11,6 +11,7 @@ import Products from "../../constants/Products";
 import useFuzzySearch from "../../hooks/useFuzzySearch";
 import { useSearch } from "../../context/searchContext";
 import { useFocusEffect } from "@react-navigation/native";
+import { BoldSeperator } from "../Seperator";
 
 export default function SearchScreenWindow({
   navigation,
@@ -50,10 +51,17 @@ export default function SearchScreenWindow({
 
   return (
     <>
-      {!IsSearchWindowOpen && (
-        <SearchScreenHeader GoToCart={() => navigation.navigate("Cart")} />
-      )}
-      <ScrollView keyboardShouldPersistTaps="handled" style={tw`h-full`}>
+      <ScrollView
+        keyboardShouldPersistTaps="handled"
+        style={tw`h-full`}
+        stickyHeaderIndices={[0]}
+      >
+        {!IsSearchWindowOpen && (
+          <View>
+            <SearchScreenHeader GoToCart={() => navigation.navigate("Cart")} />
+          </View>
+        )}
+        <BoldSeperator />
         {IsSearchWindowOpen ? (
           <>
             <SearchWindow

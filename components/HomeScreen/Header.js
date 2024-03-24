@@ -16,7 +16,7 @@ export default function HomeScreenHeader({ GoToSearch, GoToCart }) {
   const { cartItems } = useCart();
 
   return (
-    <View style={tw`px-8 pb-3 gap-4 h-13`}>
+    <View style={tw`px-8 pb-3 gap-4 h-13 bg-[${Colors.BrightGray}]`}>
       <View style={tw`flex-row items-center justify-between`}>
         <View style={tw`flex-row justify-center items-center gap-2`}>
           <Image

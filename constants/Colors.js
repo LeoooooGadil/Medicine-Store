@@ -4,7 +4,8 @@ export default {
   DarkBlueGray: "#676FA3",
   SunsetOrange: "#FF5959",
 
-  BrightGray: "#EEEEEE",
+  BrightGray: "#F5F7F8",
+  Gray: "#D3D6DB",
   QuickSilver: "#A6A6A6",
   White: "#FFFFFF",
   YaleBlue: "#11468F",
