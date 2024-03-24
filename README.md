@@ -66,7 +66,3 @@ Currently, there are no specific guidelines for contributions to the Medicine St
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
----
-
-Feel free to adjust any part of this README according to your preferences or add any additional information you think would be helpful!
