@@ -41,14 +41,19 @@ To run the Medicine Store app on your mobile device, follow these steps:
     npm install
     ```
 
-5. Install Expo Go on your mobile device from the [App Store](https://apps.apple.com/us/app/expo-go/id982107779) or [Google Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en_US&gl=US).
+5. Install patch-package:
+    ```
+    npx patch-package
+    ```
 
-6. Run the app:
+6. Install Expo Go on your mobile device from the [App Store](https://apps.apple.com/us/app/expo-go/id982107779) or [Google Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en_US&gl=US).
+
+7. Run the app:
     ```
     npm start
     ```
 
-7. Scan the QR code displayed in the terminal using Expo Go on your mobile device to open the app.
+8. Scan the QR code displayed in the terminal using Expo Go on your mobile device to open the app.
 
 ## Dependencies
 
