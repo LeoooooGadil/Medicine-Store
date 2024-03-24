@@ -1,14 +1,15 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, TransitionSpecs } from "@react-navigation/stack";
 
 import HomeTabScreen from "../screens/HomeTabScreen";
 import CartTabScreen from "../screens/CartTabScreen";
 import OrdersTabScreen from "../screens/OrdersTabScreen";
 import SearchTabScreen from "../screens/SearchTabScreen";
-import AccountSettings from "../screens/Account&Settings";
+import MenuTabScreen from "../screens/MenuTabScreen";
 import Colors from "../constants/Colors";
 import { View, Text } from "react-native";
+
 
 const BottomTab = createBottomTabNavigator();
 
@@ -66,7 +67,7 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Menu"
+        name="Account"
         component={AccountNavigator}
         options={{
           headerShown: false,
@@ -104,17 +105,43 @@ function AccountIcon(props) {
         width: 27,
         height: 27,
         borderRadius: 20,
-        backgroundColor: props.focused ? Colors.Lava : Colors.QuickSilver,
+        backgroundColor: props.focused ? Colors.Lava : Colors.BrightGray,
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      <Text style={{ color: Colors.White, fontSize: 16 }}>
-        {props.name[0]}
-        </Text>
+      <Text style={{ color: Colors.White, fontSize: 16 }}>{props.name[0]}</Text>
     </View>
   );
 }
+
+const slideAnimation = {
+  gestureDirection: 'horizontal',
+  transitionSpec: {
+    open: TransitionSpecs.TransitionIOSSpec,
+    close: TransitionSpecs.TransitionIOSSpec,
+  },
+  cardStyleInterpolator: ({ current, next, layouts }) => ({
+    cardStyle: {
+      transform: [
+        {
+          translateX: current.progress.interpolate({
+            inputRange: [0, 1],
+            outputRange: [layouts.screen.width, 0],
+          }),
+        },
+        {
+          translateX: next
+            ? next.progress.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, -layouts.screen.width],
+              })
+            : 0,
+        },
+      ],
+    },
+  }),
+};
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
@@ -122,7 +149,13 @@ const HomeStack = createStackNavigator();
 
 function HomeNavigator() {
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: true,
+        ...slideAnimation,
+      }}
+    >
       <HomeStack.Screen
         name="HomeScreen"
         component={HomeTabScreen}
@@ -136,7 +169,13 @@ const OrdersStack = createStackNavigator();
 
 function OrdersNavigator() {
   return (
-    <OrdersStack.Navigator>
+    <OrdersStack.Navigator
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: true,
+        ...slideAnimation,
+      }}
+    >
       <OrdersStack.Screen
         name="OrdersScreen"
         component={OrdersTabScreen}
@@ -150,7 +189,13 @@ const CartStack = createStackNavigator();
 
 function CartNavigator() {
   return (
-    <CartStack.Navigator>
+    <CartStack.Navigator
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: true,
+        ...slideAnimation,
+      }}
+    >
       <CartStack.Screen
         name="CartScreen"
         component={CartTabScreen}
@@ -164,7 +209,13 @@ const SearchStack = createStackNavigator();
 
 function SearchNavigator() {
   return (
-    <SearchStack.Navigator>
+    <SearchStack.Navigator
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: true,
+        ...slideAnimation,
+      }}
+    >
       <SearchStack.Screen
         name="SearchScreen"
         component={SearchTabScreen}
@@ -178,10 +229,16 @@ const AccountStack = createStackNavigator();
 
 function AccountNavigator() {
   return (
-    <AccountStack.Navigator>
+    <AccountStack.Navigator
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: true,
+        ...slideAnimation,
+      }}
+    >
       <AccountStack.Screen
         name="AccountAndSettingsScreen"
-        component={AccountSettings}
+        component={MenuTabScreen}
         options={{ headerShown: false }}
       />
     </AccountStack.Navigator>

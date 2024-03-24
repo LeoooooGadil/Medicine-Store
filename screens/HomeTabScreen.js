@@ -1,13 +1,15 @@
 import React, { useState, useRef, useCallback } from "react";
-import { SafeAreaView, Keyboard, View, ScrollView } from "react-native";
+import { Keyboard, View, ScrollView } from "react-native";
 import tw from "twrnc";
 import Colors from "../constants/Colors";
+import SafeAreaView from "react-native-safe-area-view";
 
 import {
   HomeScreenHeader,
   WelcomeBanner,
   ExploreOurProducts,
   ExploreOurCategories,
+  SearchBar,
 } from "../components/HomeScreen";
 import { Seperator } from "../components";
 import BottomSheetModal from "../components/BottomSheetModal";
@@ -36,16 +38,19 @@ export default function HomeTabScreen({ navigation }) {
   });
 
   return (
-    <SafeAreaView style={tw`flex-1 bg-[${Colors.BrightGray}]`}>
+    <SafeAreaView
+      style={tw`flex-1 bg-[${Colors.BrightGray}]`}
+      forceInset={{ top: "always" }}
+    >
       <View style={tw`h-full`}>
-        <HomeScreenHeader
-          GoToSearch={() => {
-            startSearch();
-            navigation.navigate("Search");
-          }}
-          GoToCart={() => navigation.navigate("Cart")}
-        />
+        <HomeScreenHeader GoToCart={() => navigation.navigate("Cart")} />
         <ScrollView style={tw`h-full`}>
+          <SearchBar
+            GoToSearch={() => {
+              startSearch();
+              navigation.navigate("Search");
+            }}
+          />
           <WelcomeBanner />
           <View style={tw`px-8`}>
             <Seperator />

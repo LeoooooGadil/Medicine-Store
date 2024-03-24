@@ -16,7 +16,7 @@ export default function ResultWindow({
 }) {
   return (
     <View>
-      <View style={tw` px-8 gap-4`}>
+      <View style={tw`px-8 gap-4`}>
         <View style={tw`pt-2 pb-2 flex-row gap-2`}>
           <LinearGradient
             colors={["#DA1212", "#041562"]}

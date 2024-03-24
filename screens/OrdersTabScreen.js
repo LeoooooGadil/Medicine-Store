@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import tw from "twrnc";
 import Colors from "../constants/Colors";
 
@@ -6,6 +6,7 @@ import { OrderStatus } from "../constants/OrderStatus";
 import { OrdersPrescriptionValidationStatus } from "../constants/OrdersValidationStatus";
 import { PaymentMethod } from "../constants/OrderPaymentMethod";
 import { OrdersScreenHeader, OrdersList } from "../components/OrdersScreen";
+import SafeAreaView from 'react-native-safe-area-view';
 
 const DUMMY_ORDERS = [
   {
@@ -37,7 +38,7 @@ const DUMMY_ORDERS = [
 
 export default function OrdersTabScreen() {
   return (
-    <SafeAreaView style={tw`bg-[${Colors.BrightGray}]`}>
+    <SafeAreaView style={tw`bg-[${Colors.BrightGray}]`} forceInset={{ top: "always" }}>
       <OrdersScreenHeader />
       <ScrollView style={tw`h-full`}>
         <OrdersList Orders={DUMMY_ORDERS} />

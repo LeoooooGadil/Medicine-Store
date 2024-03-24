@@ -7,9 +7,14 @@ import Navigation from "./navigation";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { CartProvider } from "./context/cartContext";
 import { SearchProvider } from "./context/searchContext";
+import Colors from "./constants/Colors";
+import { Platform } from "react-native";
 
 export default function App() {
   const isLoadingComplete = useLoadedAssets();
+
+  const statusBarColor = Colors.Lava;
+  const statusBarStyle = Platform.OS === "ios" ? "dark-content" : "light-content";
 
   if (!isLoadingComplete) {
     return null;
@@ -21,7 +26,10 @@ export default function App() {
         <GestureHandlerRootView style={tw`flex-1`}>
           <SafeAreaProvider>
             <Navigation />
-            <StatusBar />
+            <StatusBar
+              style={statusBarStyle}
+              backgroundColor={statusBarColor}
+            />
           </SafeAreaProvider>
         </GestureHandlerRootView>
       </CartProvider>

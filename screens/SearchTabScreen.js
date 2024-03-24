@@ -1,11 +1,12 @@
 import React, { useRef, useCallback, useState, useEffect } from "react";
-import { SafeAreaView, Keyboard, Text } from "react-native";
+import { Keyboard, Text } from "react-native";
 import tw from "twrnc";
 import Colors from "../constants/Colors";
 import { SearchScreenWindow, ItemCard } from "../components/SearchScreen";
 import BottomSheetModal from "../components/BottomSheetModal";
 import { useFocusEffect } from "@react-navigation/native";
 import { useSearch } from "../context/searchContext";
+import SafeAreaView from 'react-native-safe-area-view';
 
 export default function SearchTabScreen({ navigation }) {
   const { startSearching, stopSearch } = useSearch();
@@ -45,7 +46,7 @@ export default function SearchTabScreen({ navigation }) {
   );
 
   return (
-    <SafeAreaView style={tw`flex-1 bg-[${Colors.BrightGray}]`}>
+    <SafeAreaView style={tw`flex-1 bg-[${Colors.BrightGray}]`} forceInset={{ top: 'always' }}>
       <SearchScreenWindow
         navigation={navigation}
         OpenBottomSheet={openBottomSheet}

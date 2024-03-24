@@ -7,7 +7,7 @@ export default function SearchScreenHeader({ GoToCart }) {
   const { cartItems } = useCart();
 
   return (
-    <View style={tw`px-8 pt-10 pb-4`}>
+    <View style={tw`px-8 pb-4 h-14`}>
       <View style={tw`flex-row items-center justify-between`}>
         <View style={tw`flex-row justify-center items-center gap-2`}>
           <Image

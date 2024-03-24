@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useFocusEffect } from "@react-navigation/native";
-import { Text, SafeAreaView, View, ScrollView, Alert } from "react-native";
+import { Text, View, ScrollView, Alert } from "react-native";
 import tw from "twrnc";
 import Colors from "../constants/Colors";
 import { useCart } from "../context/cartContext";
+import SafeAreaView from 'react-native-safe-area-view';
 
 import {
   CartInformation,
@@ -80,7 +81,7 @@ export default function CartTabScreen({ navigation }) {
   }, []);
 
   return (
-    <SafeAreaView style={tw`gap-2 bg-[${Colors.BrightGray}]`}>
+    <SafeAreaView style={tw`gap-2 bg-[${Colors.BrightGray}]`} forceInset={{ top: 'always' }}>
       <CartScreenHeader
         cartItems={cartItems}
         refreshCartItems={refreshCartItems}
