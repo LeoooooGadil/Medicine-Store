@@ -8,6 +8,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { CartProvider } from "./context/cartContext";
 import { SearchProvider } from "./context/searchContext";
 import Colors from "./constants/Colors";
+import { AddressesProvider } from "./context/addressesContext";
 
 export default function App() {
   const isLoadingComplete = useLoadedAssets();
@@ -21,17 +22,19 @@ export default function App() {
 
   return (
     <SearchProvider>
-      <CartProvider>
-        <GestureHandlerRootView style={tw`flex-1`}>
-          <SafeAreaProvider>
-            <Navigation />
-            <StatusBar
-              style={statusBarStyle}
-              backgroundColor={statusBarColor}
-            />
-          </SafeAreaProvider>
-        </GestureHandlerRootView>
-      </CartProvider>
+      <AddressesProvider>
+        <CartProvider>
+          <GestureHandlerRootView style={tw`flex-1`}>
+            <SafeAreaProvider>
+              <Navigation />
+              <StatusBar
+                style={statusBarStyle}
+                backgroundColor={statusBarColor}
+              />
+            </SafeAreaProvider>
+          </GestureHandlerRootView>
+        </CartProvider>
+      </AddressesProvider>
     </SearchProvider>
   );
 }

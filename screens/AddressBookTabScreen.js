@@ -4,7 +4,34 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Colors from "../constants/Colors";
 import tw from "twrnc";
 
+import { useAddresses } from "../context/addressesContext";
+
 export default function AddressBookTabScreen({ navigation }) {
+
+  // You can use the useAddresses hook here to get the addresses and other functions.
+  // data structure is this:
+  // {
+  //   id: string;
+  //   name: string;
+  //   address: string;
+  //   city: string;
+  //   postalCode: string;
+  //   country: string;
+  // }
+
+  // if you dont know how to use it, you can ask me or look at the addressesContext.js file.
+  // better if you ask me. I can explain it to you.
+
+
+  // const {
+  //   addresses,
+  //   isAddressesBeenUpdated,
+  //   loading,
+  //   getAddresses,
+  //   addAddress,
+  //   updateAddress,
+  // } = useAddresses();
+
   return (
     <SafeAreaView
       style={tw`gap-2 bg-[${Colors.BrightGray}] justify-center items-center flex-1`}
@@ -28,10 +55,7 @@ export default function AddressBookTabScreen({ navigation }) {
       {/* Styling: */}
       {/* You can style the components like the cartscreen or the order screen */}
       <Text style={styles.title}>This is the address book screen!</Text>
-      <TouchableOpacity
-        onPress={() => navigation.goBack()}
-        style={styles.link}
-      >
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.link}>
         <Text style={styles.linkText}>Go Back!</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -39,23 +63,23 @@ export default function AddressBookTabScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-	container: {
-	  flex: 1,
-	  backgroundColor: "#fff",
-	  alignItems: "center",
-	  justifyContent: "center",
-	  padding: 20,
-	},
-	title: {
-	  fontSize: 20,
-	  fontWeight: "bold",
-	},
-	link: {
-	  marginTop: 15,
-	  paddingVertical: 15,
-	},
-	linkText: {
-	  fontSize: 14,
-	  color: "#2e78b7",
-	},
-  });
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 20,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  link: {
+    marginTop: 15,
+    paddingVertical: 15,
+  },
+  linkText: {
+    fontSize: 14,
+    color: "#2e78b7",
+  },
+});
