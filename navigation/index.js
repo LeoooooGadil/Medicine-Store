@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import BottomTabNavigator from "./BottomTabNavigator";
 import CheckoutScreen from "../screens/CheckoutScreen";
+import AddressBookScreen from "../screens/AddressBookTabScreen";
 import LinkingConfiguration from "./LinkingConfiguration";
 
 export default function Navigation() {
@@ -30,6 +31,7 @@ function RootNavigator() {
     >
       <Stack.Screen name="Root" component={BottomTabNavigator} />
       <Stack.Screen name="Checkout" component={CheckoutScreen}/>
+      <Stack.Screen name="AddressBook" component={AddressBookScreen}/>
       <Stack.Screen name="NotFound" component={NotFoundScreen} />
     </Stack.Navigator>
   );

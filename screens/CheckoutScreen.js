@@ -10,7 +10,7 @@ export default function CheckoutScreen({ navigation }) {
         onPress={() => navigation.goBack()}
         style={styles.link}
       >
-        <Text style={styles.linkText}>Go to home screen!</Text>
+        <Text style={styles.linkText}>Go Back!</Text>
       </TouchableOpacity>
     </View>
   );

@@ -3,16 +3,16 @@ import tw from "twrnc";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../../constants/Colors";
 
-export default function AppSettingsMenu() {
+export default function AppSettingsMenu({ navigation }) {
   const settings = {
     "Address Book": {
       OnClick: () => {
-        Alert.alert("Address Book");
+        navigation.navigate("AddressBook");
       },
     },
-    "Notifications": {
+    "About Us": {
       OnClick: () => {
-        Alert.alert("Notifications");
+        Alert.alert("About Us");
       },
     },
   };
@@ -37,7 +37,9 @@ export default function AppSettingsMenu() {
 function AppSettingsButton({ Name, Icon, OnClick, isLast }) {
   return (
     <TouchableOpacity
-      style={tw`flex-row items-center justify-between h-14 ${isLast ? "" : "border-b border-[#E5E5E5]"}`}
+      style={tw`flex-row items-center justify-between h-14 ${
+        isLast ? "" : "border-b border-[#E5E5E5]"
+      }`}
       onPress={OnClick}
     >
       <View style={tw`flex-row items-center h-14 flex-1`}>
