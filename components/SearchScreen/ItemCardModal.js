@@ -38,7 +38,7 @@ export default function ItemCard({
   return (
     <View>
       <View
-        style={tw`w-full h-42 bg-[${Colors.DarkBlue}] justify-center items-center`}
+        style={tw`w-full h-42 bg-[${Colors.WedgeWood}] justify-center items-center`}
       >
         <Text>Image</Text>
       </View>
@@ -49,7 +49,7 @@ export default function ItemCard({
         </View>
         <View style={tw`relative pb-4`}>
           <View
-            style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.DarkOrange}]`}
+            style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.SinBad}]`}
           >
             <Text style={tw`text-white`}>{item?.dosage}{item?.dosageType}</Text>
           </View>

@@ -8,7 +8,7 @@ export default function CartScreenHeader({
   clearCart,
 }) {
   return (
-    <View style={tw`px-8 pt-2 flex-row justify-between items-center h-10`}>
+    <View style={tw`px-8 pt-3 flex-row justify-between items-center h-10`}>
       <Text style={tw`text-3xl font-bold`}>Your Cart</Text>
       <View style={tw`flex-row items-center gap-4`}>
         <TouchableOpacity style={tw``} onPress={refreshCartItems}>

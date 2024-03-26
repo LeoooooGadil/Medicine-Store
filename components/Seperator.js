@@ -13,7 +13,7 @@ export default function Seperator() {
 export function BoldSeperator() {
   return (
     <View>
-      <View style={tw`h-1 bg-[${Colors.Gray}] rounded-lg`} />
+      <View style={tw`h-1 bg-[${Colors.Alto}] rounded-lg opacity-50`} />
     </View>
   );
 }

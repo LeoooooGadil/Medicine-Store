@@ -31,7 +31,7 @@ export default function WelcomeBanner() {
         renderItem={({ item }) => {
           return (
             <View
-              style={tw`bg-[${Colors.LightBlue}] rounded-xl shadow-md h-40 flex-col gap-2 py-8`} 
+              style={tw`bg-[${Colors.SinBad}] rounded-xl shadow-md h-40 flex-col gap-2 py-8`} 
             >
               <View style={tw`flex-1 justify-center`}>
                 <Text style={tw`text-4xl font-bold text-left text-white`}>

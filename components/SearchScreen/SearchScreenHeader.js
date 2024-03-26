@@ -7,8 +7,21 @@ import Colors from "../../constants/Colors";
 export default function SearchScreenHeader({ GoToCart }) {
   const { cartItems } = useCart();
 
+  const shadowStyle = {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 15,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 5,
+  };
+
   return (
-    <View style={tw`px-8 pb-4 pt-2 h-13 bg-[${Colors.BrightGray}]`}>
+    <View
+      style={[tw`px-8 pb-4 pt-2 h-16 bg-[${Colors.White}]`, shadowStyle]}
+    >
       <View style={tw`flex-row items-center justify-between`}>
         <View style={tw`flex-row justify-center items-center gap-2`}>
           <Image

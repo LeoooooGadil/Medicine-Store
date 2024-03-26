@@ -40,7 +40,7 @@ export default function HomeTabScreen({ navigation }) {
 
   return (
     <SafeAreaView
-      style={tw`flex-1 bg-[${Colors.BrightGray}]`}
+      style={tw`flex-1 bg-[${Colors.White}]`}
       forceInset={{ top: "always" }}
     >
       <View style={tw`h-full`}>

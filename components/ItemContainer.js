@@ -40,22 +40,22 @@ export default function ItemContainer(props) {
       onPress={() => OpenItem()}
     >
       <View
-        style={tw`w-40 h-36 bg-[${Colors.DarkBlue}] rounded-t-xl shadow-md justify-center items-center`}
+        style={tw`w-40 h-36 bg-[${Colors.WedgeWood}] rounded-t-xl shadow-md justify-center items-center`}
       >
         <Text style={tw`text-2xl text-[${Colors.White}]`}>Image</Text>
       </View>
-      <View style={tw`px-3 pb-3.5 w-full`}>
+      <View style={tw`px-3 pb-3 w-full`}>
         <Text style={tw`text-lg font-bold`}>{item?.brandName}</Text>
         <View style={tw`flex-row justify-between items-center`}>
-          <View style={tw`relative pb-4`}>
-            <View style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.LightBlue}]`}>
+          <View style={tw`relative pb-1 pt-3 justify-center`}>
+            <View style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.SinBad}]`}>
               <Text style={tw`text-white`}>
                 {item?.dosage}
                 {item?.dosageType}
               </Text>
             </View>
           </View>
-          <Text style={tw`font-bold`}>₱{item?.price}</Text>
+          <Text>₱{item?.price}</Text>
         </View>
       </View>
     </TouchableOpacity>

@@ -8,13 +8,12 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { CartProvider } from "./context/cartContext";
 import { SearchProvider } from "./context/searchContext";
 import Colors from "./constants/Colors";
-import { Platform } from "react-native";
 
 export default function App() {
   const isLoadingComplete = useLoadedAssets();
 
-  const statusBarColor = Colors.Lava;
-  const statusBarStyle = Platform.OS === "ios" ? "dark-content" : "light-content";
+  const statusBarColor = Colors.Gallery;
+  const statusBarStyle = "dark-content";
 
   if (!isLoadingComplete) {
     return null;

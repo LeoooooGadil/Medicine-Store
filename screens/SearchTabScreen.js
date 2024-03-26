@@ -46,7 +46,7 @@ export default function SearchTabScreen({ navigation }) {
   );
 
   return (
-    <SafeAreaView style={tw`flex-1 bg-[${Colors.BrightGray}]`} forceInset={{ top: 'always' }}>
+    <SafeAreaView style={tw`flex-1 bg-[${Colors.White}]`} forceInset={{ top: 'always' }}>
       <SearchScreenWindow
         navigation={navigation}
         OpenBottomSheet={openBottomSheet}

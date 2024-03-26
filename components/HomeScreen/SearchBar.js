@@ -7,10 +7,10 @@ import Colors from "../../constants/Colors";
 
 export default function SearchBar({ GoToSearch }) {
   return (
-    <View style={tw`px-8 pt-1 pb-3`}>
+    <View style={tw`px-8 pt-3 pb-3`}>
       <View style={tw`pt-2 flex-row `}>
         <LinearGradient
-          colors={[Colors.DarkOrange, Colors.LightBlue]}
+          colors={[Colors.AlizarinCrimson, Colors.Froly, Colors.ApricotPeach, Colors.SinBad, Colors.WedgeWood]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={tw`rounded-2xl shadow-md p-0.7 flex-1 h-13.5`}
