@@ -144,6 +144,7 @@ export const CheckoutProvider = ({ children }) => {
         currentStep,
         orderSummary,
         isPrescriptionRequired,
+        setOrderSummary,
         startCheckout,
         nextStep,
         prevStep,

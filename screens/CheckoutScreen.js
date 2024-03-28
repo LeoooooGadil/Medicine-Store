@@ -28,11 +28,11 @@ export default function CheckoutScreen({ navigation }) {
           </View>
         );
       case 2:
-        return <></>;
+        return <ScrollView style={tw`h-full`}></ScrollView>;
       case 3:
-        return <></>;
+        return <ScrollView style={tw`h-full`}></ScrollView>;
       default:
-        return <></>;
+        return <ScrollView style={tw`h-full`}></ScrollView>;
     }
   };
 
