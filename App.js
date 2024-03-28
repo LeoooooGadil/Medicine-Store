@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import tw from "twrnc";
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
@@ -9,12 +10,11 @@ import { CartProvider } from "./context/cartContext";
 import { SearchProvider } from "./context/searchContext";
 import Colors from "./constants/Colors";
 import { AddressesProvider } from "./context/addressesContext";
+import { CheckoutProvider } from "./context/checkoutContext";
+import { useNavigation } from "@react-navigation/native";
 
 export default function App() {
   const isLoadingComplete = useLoadedAssets();
-
-  const statusBarColor = Colors.Gallery;
-  const statusBarStyle = "dark-content";
 
   if (!isLoadingComplete) {
     return null;
@@ -24,15 +24,13 @@ export default function App() {
     <SearchProvider>
       <AddressesProvider>
         <CartProvider>
-          <GestureHandlerRootView style={tw`flex-1`}>
-            <SafeAreaProvider>
-              <Navigation />
-              <StatusBar
-                style={statusBarStyle}
-                backgroundColor={statusBarColor}
-              />
-            </SafeAreaProvider>
-          </GestureHandlerRootView>
+          <CheckoutProvider>
+            <GestureHandlerRootView style={tw`flex-1`}>
+              <SafeAreaProvider>
+                <Navigation />
+              </SafeAreaProvider>
+            </GestureHandlerRootView>
+          </CheckoutProvider>
         </CartProvider>
       </AddressesProvider>
     </SearchProvider>

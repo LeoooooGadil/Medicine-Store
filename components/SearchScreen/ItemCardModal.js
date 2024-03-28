@@ -4,6 +4,7 @@ import tw from "twrnc";
 import Colors from "../../constants/Colors";
 import Seperator from "../Seperator";
 import { useCart } from "../../context/cartContext";
+import { Feather } from '@expo/vector-icons';
 
 export default function ItemCard({
   item,
@@ -36,7 +37,7 @@ export default function ItemCard({
   }, [IsBottomSheetOpen]);
 
   return (
-    <View>
+    <View style={tw`bg-[${Colors.BrightGray}] h-full`}>
       <View
         style={tw`w-full h-42 bg-[${Colors.WedgeWood}] justify-center items-center`}
       >
@@ -70,14 +71,18 @@ export default function ItemCard({
         </View>
         <Seperator />
         <Text style={tw`opacity-75 font-bold`}>{item?.manufacturer}</Text>
+        <Seperator />
+        <Text>
+          {item?.isPrescriptionRequired ? "Prescription Required" : "No Prescription Required"}
+        </Text>
       </View>
-      <View style={tw`px-8 pt-20 flex-row justify-between`}>
+      <View style={tw`mx-8 p-2 pl-0 shadow-md rounded-xl mt-10 flex-row justify-between bg-[${Colors.White}]`}>
         <View style={tw`flex-row`}>
           <TouchableOpacity
             style={tw`h-10 w-10 rounded-full justify-center items-center`}
             onPress={() => handleQuantityChange(quantity - 1)}
           >
-            <Text style={tw`text-2xl font-bold`}>-</Text>
+            <Feather name="minus" size={18} color="black" />
           </TouchableOpacity>
           <View style={tw`justify-center items-center w-6`}>
             <Text ref={inputRef} style={tw`text-lg`}>
@@ -88,7 +93,7 @@ export default function ItemCard({
             style={tw`h-10 w-10 rounded-full justify-center items-center`}
             onPress={() => handleQuantityChange(quantity + 1)}
           >
-            <Text style={tw`text-2xl font-bold`}>+</Text>
+            <Feather name="plus" size={18} color="black" />
           </TouchableOpacity>
         </View>
         <View style={tw`flex-row justify-center items-center gap-4`}>

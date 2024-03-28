@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useFocusEffect } from "@react-navigation/native";
-import { Text, View, ScrollView, Alert } from "react-native";
+import { Text, View, ScrollView, Alert, StatusBar } from "react-native";
 import tw from "twrnc";
 import Colors from "../constants/Colors";
 import { useCart } from "../context/cartContext";
+import { useCheckout } from "../context/checkoutContext";
 import SafeAreaView from 'react-native-safe-area-view';
 
 import {
@@ -14,6 +15,9 @@ import {
 } from "../components/CartScreen";
 
 export default function CartTabScreen({ navigation }) {
+  const statusBarStyle = "dark-content";
+  const statusBarColor = Colors.BrightGray;
+
   const {
     cartItems,
     isCartBeenUpdated,
@@ -21,6 +25,10 @@ export default function CartTabScreen({ navigation }) {
     getCartItems,
     clearCartItems,
   } = useCart();
+
+  const {
+    startCheckout,
+  } = useCheckout();
 
   const goToCheckout = () => {
     if (cartItems.length === 0) {
@@ -39,7 +47,7 @@ export default function CartTabScreen({ navigation }) {
         {
           text: "Proceed",
           onPress: () => {
-            navigation.navigate("Checkout");
+            startCheckout({ navigation, cartItems });
           },
         },
       ]
@@ -82,6 +90,7 @@ export default function CartTabScreen({ navigation }) {
 
   return (
     <SafeAreaView style={tw`gap-2 bg-[${Colors.BrightGray}]`} forceInset={{ top: 'always' }}>
+      <StatusBar style={statusBarStyle} backgroundColor={statusBarColor} />
       <CartScreenHeader
         cartItems={cartItems}
         refreshCartItems={refreshCartItems}

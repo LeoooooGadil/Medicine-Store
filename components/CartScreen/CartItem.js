@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Alert } from "react-native";
 import tw from "twrnc";
 import { useCart } from "../../context/cartContext";
 import Colors from "../../constants/Colors";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, Feather } from "@expo/vector-icons";
 
 export default function CartItem({ item, quantity, index }) {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -86,7 +86,7 @@ function CartSettings({ quantity, handleQuantityChange, handleRemoveItem }) {
               style={tw`p-3 pl-0 rounded-lg justify-center items-center`}
               onPress={() => handleQuantityChange(quantity - 1)}
             >
-              <Ionicons name="remove-outline" size={13} />
+              <Feather name="minus" size={18} color="black" />
             </TouchableOpacity>
             <View style={tw`justify-center items-center w-6`}>
               <Text ref={inputRef}>{quantity}</Text>
@@ -95,7 +95,7 @@ function CartSettings({ quantity, handleQuantityChange, handleRemoveItem }) {
               style={tw`p-3 rounded-lg justify-center items-center`}
               onPress={() => handleQuantityChange(quantity + 1)}
             >
-              <Ionicons name="add-outline" size={13} />
+              <Feather name="plus" size={18} color="black" />
             </TouchableOpacity>
           </View>
         </View>

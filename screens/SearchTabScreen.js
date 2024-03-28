@@ -1,14 +1,16 @@
 import React, { useRef, useCallback, useState, useEffect } from "react";
-import { Keyboard, Text } from "react-native";
+import { Keyboard, StatusBar } from "react-native";
 import tw from "twrnc";
 import Colors from "../constants/Colors";
 import { SearchScreenWindow, ItemCard } from "../components/SearchScreen";
 import BottomSheetModal from "../components/BottomSheetModal";
 import { useFocusEffect } from "@react-navigation/native";
 import { useSearch } from "../context/searchContext";
-import SafeAreaView from 'react-native-safe-area-view';
+import SafeAreaView from "react-native-safe-area-view";
 
 export default function SearchTabScreen({ navigation }) {
+  const statusBarStyle = "dark-content";
+  const statusBarColor = Colors.White;
   const { startSearching, stopSearch } = useSearch();
 
   const [isSearchWindowOpen, setIsSearchWindowOpen] = useState(startSearching);
@@ -46,7 +48,11 @@ export default function SearchTabScreen({ navigation }) {
   );
 
   return (
-    <SafeAreaView style={tw`flex-1 bg-[${Colors.White}]`} forceInset={{ top: 'always' }}>
+    <SafeAreaView
+      style={tw`flex-1 bg-[${Colors.White}]`}
+      forceInset={{ top: "always" }}
+    >
+      <StatusBar style={statusBarStyle} backgroundColor={statusBarColor} />
       <SearchScreenWindow
         navigation={navigation}
         OpenBottomSheet={openBottomSheet}

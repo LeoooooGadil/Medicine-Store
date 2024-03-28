@@ -1,4 +1,4 @@
-import { ScrollView } from "react-native";
+import { ScrollView, StatusBar } from "react-native";
 import tw from "twrnc";
 import Colors from "../constants/Colors";
 
@@ -37,8 +37,12 @@ const DUMMY_ORDERS = [
 ];
 
 export default function OrdersTabScreen() {
+  const statusBarStyle = "dark-content";
+  const statusBarColor = Colors.BrightGray;
+
   return (
     <SafeAreaView style={tw`bg-[${Colors.BrightGray}]`} forceInset={{ top: "always" }}>
+      <StatusBar style={statusBarStyle} backgroundColor={statusBarColor} />
       <OrdersScreenHeader />
       <ScrollView style={tw`h-full`}>
         <OrdersList Orders={DUMMY_ORDERS} />

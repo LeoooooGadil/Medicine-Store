@@ -1,5 +1,5 @@
-import React, { useState, useRef, useCallback } from "react";
-import { Keyboard, View, ScrollView } from "react-native";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { Keyboard, View, ScrollView, StatusBar } from "react-native";
 import tw from "twrnc";
 import Colors from "../constants/Colors";
 import SafeAreaView from "react-native-safe-area-view";
@@ -17,6 +17,9 @@ import { useSearch } from "../context/searchContext";
 import { BoldSeperator } from "../components/Seperator";
 
 export default function HomeTabScreen({ navigation }) {
+  const statusBarStyle = "dark-content";
+  const statusBarColor = Colors.White;
+
   const { startSearch } = useSearch();
 
   const [CurrentItem, setCurrentItem] = useState(null);
@@ -43,6 +46,7 @@ export default function HomeTabScreen({ navigation }) {
       style={tw`flex-1 bg-[${Colors.White}]`}
       forceInset={{ top: "always" }}
     >
+      <StatusBar style={statusBarStyle} backgroundColor={statusBarColor} />
       <View style={tw`h-full`}>
         <ScrollView stickyHeaderIndices={[0]} style={tw`h-full`}>
           <HomeScreenHeader GoToCart={() => navigation.navigate("Cart")} />

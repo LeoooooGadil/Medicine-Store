@@ -36,7 +36,7 @@ export default function ItemContainer(props) {
     <TouchableOpacity
       style={tw`flex-col bg-[${
         Colors.White
-      }] rounded-xl shadow-md items-start justify-center gap-1 ${styles()}`}
+      }] rounded-xl shadow-md items-start justify-center gap-1 ${styles()} mb-2`}
       onPress={() => OpenItem()}
     >
       <View

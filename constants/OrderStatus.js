@@ -1,7 +1,8 @@
 export const OrderStatus = {
-  Received: "Order Received",
+  Pending: "Order Pending",
   Processing: "Order is being processed",
   OnTheWay: "Order is on the way",  
   Delivered: "Order Delivered",
+  Received: "Order Received",
   Canceled: "Order Canceled",
 };

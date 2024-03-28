@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import tw from "twrnc";
 import { Ionicons } from "@expo/vector-icons";
+import Colors from "../../constants/Colors";
 
 export default function CartScreenHeader({
   cartItems,
@@ -16,7 +17,7 @@ export default function CartScreenHeader({
         </TouchableOpacity>
         {cartItems.length > 0 && (
           <TouchableOpacity style={tw``} onPress={clearCart}>
-            <Ionicons name="trash-outline" size={25} />
+            <Ionicons name="trash-outline" size={25} color={Colors.AlizarinCrimson} />
           </TouchableOpacity>
         )}
       </View>

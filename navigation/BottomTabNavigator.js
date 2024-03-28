@@ -10,7 +10,6 @@ import MenuTabScreen from "../screens/MenuTabScreen";
 import Colors from "../constants/Colors";
 import { View, Text } from "react-native";
 
-
 const BottomTab = createBottomTabNavigator();
 
 export default function BottomTabNavigator() {
@@ -88,7 +87,7 @@ function TabBarIcon(props) {
       size={27}
       style={{ marginBottom: -3 }}
       {...props}
-      color={props.focused ? Colors.Lava : Colors.QuickSilver}
+      color={props.focused ? Colors.AlizarinCrimson : Colors.QuickSilver}
       name={`${props.name}${props.focused ? "" : "-outline"}`}
     />
   );
@@ -105,18 +104,27 @@ function AccountIcon(props) {
         width: 27,
         height: 27,
         borderRadius: 20,
-        backgroundColor: props.focused ? Colors.Lava : Colors.BrightGray,
+        backgroundColor: props.focused
+          ? Colors.AlizarinCrimson
+          : Colors.Gallery,
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      <Text style={{ color: Colors.White, fontSize: 16 }}>{props.name[0]}</Text>
+      <Text
+        style={{
+          color: Colors.White,
+          fontSize: 16,
+        }}
+      >
+        {props.name[0]}
+      </Text>
     </View>
   );
 }
 
 const slideAnimation = {
-  gestureDirection: 'horizontal',
+  gestureDirection: "horizontal",
   transitionSpec: {
     open: TransitionSpecs.TransitionIOSSpec,
     close: TransitionSpecs.TransitionIOSSpec,
