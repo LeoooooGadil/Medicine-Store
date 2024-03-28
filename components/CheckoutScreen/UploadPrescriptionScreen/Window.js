@@ -5,8 +5,15 @@ import { Camera } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
 import Colors from "../../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import CameraScreen from "./Camera";
+
+const State = {
+  PICKER: "PICKER",
+  CAMERA: "CAMERA",
+};
 
 export default function UploadPrescriptionWindow() {
+  const [state, setState] = useState(State.PICKER);
   const [hasPermission, setHasPermission] = useState(false);
   const [cameraPermission, setCameraPermission] = useState(false);
   const [galleryPermission, setGalleryPermission] = useState(false);
@@ -32,6 +39,10 @@ export default function UploadPrescriptionWindow() {
     }
   };
 
+  const ChangeState = (state) => {
+    setState(state);
+  };
+
   useEffect(() => {
     permisionFunction();
   }, []);
@@ -44,16 +55,42 @@ export default function UploadPrescriptionWindow() {
     );
   }
 
+  if (state === State.CAMERA) {
+    return <CameraScreen />;
+  }
+
   return (
-    <View style={tw`flex-1 flex-row justify-center items-center gap-10`}>
-      <Button
-        title="Camera"
-        Icon={() => <Ionicons name="camera-outline" size={45} color={Colors.AlizarinCrimson} />}
-        onPress={() => console.log("Camera")}
-      />
-      <Button title="Gallery" Icon={
-		() => <Ionicons name="images-outline" size={40} color={Colors.AlizarinCrimson} />
-	  } onPress={() => console.log("Gallery")} />
+    <View style={tw`flex-1`}>
+      <View style={tw`mt-10`}>
+        <Text style={tw`text-center text-2xl font-bold`}>Snap a picture</Text>
+        <Text style={tw`text-center mt-2 px-8`}>
+          Some of the medicines you have added require a prescription. Please
+          upload a prescription to continue.
+        </Text>
+      </View>
+      <View style={tw`flex-1 flex-col items-center pt-15 gap-3 px-8`}>
+        <Button
+          title="Take a Picture"
+          Icon={() => (
+            <Ionicons name="camera-outline" size={30} color={Colors.Froly} />
+          )}
+          onPress={() => ChangeState(State.CAMERA)}
+        />
+        <Text style={tw`text-center text-gray-400`}>or</Text>
+        <Button
+          title="Upload from Gallery"
+          Icon={() => (
+            <Ionicons name="images-outline" size={30} color={Colors.Froly} />
+          )}
+          onPress={() => console.log("Gallery")}
+        />
+      </View>
+      <View style={tw`px-8`}>
+        <Text style={tw`text-center text-gray-400`}>
+          Note: A pharmacist will verify your prescription before processing
+          your order.
+        </Text>
+      </View>
     </View>
   );
 }
@@ -61,11 +98,13 @@ export default function UploadPrescriptionWindow() {
 function Button({ title, Icon, onPress }) {
   return (
     <TouchableOpacity
-      style={tw`h-25 w-25 p-3 justify-center items-center rounded-md shadow-md bg-[${Colors.White}]`}
+      style={tw`w-full p-3 flex-row gap-4 justify-center items-center rounded-xl shadow-md bg-[${Colors.White}]`}
       onPress={onPress}
     >
       {Icon && <Icon />}
-      <Text style={tw`text-center text-[${Colors.AlizarinCrimson}]`}>{title}</Text>
+      <Text style={tw`text-center w-20 text-[${Colors.AlizarinCrimson}]`}>
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 }
