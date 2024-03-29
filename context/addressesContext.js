@@ -7,6 +7,7 @@ export const useAddresses = () => useContext(AddressesContext);
 
 export const AddressesProvider = ({ children }) => {
   const [addresses, setAddresses] = useState([]);
+  const [selectedAddress, setSelectedAddress] = useState(null);
   const [isAddressesBeenUpdated, setIsAddressesBeenUpdated] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -22,6 +23,31 @@ export const AddressesProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
+  const GetSelectedAddress = async () => {
+    setLoading(true);
+    try {
+      const selectedItem = await AsyncStorage.getItem("selectedAddress");
+      setSelectedAddress(selectedItem ? JSON.parse(selectedItem) : null);
+    } catch (error) {
+      console.error("Error getting selected address: ", error);
+      setSelectedAddress(null);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const SetSelectedAddress = async (address) => {
+    setLoading(true);
+    try {
+      await AsyncStorage.setItem("selectedAddress", JSON.stringify(address));
+      setSelectedAddress(address);
+    } catch (error) {
+      console.error("Error setting selected address: ", error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const addAddress = async (address) => {
     setLoading(true);
@@ -62,6 +88,8 @@ export const AddressesProvider = ({ children }) => {
         getAddresses,
         addAddress,
         updateAddress,
+        GetSelectedAddress,
+        SetSelectedAddress,
       }}
     >
       {children}

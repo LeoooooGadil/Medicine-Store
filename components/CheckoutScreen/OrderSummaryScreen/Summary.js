@@ -11,7 +11,6 @@ export default function Summary() {
   const { cartItems } = useCart();
   const { orderSummary, isPrescriptionRequired } = useCheckout();
 
-  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const subTotal = cartItems.reduce(
     (acc, item) => acc + item.item.price * item.quantity,
     0
@@ -69,8 +68,13 @@ export default function Summary() {
   };
 
   return (
-    <View>
-      <View style={tw`mx-8 mt-10`}>
+    <View style={tw`mt-7`}>
+      <View style={tw`mx-8`}>
+        <Text style={tw`text-lg font-bold text-gray-800`}>
+          Orders
+        </Text>
+      </View>
+      <View style={tw`mx-8 mt-1 gap-2`}>
         {cartItems.map((item, index) => (
           <SummaryItem key={index} item={item} />
         ))}
@@ -101,19 +105,15 @@ export default function Summary() {
         </View>
       </View>
       <View style={tw`px-8 py-4 pb-1 pt-2 gap-1`}>
-          <View
-            style={tw`flex-row items-center gap-1 p-4 rounded-xl shadow-md bg-[${Colors.White}]`}
-          >
-            <FontAwesome6
-              name="truck"
-              size={10}
-              color={Colors.AlizarinCrimson}
-            />
-            <Text style={tw`text-[${Colors.AlizarinCrimson}]`}>
-              Get By
-              <Text style={tw`font-bold`}> {getShippingDate()}</Text>
-            </Text>
-          </View>
+        <View
+          style={tw`flex-row items-center gap-1 p-4 rounded-xl shadow-md bg-[${Colors.White}]`}
+        >
+          <FontAwesome6 name="truck" size={10} color={Colors.AlizarinCrimson} />
+          <Text style={tw`text-[${Colors.AlizarinCrimson}]`}>
+            Get By
+            <Text style={tw`font-bold`}> {getShippingDate()}</Text>
+          </Text>
+        </View>
       </View>
     </View>
   );

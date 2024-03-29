@@ -5,14 +5,14 @@ import { FontAwesome5, AntDesign } from "@expo/vector-icons";
 
 export default function SummaryItem({ item }) {
   return (
-    <View style={tw`py-2 border-b border-[${Colors.Alto2}]`}>
+    <View style={tw`bg-[${Colors.White}] shadow-md rounded-xl p-4 py-3`}>
       <View style={tw`flex-row justify-between items-center`}>
         <View
           style={tw`w-13 h-13 bg-[${Colors.SinBad}] justify-center items-center rounded-lg`}
         >
           <Text>Image</Text>
         </View>
-        <View style={tw`flex-1 ml-4 flex-row gap-2`}>
+        <View style={tw`flex-1 ml-4 flex-row gap-2 h-full pt-1`}>
           <Text style={tw`font-bold `}>
             {item.item.name} - {item.item.brandName}
           </Text>

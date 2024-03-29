@@ -1,6 +1,8 @@
 import React, { useCallback, useMemo } from "react";
 import BottomSheet, { BottomSheetView, BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 import { ItemCard } from "./SearchScreen";
+import Colors from "../constants/Colors";
+import tw from "twrnc";
 
 export default function BottomSheetModal({
   bottomSheetRef,
@@ -37,6 +39,7 @@ export default function BottomSheetModal({
       backdropComponent={renderBackdrop}
       index={-1}
       enablePanDownToClose
+      style={tw`bg-[${Colors.BrightGray}] rounded-t-xl`}
     >
       <BottomSheetView>
         <ItemCard item={CurrentItem} CloseBottomSheet={CloseBottomSheet} IsBottomSheetOpen={IsBottomSheetOpen} />

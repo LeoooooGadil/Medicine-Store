@@ -1,3 +1,4 @@
+import React, { useState, useRef } from "react";
 import { StyleSheet, View, ActivityIndicator, ScrollView } from "react-native";
 import tw from "twrnc";
 import Colors from "../constants/Colors";
@@ -6,18 +7,33 @@ import {
   CheckoutControls,
   CheckoutScreenHeader,
   Summary,
+  LocationPicker,
+  BottomSheetModal,
 } from "../components/CheckoutScreen";
 import SafeAreaView from "react-native-safe-area-view";
 import { UploadPrescriptionWindow } from "../components/CheckoutScreen/UploadPrescriptionScreen";
 
 export default function CheckoutScreen({ navigation }) {
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const bottomSheetModalRef = useRef(null);
   const { isLoading, currentStep, prevStep } = useCheckout();
+
+  const openBottomSheet = () => {
+    setIsBottomSheetOpen(true);
+    bottomSheetModalRef.current?.snapToIndex(0);
+  };
+
+  const closeBottomSheet = () => {
+    setIsBottomSheetOpen(false);
+    bottomSheetModalRef.current?.close();
+  };
 
   const renderStep = () => {
     switch (currentStep) {
       case 0:
         return (
           <ScrollView style={tw`h-full`}>
+            <LocationPicker openLocationPicker={openBottomSheet} />
             <Summary />
           </ScrollView>
         );
@@ -62,6 +78,10 @@ export default function CheckoutScreen({ navigation }) {
       <CheckoutScreenHeader GoBack={goBack} />
       {renderStep()}
       {currentStep !== 1 && <CheckoutControls navigation={navigation} />}
+      <BottomSheetModal
+        bottomSheetRef={bottomSheetModalRef}
+        SetIsBottomSheetOpen={setIsBottomSheetOpen}
+      />
     </SafeAreaView>
   );
 }
