@@ -18,6 +18,21 @@ export default function SearchScreenHeader({ GoToCart }) {
     elevation: 5,
   };
 
+  // simulate a full queue call a pharma so that the user can't call a pharma
+  const CallAPharmaFullQueue = () => {
+    Alert.alert("Call a Pharma", "Call a Pharma now!", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Call",
+        onPress: () =>
+          Alert.alert("Call a Pharma", "The queue is full. Please try again later."),
+      },
+    ]);
+  }
+
   return (
     <View
       style={[tw`px-8 pb-4 pt-2 h-16 bg-[${Colors.White}]`, shadowStyle]}
@@ -38,7 +53,9 @@ export default function SearchScreenHeader({ GoToCart }) {
           </View>
         </View>
         <View style={tw`flex-row items-center`}>
-          <TouchableOpacity style={tw`p-1`}>
+          <TouchableOpacity style={tw`p-1`}
+            onPress={CallAPharmaFullQueue}
+          >
             <Ionicons name="call-outline" size={25} />
           </TouchableOpacity>
           <TouchableOpacity style={tw`p-1`} onPress={GoToCart}>

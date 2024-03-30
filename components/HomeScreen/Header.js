@@ -3,7 +3,7 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  TouchableWithoutFeedback,
+  Alert,
 } from "react-native";
 import tw from "twrnc";
 import { Ionicons } from "@expo/vector-icons";
@@ -26,6 +26,21 @@ export default function HomeScreenHeader({ GoToCart }) {
     elevation: 5,
   };
 
+  // simulate a full queue call a pharma so that the user can't call a pharma
+  const CallAPharmaFullQueue = () => {
+    Alert.alert("Call a Pharma", "Call a Pharma now!", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Call",
+        onPress: () =>
+          Alert.alert("Call a Pharma", "The queue is full. Please try again later."),
+      },
+    ]);
+  }
+
   return (
     <View
       style={[tw`px-8 pb-3 pt-2 gap-4 h-16 bg-[${Colors.White}]`, shadowStyle]}
@@ -46,7 +61,9 @@ export default function HomeScreenHeader({ GoToCart }) {
           </View>
         </View>
         <View style={tw`flex-row items-center`}>
-          <TouchableOpacity style={tw`p-1`}>
+          <TouchableOpacity style={tw`p-1`}
+            onPress={CallAPharmaFullQueue}
+          >
             <Ionicons name="call-outline" size={25} />
           </TouchableOpacity>
           <TouchableOpacity style={tw`p-1`} onPress={GoToCart}>

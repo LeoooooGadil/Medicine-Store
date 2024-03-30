@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { StyleSheet, View, ActivityIndicator, ScrollView } from "react-native";
+import { View, ActivityIndicator, ScrollView } from "react-native";
 import tw from "twrnc";
 import Colors from "../constants/Colors";
 import { useCheckout } from "../context/checkoutContext";
@@ -9,6 +9,7 @@ import {
   Summary,
   LocationPicker,
   BottomSheetModal,
+  PaymentMethodPicker,
 } from "../components/CheckoutScreen";
 import SafeAreaView from "react-native-safe-area-view";
 import { UploadPrescriptionWindow } from "../components/CheckoutScreen/UploadPrescriptionScreen";
@@ -44,7 +45,11 @@ export default function CheckoutScreen({ navigation }) {
           </View>
         );
       case 2:
-        return <ScrollView style={tw`h-full`}></ScrollView>;
+        return (
+          <ScrollView style={tw`h-full`}>
+            <PaymentMethodPicker />
+          </ScrollView>
+        );
       case 3:
         return <ScrollView style={tw`h-full`}></ScrollView>;
       default:

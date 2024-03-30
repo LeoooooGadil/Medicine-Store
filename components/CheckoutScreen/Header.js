@@ -15,7 +15,7 @@ export default function CheckoutScreenHeader({ GoBack }) {
       case 2:
         return "Payment Method";
       case 3:
-        return "Order Confirmation";
+        return "";
       default:
         return "Checkout";
     }

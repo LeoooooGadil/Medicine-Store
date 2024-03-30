@@ -81,7 +81,7 @@ export default function UploadPrescriptionWindow() {
 
   if (image) {
     return (
-      <View style={tw`flex-1`}>
+      <View style={tw`flex-1 mt-10`}>
         <View style={tw`flex-1 items-center px-5 mb-5 shadow-md relative`}>
           <Image source={{ uri: image }} style={tw`w-full h-full rounded-xl`} />
           <View style={tw`flex-row absolute bottom-0`}>
