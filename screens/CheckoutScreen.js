@@ -10,6 +10,7 @@ import {
   LocationPicker,
   BottomSheetModal,
   PaymentMethodPicker,
+  OrderConfirmationHero,
 } from "../components/CheckoutScreen";
 import SafeAreaView from "react-native-safe-area-view";
 import { UploadPrescriptionWindow } from "../components/CheckoutScreen/UploadPrescriptionScreen";
@@ -51,7 +52,11 @@ export default function CheckoutScreen({ navigation }) {
           </ScrollView>
         );
       case 3:
-        return <ScrollView style={tw`h-full`}></ScrollView>;
+        return (
+          <ScrollView style={tw`h-full`}>
+            <OrderConfirmationHero navigation={navigation} />
+          </ScrollView>
+        );
       default:
         return <ScrollView style={tw`h-full`}></ScrollView>;
     }

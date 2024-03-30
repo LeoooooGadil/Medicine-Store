@@ -24,8 +24,8 @@ export const CheckoutProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [isPrescriptionRequired, setIsPrescriptionRequired] = useState(false);
-  const [isPaymentSuccess, setIsPaymentSuccess] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
+  const [isCheckoutSuccess, setIsCheckoutSuccess] = useState(false);
 
   // step 0: order summary & shipping address
   // step 1: is prescription required? (optional). picture upload
@@ -135,12 +135,23 @@ export const CheckoutProvider = ({ children }) => {
     });
   };
 
+  const orderConfirmation = () => {
+    if(isCheckoutSuccess) return;
+
+    setIsLoading(true);
+    // Simulate a delay randomly between 1 to 3 seconds
+    // just to show the loading indicator
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsCheckoutSuccess(true);
+    }, Math.floor(Math.random() * 2000) + 1000);
+  };
+
   return (
     <CheckoutContext.Provider
       value={{
         isLoading,
         isCheckingOut,
-        isPaymentSuccess,
         currentStep,
         orderSummary,
         isPrescriptionRequired,
@@ -148,6 +159,7 @@ export const CheckoutProvider = ({ children }) => {
         startCheckout,
         nextStep,
         prevStep,
+        orderConfirmation,
       }}
     >
       {children}

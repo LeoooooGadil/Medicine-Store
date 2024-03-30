@@ -6,7 +6,7 @@ import { useCheckout } from "../../context/checkoutContext";
 export default function CheckoutControls({ navigation }) {
   const { currentStep, nextStep, prevStep } = useCheckout();
 
-  if(currentStep === 3) return null
+  if(currentStep === 3) return null 
 
   return (
     <View style={tw`flex-row gap-20 justify-between items-center mx-8 pb-3`}>

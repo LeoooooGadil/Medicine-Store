@@ -5,4 +5,6 @@ import LocationPicker from "./OrderSummaryScreen/LocationPicker";
 import BottomSheetModal from "./BottomSheetModal";
 import PaymentMethodPicker from "./PaymentMethodScreen/PaymentMethodPicker";
 
-export { CheckoutScreenHeader, PaymentMethodPicker, Summary, CheckoutControls, LocationPicker, BottomSheetModal };
+import OrderConfirmationHero from "./OrderConfirmationScreen/OrderConfirmationHero";
+
+export { CheckoutScreenHeader, PaymentMethodPicker, Summary, CheckoutControls, LocationPicker, BottomSheetModal, OrderConfirmationHero };
