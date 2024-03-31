@@ -35,7 +35,7 @@ export default function SearchScreenHeader({ GoToCart }) {
 
   return (
     <View
-      style={[tw`px-8 pb-4 pt-2 h-16 bg-[${Colors.White}]`, shadowStyle]}
+      style={[tw`px-8 pb-4 pt-2 h-16 bg-[${Colors.BrightGray}]`]}
     >
       <View style={tw`flex-row items-center justify-between`}>
         <View style={tw`flex-row justify-center items-center gap-2`}>

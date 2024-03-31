@@ -18,7 +18,7 @@ import { BoldSeperator } from "../components/Seperator";
 
 export default function HomeTabScreen({ navigation }) {
   const statusBarStyle = "dark-content";
-  const statusBarColor = Colors.White;
+  const statusBarColor = Colors.BrightGray;
 
   const { startSearch } = useSearch();
 
@@ -43,14 +43,13 @@ export default function HomeTabScreen({ navigation }) {
 
   return (
     <SafeAreaView
-      style={tw`flex-1 bg-[${Colors.White}]`}
+      style={tw`flex-1 bg-[${Colors.BrightGray}]`}
       forceInset={{ top: "always" }}
     >
       <StatusBar style={statusBarStyle} backgroundColor={statusBarColor} />
       <View style={tw`h-full`}>
         <ScrollView stickyHeaderIndices={[0]} style={tw`h-full`}>
           <HomeScreenHeader GoToCart={() => navigation.navigate("Cart")} />
-          <BoldSeperator />
           <SearchBar
             GoToSearch={() => {
               startSearch();

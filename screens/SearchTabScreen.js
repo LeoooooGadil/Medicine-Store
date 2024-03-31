@@ -10,7 +10,7 @@ import SafeAreaView from "react-native-safe-area-view";
 
 export default function SearchTabScreen({ navigation }) {
   const statusBarStyle = "dark-content";
-  const statusBarColor = Colors.White;
+  const statusBarColor = Colors.BrightGray;
   const { startSearching, stopSearch } = useSearch();
 
   const [isSearchWindowOpen, setIsSearchWindowOpen] = useState(startSearching);
@@ -49,7 +49,7 @@ export default function SearchTabScreen({ navigation }) {
 
   return (
     <SafeAreaView
-      style={tw`flex-1 bg-[${Colors.White}]`}
+      style={tw`flex-1 bg-[${Colors.BrightGray}]`}
       forceInset={{ top: "always" }}
     >
       <StatusBar style={statusBarStyle} backgroundColor={statusBarColor} />

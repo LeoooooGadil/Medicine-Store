@@ -16,24 +16,10 @@ export default function OrderConfirmationHero({ navigation }) {
   return (
     <View style={tw`mx-8`}>
       <View style={tw`flex items-center justify-center mt-8 relative`}>
-        <MaterialIcons name="verified" size={100} color={Colors.Froly} />
-        <MaterialIcons
-          name="verified"
-          size={100}
-          color={Colors.ApricotPeach}
-          style={tw`absolute pb-4 pr-4`}
-        />
         <MaterialIcons
           name="verified"
           size={100}
           color={Colors.AlizarinCrimson}
-          style={tw`absolute pb-2 pr-2`}
-        />
-        <MaterialIcons
-          name="verified"
-          size={100}
-          color={Colors.AlizarinCrimson}
-          style={tw`absolute pb-2 pr-2`}
         />
       </View>
       <View style={tw`flex items-start items-center justify-center mt-8`}>
@@ -42,7 +28,7 @@ export default function OrderConfirmationHero({ navigation }) {
       </View>
       <View style={tw`flex items-start items-center justify-center mt-8`}>
         <Text style={tw`text-lg text-center opacity-50`}>
-          Your order has been confirmed and will be delivered to you soon.
+          Your order has been recieved and will be delivered to you soon.
         </Text>
       </View>
       <View style={tw`flex-row gap-2 flex items-center justify-center mt-18`}>

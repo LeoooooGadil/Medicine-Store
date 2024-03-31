@@ -36,7 +36,7 @@ export default function SearchWindow({ ToggleSearchWindow, SetSearch }) {
 
   return (
     <View>
-      <View style={tw`px-8`}>
+      <View style={tw`px-8 `}>
         <View style={tw`pt-2 pb-3`}>
           <LinearGradient
             colors={[Colors.AlizarinCrimson, Colors.Froly, Colors.ApricotPeach, Colors.SinBad, Colors.WedgeWood]}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { ScrollView, View } from "react-native";
 import tw from "twrnc";
+import Colors from "../../constants/Colors";
 
 import SearchWindow from "./SearchWindow";
 import ResultWindow from "./ResultWindow";
@@ -81,7 +82,6 @@ export default function SearchScreenWindow({
           </>
         ) : (
           <>
-            <BoldSeperator />
             <ResultWindow
               ToggleSearchWindow={ToggleSearchWindow}
               SetSearch={setSearch}

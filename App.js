@@ -12,6 +12,7 @@ import Colors from "./constants/Colors";
 import { AddressesProvider } from "./context/addressesContext";
 import { CheckoutProvider } from "./context/checkoutContext";
 import { useNavigation } from "@react-navigation/native";
+import { OrdersProvider } from "./context/ordersContext";
 
 export default function App() {
   const isLoadingComplete = useLoadedAssets();
@@ -25,11 +26,13 @@ export default function App() {
       <AddressesProvider>
         <CartProvider>
           <CheckoutProvider>
-            <GestureHandlerRootView style={tw`flex-1`}>
-              <SafeAreaProvider>
-                <Navigation />
-              </SafeAreaProvider>
-            </GestureHandlerRootView>
+            <OrdersProvider>
+              <GestureHandlerRootView style={tw`flex-1`}>
+                <SafeAreaProvider>
+                  <Navigation />
+                </SafeAreaProvider>
+              </GestureHandlerRootView>
+            </OrdersProvider>
           </CheckoutProvider>
         </CartProvider>
       </AddressesProvider>
