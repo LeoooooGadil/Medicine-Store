@@ -25,15 +25,15 @@ export default function App() {
     <SearchProvider>
       <AddressesProvider>
         <CartProvider>
-          <CheckoutProvider>
-            <OrdersProvider>
+          <OrdersProvider>
+            <CheckoutProvider>
               <GestureHandlerRootView style={tw`flex-1`}>
                 <SafeAreaProvider>
                   <Navigation />
                 </SafeAreaProvider>
               </GestureHandlerRootView>
-            </OrdersProvider>
-          </CheckoutProvider>
+            </CheckoutProvider>
+          </OrdersProvider>
         </CartProvider>
       </AddressesProvider>
     </SearchProvider>

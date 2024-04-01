@@ -6,6 +6,7 @@ import * as ImagePicker from "expo-image-picker";
 import Colors from "../../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useCheckout } from "../../../context/checkoutContext";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function UploadPrescriptionWindow() {
   const { nextStep, prevStep, orderSummary, setOrderSummary } = useCheckout();
@@ -59,11 +60,13 @@ export default function UploadPrescriptionWindow() {
 
     if (result) {
       setImage(result.assets[0].uri);
+      setOrderSummary({ ...orderSummary, pictureUri: image });
     }
   };
 
   const Submit = () => {
     setOrderSummary({ ...orderSummary, pictureUri: image });
+    setImage(null);
     nextStep();
   };
 

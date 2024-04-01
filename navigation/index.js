@@ -7,6 +7,8 @@ import NotFoundScreen from "../screens/NotFoundScreen";
 import BottomTabNavigator from "./BottomTabNavigator";
 import CheckoutScreen from "../screens/CheckoutScreen";
 import AddressBookScreen from "../screens/AddressBookTabScreen";
+import ViewOrderScreen from "../screens/ViewOrderScreen";
+
 import LinkingConfiguration from "./LinkingConfiguration";
 
 export default function Navigation() {
@@ -33,6 +35,7 @@ function RootNavigator() {
       <Stack.Screen name="Checkout" component={CheckoutScreen}/>
       <Stack.Screen name="AddressBook" component={AddressBookScreen}/>
       <Stack.Screen name="NotFound" component={NotFoundScreen} />
+      <Stack.Screen name="ViewOrder" component={ViewOrderScreen} />
     </Stack.Navigator>
   );
 }

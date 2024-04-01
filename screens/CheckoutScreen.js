@@ -14,20 +14,24 @@ import {
 } from "../components/CheckoutScreen";
 import SafeAreaView from "react-native-safe-area-view";
 import { UploadPrescriptionWindow } from "../components/CheckoutScreen/UploadPrescriptionScreen";
+import { useCart } from "../context/cartContext";
+import DeliveryDate from "../components/CheckoutScreen/OrderSummaryScreen/DeliveryDate";
 
 export default function CheckoutScreen({ navigation }) {
+  const { cartItems } = useCart();
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const bottomSheetModalRef = useRef(null);
-  const { isLoading, currentStep, prevStep } = useCheckout();
+  const {
+    isLoading,
+    currentStep,
+    prevStep,
+    orderSummary,
+    isPrescriptionRequired,
+  } = useCheckout();
 
   const openBottomSheet = () => {
     setIsBottomSheetOpen(true);
     bottomSheetModalRef.current?.snapToIndex(0);
-  };
-
-  const closeBottomSheet = () => {
-    setIsBottomSheetOpen(false);
-    bottomSheetModalRef.current?.close();
   };
 
   const renderStep = () => {
@@ -36,7 +40,8 @@ export default function CheckoutScreen({ navigation }) {
         return (
           <ScrollView style={tw`h-full`}>
             <LocationPicker openLocationPicker={openBottomSheet} />
-            <Summary />
+            <Summary cartItems={cartItems} />
+            <DeliveryDate orderSummary={orderSummary} />
           </ScrollView>
         );
       case 1:

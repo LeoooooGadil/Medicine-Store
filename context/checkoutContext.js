@@ -2,12 +2,16 @@ import React, { createContext, useContext, useState } from "react";
 import { PaymentMethod } from "../constants/OrderPaymentMethod";
 import { OrderStatus } from "../constants/OrderStatus";
 import { OrdersPrescriptionValidationStatus } from "../constants/OrdersValidationStatus";
+import { useOrders } from "./ordersContext";
+import { useCart } from "./cartContext";
 
 const CheckoutContext = createContext();
 
 export const useCheckout = () => useContext(CheckoutContext);
 
 export const CheckoutProvider = ({ children }) => {
+  const { addOrder } = useOrders();
+  const { clearCartItems } = useCart();
   const [orderSummary, setOrderSummary] = useState({
     id: null,
     items: [],
@@ -33,11 +37,11 @@ export const CheckoutProvider = ({ children }) => {
   // step 3: order confirmation
 
   const startCheckout = ({ navigation, cartItems }) => {
+    setOrderSummary(null);
     setCurrentStep(0);
     setIsCheckingOut(true);
-    navigation.navigate("Checkout");
     setIsLoading(true);
-
+    
     // a variable to add to the order date to simulate delivery date
     // a random days between 1 to 3 days
     // 86400000 is 1 day in milliseconds
@@ -47,9 +51,9 @@ export const CheckoutProvider = ({ children }) => {
     const deliveryFee = 50.0;
     const isPrescriptionRequired = cartItems.some(
       (item) => item.item.isPrescriptionRequired
-    );
-
-    setIsPrescriptionRequired(isPrescriptionRequired);
+      );
+      
+      setIsPrescriptionRequired(isPrescriptionRequired);
 
     setOrderSummary({
       ...orderSummary,
@@ -60,24 +64,25 @@ export const CheckoutProvider = ({ children }) => {
       deliveryAddress: "",
       deliveryFee: deliveryFee,
       totalAmount:
-        cartItems.reduce(
-          (acc, item) => acc + item.item.price * item.quantity,
-          0
+      cartItems.reduce(
+        (acc, item) => acc + item.item.price * item.quantity,
+        0
         ) + deliveryFee,
-      orderStatus: OrderStatus.Pending,
-      prescriptionValidationStatus: isPrescriptionRequired
+        orderStatus: OrderStatus.Pending,
+        prescriptionValidationStatus: isPrescriptionRequired
         ? OrdersPrescriptionValidationStatus.Pending
         : OrdersPrescriptionValidationStatus.NotRequired,
-      orderDate: new Date(),
-      deliveryDate: deliveryDate,
-    });
-    // Simulate a delay randomly between 1 to 2 seconds
-    // just to show the loading indicator
-    setTimeout(() => {
-      setIsCheckingOut(false);
-      setIsLoading(false);
-    }, Math.floor(Math.random() * 1000) + 1000);
-  };
+        orderDate: new Date(),
+        deliveryDate: deliveryDate,
+      });
+      // Simulate a delay randomly between 1 to 2 seconds
+      // just to show the loading indicator
+      navigation.navigate("Checkout");
+      setTimeout(() => {
+        setIsCheckingOut(false);
+        setIsLoading(false);
+      }, Math.floor(Math.random() * 1000) + 1000);
+    };
 
   const nextStep = () => {
     setCurrentStep((prevStep) => {
@@ -139,11 +144,14 @@ export const CheckoutProvider = ({ children }) => {
     if(isCheckoutSuccess) return;
 
     setIsLoading(true);
+    addOrder(orderSummary);
+    clearCartItems();
+    setIsCheckoutSuccess(true);
     // Simulate a delay randomly between 1 to 3 seconds
     // just to show the loading indicator
     setTimeout(() => {
       setIsLoading(false);
-      setIsCheckoutSuccess(true);
+      setIsCheckoutSuccess(false);
     }, Math.floor(Math.random() * 2000) + 1000);
   };
 
