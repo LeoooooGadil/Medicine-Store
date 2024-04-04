@@ -5,6 +5,7 @@ import Colors from "../../constants/Colors";
 import Seperator from "../Seperator";
 import { useCart } from "../../context/cartContext";
 import { Feather } from '@expo/vector-icons';
+import { useInAppNotification } from "../InAppNotification";
 
 export default function ItemCard({
   item,
@@ -14,6 +15,7 @@ export default function ItemCard({
   const [quantity, setQuantity] = useState(1);
   const inputRef = useRef();
 
+  const { showNotification } = useInAppNotification();
   const { addCartItem } = useCart();
 
   const handleQuantityChange = (value) => {
@@ -24,6 +26,7 @@ export default function ItemCard({
   const AddToCart = () => {
     CloseBottomSheet();
     addCartItem(item.item ? item.item : item, quantity);
+    showNotification("Item added to cart", "success");
   };
 
   useEffect(() => {

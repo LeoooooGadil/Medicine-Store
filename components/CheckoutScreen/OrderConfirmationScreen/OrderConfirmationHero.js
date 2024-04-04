@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import tw from "twrnc";
 import Colors from "../../../constants/Colors";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
@@ -7,7 +13,7 @@ import { useCheckout } from "../../../context/checkoutContext";
 import { useEffect } from "react";
 
 export default function OrderConfirmationHero({ navigation }) {
-  const { orderConfirmation } = useCheckout();
+  const { orderSummary, orderConfirmation } = useCheckout();
 
   useEffect(() => {
     orderConfirmation();
@@ -32,18 +38,14 @@ export default function OrderConfirmationHero({ navigation }) {
         </Text>
       </View>
       <View style={tw`flex-row gap-2 flex items-center justify-center mt-18`}>
-        <TouchableOpacity
-		  onPress={() => navigation.navigate("Home")}
-		>
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <View
             style={tw`flex items-center justify-center shadow-md rounded-xl w-36 h-12`}
           >
             <Text style={tw`text-black text-lg`}>Return Home</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity
-		  onPress={() => navigation.navigate("Orders")}
-		>
+        <TouchableOpacity onPress={() => navigation.navigate("Orders")}>
           <View
             style={tw`flex items-center justify-center bg-[${Colors.AlizarinCrimson}] shadow-md rounded-xl w-36 h-12`}
           >
@@ -53,7 +55,8 @@ export default function OrderConfirmationHero({ navigation }) {
       </View>
       <View style={tw`flex items-start items-center justify-center mt-8`}>
         <Text style={tw`text-lg text-center opacity-50`}>
-          Order ID: #123456789
+          Order ID:
+          <Text style={tw`text-black font-bold`}>{orderSummary.id}</Text>
         </Text>
       </View>
     </View>

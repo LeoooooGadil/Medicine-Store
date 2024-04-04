@@ -16,7 +16,7 @@ export default function OrdersList({ orders, navigation }) {
 
   return (
     <View style={tw`px-8 pt-12 flex-col gap-3`}>
-      {orders.reverse().map((_item, index) => {
+      {orders.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate)).map((_item, index) => {
         return <OrdersItem item={_item} key={index} navigation={navigation} />;
       })}
     </View>

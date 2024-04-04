@@ -1,18 +1,16 @@
 import { useState, useEffect } from "react";
 import tw from "twrnc";
 import "react-native-gesture-handler";
-import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useLoadedAssets } from "./hooks/useLoadedAssets";
 import Navigation from "./navigation";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { CartProvider } from "./context/cartContext";
 import { SearchProvider } from "./context/searchContext";
-import Colors from "./constants/Colors";
 import { AddressesProvider } from "./context/addressesContext";
 import { CheckoutProvider } from "./context/checkoutContext";
-import { useNavigation } from "@react-navigation/native";
 import { OrdersProvider } from "./context/ordersContext";
+import { InAppNotificationProvider } from "./components/InAppNotification";
 
 export default function App() {
   const isLoadingComplete = useLoadedAssets();
@@ -22,20 +20,22 @@ export default function App() {
   }
 
   return (
-    <SearchProvider>
-      <AddressesProvider>
-        <CartProvider>
-          <OrdersProvider>
-            <CheckoutProvider>
-              <GestureHandlerRootView style={tw`flex-1`}>
-                <SafeAreaProvider>
-                  <Navigation />
-                </SafeAreaProvider>
-              </GestureHandlerRootView>
-            </CheckoutProvider>
-          </OrdersProvider>
-        </CartProvider>
-      </AddressesProvider>
-    </SearchProvider>
+    <SafeAreaProvider>
+      <InAppNotificationProvider>
+        <SearchProvider>
+          <AddressesProvider>
+            <CartProvider>
+              <OrdersProvider>
+                <CheckoutProvider>
+                  <GestureHandlerRootView style={tw`flex-1`}>
+                    <Navigation />
+                  </GestureHandlerRootView>
+                </CheckoutProvider>
+              </OrdersProvider>
+            </CartProvider>
+          </AddressesProvider>
+        </SearchProvider>
+      </InAppNotificationProvider>
+    </SafeAreaProvider>
   );
 }

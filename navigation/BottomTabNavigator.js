@@ -21,7 +21,7 @@ export default function BottomTabNavigator() {
           fontSize: 12,
           fontWeight: "bold",
         },
-        tabBarActiveTintColor: Colors.Lava,
+        tabBarActiveTintColor: Colors.AlizarinCrimson,
         tabBarInactiveTintColor: Colors.QuickSilver,
       }}
     >

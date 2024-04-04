@@ -26,5 +26,8 @@ export default {
   Alto: "#E0E0E0",
   Alto2: "#D1D1D1",
   Silver: "#BFBFBF",
-  SilverChalice: "#B0B0B0"
+  SilverChalice: "#B0B0B0",
+
+  Success: "#16FF00",
+  Error: "#FF204E",
 };

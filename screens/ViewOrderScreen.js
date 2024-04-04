@@ -28,12 +28,12 @@ export default function ViewOrderScreen({ navigation }) {
     >
       <Header order={viewOrderSelected} GoBack={GoBack} />
       <ScrollView style={tw`h-full`}>
-        <OrderStatusText status={viewOrderSelected.orderStatus} />
+        <OrderStatusText status={viewOrderSelected.orderStatus} prescriptionValidation={viewOrderSelected.prescriptionValidationStatus} />
         <OrderData order={viewOrderSelected} />
         <Summary cartItems={viewOrderSelected.items} />
         {viewOrderSelected.prescriptionValidationStatus ===
         OrdersPrescriptionValidationStatus.NotRequired ? null : (
-          <PrescriptionImage uri={viewOrderSelected.pictureUri} />
+          <PrescriptionImage uri={viewOrderSelected.pictureUri} validationStatus={viewOrderSelected.prescriptionValidationStatus} />
         )}
         <View style={tw`w-full h-50`}></View>
       </ScrollView>

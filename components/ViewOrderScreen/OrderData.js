@@ -13,7 +13,7 @@ export default function OrderData({ order }) {
       </View>
       <View style={tw`flex-row justify-between items-center`}>
         <Text>Delivery Date</Text>
-        <Text>{FormatDate(order.deliveryDate)}</Text>
+        <Text>{FormatDate(order.deliveryDate, true)}</Text>
       </View>
       <View style={tw`flex-row justify-between items-center`}>
         <Text>Payment Method</Text>
