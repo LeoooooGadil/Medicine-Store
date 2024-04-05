@@ -9,6 +9,11 @@ export default {
   prefixes: [Linking.createURL("/")],
   config: {
     screens: {
+      Auth: "auth",
+      Register: "register",
+      Checkout: "checkout",
+      AddressBook: "addressbook",
+      ViewOrder: "vieworder",
       Root: {
         screens: {
           HomeTabScreen: "home",

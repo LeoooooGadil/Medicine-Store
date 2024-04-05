@@ -8,13 +8,18 @@ import BottomTabNavigator from "./BottomTabNavigator";
 import CheckoutScreen from "../screens/CheckoutScreen";
 import AddressBookScreen from "../screens/AddressBookTabScreen";
 import ViewOrderScreen from "../screens/ViewOrderScreen";
+import AuthScreen from "../screens/AuthScreen";
+import RegisterScreen from "../screens/RegisterScreen";
 
 import LinkingConfiguration from "./LinkingConfiguration";
+import { AuthProvider } from "../hooks/useAuthentication";
 
 export default function Navigation() {
   return (
     <NavigationContainer linking={LinkingConfiguration}>
-      <RootNavigator />
+      <AuthProvider>
+        <RootNavigator />
+      </AuthProvider>
     </NavigationContainer>
   );
 }
@@ -30,10 +35,13 @@ function RootNavigator() {
       options={{
         animationTypeForReplace: "none",
       }}
+      initialRouteName="Auth"
     >
+      <Stack.Screen name="Auth" component={AuthScreen} />
+      <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Root" component={BottomTabNavigator} />
-      <Stack.Screen name="Checkout" component={CheckoutScreen}/>
-      <Stack.Screen name="AddressBook" component={AddressBookScreen}/>
+      <Stack.Screen name="Checkout" component={CheckoutScreen} />
+      <Stack.Screen name="AddressBook" component={AddressBookScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} />
       <Stack.Screen name="ViewOrder" component={ViewOrderScreen} />
     </Stack.Navigator>

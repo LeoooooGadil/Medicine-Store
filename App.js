@@ -11,6 +11,8 @@ import { AddressesProvider } from "./context/addressesContext";
 import { CheckoutProvider } from "./context/checkoutContext";
 import { OrdersProvider } from "./context/ordersContext";
 import { InAppNotificationProvider } from "./components/InAppNotification";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { RegisterProvider } from "./context/registerContext";
 
 export default function App() {
   const isLoadingComplete = useLoadedAssets();
@@ -21,21 +23,25 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <InAppNotificationProvider>
-        <SearchProvider>
-          <AddressesProvider>
-            <CartProvider>
-              <OrdersProvider>
-                <CheckoutProvider>
-                  <GestureHandlerRootView style={tw`flex-1`}>
-                    <Navigation />
-                  </GestureHandlerRootView>
-                </CheckoutProvider>
-              </OrdersProvider>
-            </CartProvider>
-          </AddressesProvider>
-        </SearchProvider>
-      </InAppNotificationProvider>
+      <QueryClientProvider client={new QueryClient()}>
+        <RegisterProvider>
+          <InAppNotificationProvider>
+            <SearchProvider>
+              <AddressesProvider>
+                <CartProvider>
+                  <OrdersProvider>
+                    <CheckoutProvider>
+                      <GestureHandlerRootView style={tw`flex-1`}>
+                        <Navigation />
+                      </GestureHandlerRootView>
+                    </CheckoutProvider>
+                  </OrdersProvider>
+                </CartProvider>
+              </AddressesProvider>
+            </SearchProvider>
+          </InAppNotificationProvider>
+        </RegisterProvider>
+      </QueryClientProvider>
     </SafeAreaProvider>
   );
 }

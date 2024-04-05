@@ -54,7 +54,7 @@ export default function OrdersTabScreen({ navigation }) {
 
   return (
     <SafeAreaView
-      style={tw`bg-[${Colors.BrightGray}]`}
+      style={tw`bg-[${Colors.BrightGray}] gap-2`}
       forceInset={{ top: "always" }}
     >
       <StatusBar style={statusBarStyle} backgroundColor={statusBarColor} />
