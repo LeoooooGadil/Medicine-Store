@@ -1,17 +1,15 @@
-import { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, Image, Alert } from "react-native";
+import { useEffect, useState } from "react";
+import { View, Text, TouchableOpacity, Alert } from "react-native";
 import tw from "twrnc";
+import Colors from "../../../constants/Colors";
 import { Camera } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
-import Colors from "../../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
-import { useCheckout } from "../../../context/checkoutContext";
-import { useFocusEffect } from "@react-navigation/native";
 
-export default function UploadPrescriptionWindow() {
-  const { nextStep, prevStep, orderSummary, setOrderSummary } = useCheckout();
-  const [image, setImage] = useState(orderSummary.pictureUri);
+export default function RegisterIsSeniorCitizen() {
   const [hasPermission, setHasPermission] = useState(false);
+  const [isSeniorCitizen, setIsSeniorCitizen] = useState(false);
+  const [image, setImage] = useState(null);
   const [cameraPermission, setCameraPermission] = useState(false);
   const [galleryPermission, setGalleryPermission] = useState(false);
 
@@ -62,12 +60,6 @@ export default function UploadPrescriptionWindow() {
     }
   };
 
-  const Submit = () => {
-    setOrderSummary({ ...orderSummary, pictureUri: image });
-    setImage(null);
-    nextStep();
-  };
-
   useEffect(() => {
     permisionFunction();
   }, []);
@@ -90,26 +82,14 @@ export default function UploadPrescriptionWindow() {
               style={tw`p-2 flex-1 py-5 shadow-md relative`}
               onPress={() => setImage(null)}
             >
-              <View style={tw`rounded-b-xl absolute left-0 right-0 bottom-0 top-0 bg-black opacity-25`} />
+              <View
+                style={tw`rounded-b-xl absolute left-0 right-0 bottom-0 top-0 bg-black opacity-25`}
+              />
               <Text style={tw`text-white text-center font-bold`}>
                 Retake Picture
               </Text>
             </TouchableOpacity>
           </View>
-        </View>
-        <View style={tw`px-5 flex-row gap-20`}>
-          <TouchableOpacity
-            style={tw`bg-[${Colors.Silver}] p-2 rounded-xl flex-1 py-5 shadow-md`}
-            onPress={prevStep}
-          >
-            <Text style={tw`text-white text-center font-bold`}>Back</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={tw`bg-[${Colors.AlizarinCrimson}] p-2 rounded-xl flex-1 py-5 shadow-md`}
-            onPress={Submit}
-          >
-            <Text style={tw`text-white text-center font-bold`}>Next</Text>
-          </TouchableOpacity>
         </View>
       </View>
     );
@@ -120,8 +100,7 @@ export default function UploadPrescriptionWindow() {
       <View style={tw`mt-10`}>
         <Text style={tw`text-center text-2xl font-bold`}>Snap a picture</Text>
         <Text style={tw`text-center mt-2 px-8`}>
-          Some of the medicines you have added require a prescription. Please
-          upload a prescription to continue.
+          If you are a senior citizen, please take a picture of your senior citizen ID.
         </Text>
       </View>
       <View style={tw`flex-1 flex-col items-center pt-15 gap-3 px-8`}>
@@ -143,8 +122,7 @@ export default function UploadPrescriptionWindow() {
       </View>
       <View style={tw`px-8`}>
         <Text style={tw`text-center text-gray-400`}>
-          Note: A pharmacist will verify your prescription before processing
-          your order.
+          Note: This is required for verification purposes.
         </Text>
       </View>
     </View>
@@ -152,15 +130,15 @@ export default function UploadPrescriptionWindow() {
 }
 
 function Button({ title, Icon, onPress }) {
-  return (
-    <TouchableOpacity
-      style={tw`w-full p-3 flex-row gap-4 justify-center items-center rounded-xl shadow-md bg-[${Colors.White}]`}
-      onPress={onPress}
-    >
-      {Icon && <Icon />}
-      <Text style={tw`text-center w-20 text-[${Colors.AlizarinCrimson}]`}>
-        {title}
-      </Text>
-    </TouchableOpacity>
-  );
-}
+	return (
+	  <TouchableOpacity
+		style={tw`w-full p-3 flex-row gap-4 justify-center items-center rounded-xl shadow-md bg-[${Colors.White}]`}
+		onPress={onPress}
+	  >
+		{Icon && <Icon />}
+		<Text style={tw`text-center w-20 text-[${Colors.AlizarinCrimson}]`}>
+		  {title}
+		</Text>
+	  </TouchableOpacity>
+	);
+  }

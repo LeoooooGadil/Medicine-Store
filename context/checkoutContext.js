@@ -41,19 +41,33 @@ export const CheckoutProvider = ({ children }) => {
     setCurrentStep(0);
     setIsCheckingOut(true);
     setIsLoading(true);
-    
+
     // a variable to add to the order date to simulate delivery date
     // a random days between 1 to 3 days
     // 86400000 is 1 day in milliseconds
     // 259200000 is 3 days in milliseconds
     const randomDeliveryDays = Math.floor(Math.random() * 3) + 1;
     const deliveryDate = new Date(Date.now() + 86400000 * randomDeliveryDays);
-    const deliveryFee = 50.0;
+    const deliveryFee = 0.0;
     const isPrescriptionRequired = cartItems.some(
       (item) => item.item.isPrescriptionRequired
-      );
-      
-      setIsPrescriptionRequired(isPrescriptionRequired);
+    );
+
+    const totalAmount =
+      cartItems.reduce(
+        (acc, item) => acc + item.item.price * item.quantity,
+        0
+      ) + deliveryFee;
+
+    // dont allow checkout if total amount is less than 150
+    if (totalAmount < 150) {
+      setIsLoading(false);
+      setIsCheckingOut(false);
+      alert("Minimum order amount is 150");
+      return;
+    }
+
+    setIsPrescriptionRequired(isPrescriptionRequired);
 
     setOrderSummary({
       ...orderSummary,
@@ -63,39 +77,35 @@ export const CheckoutProvider = ({ children }) => {
       paymentMethod: PaymentMethod.CashOnDelivery,
       deliveryAddress: "",
       deliveryFee: deliveryFee,
-      totalAmount:
-      cartItems.reduce(
-        (acc, item) => acc + item.item.price * item.quantity,
-        0
-        ) + deliveryFee,
-        orderStatus: OrderStatus.Pending,
-        prescriptionValidationStatus: isPrescriptionRequired
+      totalAmount: totalAmount,
+      orderStatus: OrderStatus.Pending,
+      prescriptionValidationStatus: isPrescriptionRequired
         ? OrdersPrescriptionValidationStatus.Pending
         : OrdersPrescriptionValidationStatus.NotRequired,
-        orderDate: new Date(),
-        deliveryDate: deliveryDate,
-      });
-      // Simulate a delay randomly between 1 to 2 seconds
-      // just to show the loading indicator
-      navigation.navigate("Checkout");
-      setTimeout(() => {
-        setIsCheckingOut(false);
-        setIsLoading(false);
-      }, Math.floor(Math.random() * 1000) + 1000);
-    };
+      orderDate: new Date(),
+      deliveryDate: deliveryDate,
+    });
+    // Simulate a delay randomly between 1 to 2 seconds
+    // just to show the loading indicator
+    navigation.navigate("Checkout");
+    setTimeout(() => {
+      setIsCheckingOut(false);
+      setIsLoading(false);
+    }, Math.floor(Math.random() * 1000) + 1000);
+  };
 
   const nextStep = () => {
     setCurrentStep((prevStep) => {
       // go to the next step
       // if the current step is 0 and prescription is required
       // go to step 1
-      // if the current step is 0 and prescription is not required 
+      // if the current step is 0 and prescription is not required
       // go to step 2
       // if the current step is 1
       // go to step 2
       // if the current step is 2
       // go to step 3
-      
+
       if (prevStep === 0 && isPrescriptionRequired) {
         return 1;
       } else if (prevStep === 0 && !isPrescriptionRequired) {
@@ -141,7 +151,7 @@ export const CheckoutProvider = ({ children }) => {
   };
 
   const orderConfirmation = () => {
-    if(isCheckoutSuccess) return;
+    if (isCheckoutSuccess) return;
 
     setIsLoading(true);
     addOrder(orderSummary);

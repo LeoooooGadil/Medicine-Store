@@ -4,7 +4,7 @@ import tw from "twrnc";
 
 export default function CartInformation({ cartItems }) {
   const [subTotal, setSubTotal] = useState(0);
-  const [shippingFee, setShippingFee] = useState(50);
+  const [shippingFee, setShippingFee] = useState(0);
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -37,11 +37,11 @@ export default function CartInformation({ cartItems }) {
       </View>
       <View style={tw`flex-row justify-between items-center`}>
         <Text>Shipping Fee</Text>
-        <Text style={tw`font-bold`}>₱ 50</Text>
+        <Text style={tw`font-bold`}>₱ {shippingFee}</Text>
       </View>
       <View style={tw`flex-row justify-between items-center`}>
         <Text style={tw`text-xl`}>
-          Total <Text style={tw`text-sm opacity-50`}> (VAT Inclusive)</Text>
+          Total <Text style={tw`text-sm opacity-50`}></Text>
         </Text>
         <Text style={tw`text-xl font-bold`}>₱ {total}</Text>
       </View>

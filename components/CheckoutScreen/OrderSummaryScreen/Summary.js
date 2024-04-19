@@ -1,11 +1,6 @@
 import { View, Text } from "react-native";
 import tw from "twrnc";
-import Colors from "../../../constants/Colors";
-import { useCart } from "../../../context/cartContext";
-import { useCheckout } from "../../../context/checkoutContext";
 import SummaryItem from "./SummaryItem";
-import { FontAwesome6, FontAwesome5 } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function Summary({ cartItems }) {
 
@@ -15,7 +10,7 @@ export default function Summary({ cartItems }) {
     (acc, item) => acc + item.item.price * item.quantity,
     0
   );
-  const shippingFee = 50;
+  const shippingFee = 0;
   const total = subTotal + shippingFee;
 
   return (
@@ -48,7 +43,7 @@ export default function Summary({ cartItems }) {
             <View style={tw`flex-row justify-between items-center`}>
               <Text style={tw`text-xl`}>
                 Total
-                <Text style={tw`text-sm opacity-50`}> (VAT Inclusive)</Text>
+                <Text style={tw`text-sm opacity-50`}></Text>
               </Text>
               <Text style={tw`text-xl font-bold`}>₱ {total.toFixed(2)}</Text>
             </View>

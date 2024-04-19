@@ -7,6 +7,7 @@ import {
   RegisterControls,
   RegisterHeader,
   RegisterInput,
+  RegisterIsSeniorCitizen,
 } from "../components/AuthScreen";
 import { useRegister } from "../context/registerContext";
 
@@ -39,6 +40,7 @@ export default function RegisterScreen({ navigation }) {
           <ScrollView contentContainerStyle={tw`flex-1`}>
             {/* Input for Full Name */}
             <RegisterInput
+              label={"What is your full name?"}
               error={error}
               placeholder="Full Name"
               containerStyle={tw`mt-10`}
@@ -51,6 +53,7 @@ export default function RegisterScreen({ navigation }) {
         return (
           <ScrollView contentContainerStyle={tw`flex-1`}>
             <RegisterInput
+              label={"Choose a username"}
               error={error}
               containerStyle={tw`mt-10`}
               placeholder="Username"
@@ -63,26 +66,27 @@ export default function RegisterScreen({ navigation }) {
         return (
           <ScrollView contentContainerStyle={tw`flex-1`}>
             <RegisterInput
-              error={error}
+              label={"Choose a password"}
               containerStyle={tw`mt-10`}
               placeholder="Password"
-              secureTextEntry
+              secureTextEntry={true}
               value={password}
               onChangeText={setPassword}
             />
             <RegisterInput
-              containerStyle={tw`mt-2`}
+              containerStyle={tw`mt-5`}
               placeholder="Confirm Password"
-              secureTextEntry
+              secureTextEntry={true}
               value={confirmPassword}
               onChangeText={setConfirmPassword}
+              error={error}
             />
           </ScrollView>
         );
       case 3:
         return (
           <ScrollView contentContainerStyle={tw`flex-1`}>
-            <Text>Step 4</Text>
+            <RegisterIsSeniorCitizen />
           </ScrollView>
         );
     }

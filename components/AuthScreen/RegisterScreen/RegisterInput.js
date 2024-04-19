@@ -11,15 +11,14 @@ export default function RegisterInput({
   onChangeText,
   secureTextEntry,
   error,
-  onBlur,
-  onFocus,
   containerStyle,
 }) {
-  const [showPassword, setShowPassword] = useState(true);
+  // Initialize showPassword based on the secureTextEntry prop
+  const [showPassword, setShowPassword] = useState(!secureTextEntry);
 
   return (
     <View style={[tw`mx-8 mt-3`, containerStyle]}>
-      <Text style={tw`text-lg font-bold`}>{label}</Text>
+      {label ? <Text style={tw`text-lg mb-4 ml-1`}>{label}</Text> : null}
       <View
         style={tw`w-full gap-2 flex-row h-14 pr-4 justify-between border border-[${Colors.Alto}] bg-[${Colors.White}] rounded-xl`}
       >
@@ -27,7 +26,7 @@ export default function RegisterInput({
           style={tw`flex-1 ml-4`}
           placeholder={placeholder}
           placeholderTextColor={Colors.Alto2}
-          secureTextEntry={!showPassword}
+          secureTextEntry={secureTextEntry ? !showPassword : false}
           value={value}
           onChangeText={onChangeText}
         />

@@ -13,6 +13,7 @@ export const RegisterProvider = ({ children }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isSeniorCitizen, setIsSeniorCitizen] = useState(false);
 
   const nextStep = () => {
     setError(FieldValidation());
@@ -56,12 +57,14 @@ export const RegisterProvider = ({ children }) => {
         password,
         confirmPassword,
         error,
+        isSeniorCitizen,
         nextStep,
         prevStep,
         setFullName,
         setUsername,
         setPassword,
         setConfirmPassword,
+        setIsSeniorCitizen,
       }}
     >
       {children}
