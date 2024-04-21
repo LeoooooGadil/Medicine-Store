@@ -2,8 +2,11 @@ import { View, Text, TouchableOpacity, Alert } from "react-native";
 import tw from "twrnc";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../../constants/Colors";
+import { useAuthentication } from "../../hooks/useAuthentication";
 
 export default function AccountButton() {
+  const { currentUser, logout } = useAuthentication();
+
   const handleLogout = () => {
     Alert.alert("Logout", "Are you sure you want to logout?", [
       {
@@ -13,7 +16,7 @@ export default function AccountButton() {
       {
         text: "Logout",
         onPress: () => {
-          // Add logout logic here
+          logout();
         },
       },
     ]);
@@ -30,9 +33,13 @@ export default function AccountButton() {
           <View
             style={tw`bg-[${Colors.DarkOrange}] rounded-full w-10 h-10 items-center justify-center ml-4`}
           >
-            <Text style={tw`text-lg text-[${Colors.White}]`}>J</Text>
+            <Text style={tw`text-lg text-[${Colors.White}]`}>
+              {currentUser ? currentUser.data.fullName[0] : "G"}
+            </Text>
           </View>
-          <Text style={tw`text-lg ml-4`}>Account</Text>
+          <Text style={tw`text-lg ml-4`}>
+            {currentUser ? currentUser.data.fullName : "Guest"}
+          </Text>
         </View>
         <View>
           {/* Logout button */}

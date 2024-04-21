@@ -10,6 +10,7 @@ import {
   RegisterIsSeniorCitizen,
 } from "../components/AuthScreen";
 import { useRegister } from "../context/registerContext";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function RegisterScreen({ navigation }) {
   const {
@@ -24,6 +25,11 @@ export default function RegisterScreen({ navigation }) {
     setPassword,
     confirmPassword,
     setConfirmPassword,
+    isSeniorCitizen,
+    setIsSeniorCitizen,
+    SeniorCitizenProofUri,
+    setSeniorCitizenProofUri,
+    isCreatingAccount,
     error,
   } = useRegister();
 
@@ -66,7 +72,7 @@ export default function RegisterScreen({ navigation }) {
         return (
           <ScrollView contentContainerStyle={tw`flex-1`}>
             <RegisterInput
-              label={"Choose a password"}
+              label={"Create a password"}
               containerStyle={tw`mt-10`}
               placeholder="Password"
               secureTextEntry={true}
@@ -86,8 +92,32 @@ export default function RegisterScreen({ navigation }) {
       case 3:
         return (
           <ScrollView contentContainerStyle={tw`flex-1`}>
-            <RegisterIsSeniorCitizen />
+            <RegisterIsSeniorCitizen
+              _isSeniorCitizen={isSeniorCitizen}
+              _setIsSeniorCitizen={setIsSeniorCitizen}
+              SeniorCitizenProofUri={SeniorCitizenProofUri}
+              setSeniorCitizenProofUri={setSeniorCitizenProofUri}
+            />
           </ScrollView>
+        );
+      case 4:
+        return (
+          <View style={tw`flex-1 items-center justify-center`}>
+            {
+              isCreatingAccount ? (
+                <View>
+                  <Text>Creating Account...</Text>
+                </View>
+              ) : (
+                <View style={tw`items-center mx-8 pb-30`}>
+                  <MaterialCommunityIcons name="check-decagram-outline" size={100} color={Colors.Froly} />
+                  <Text style={tw`text-4xl font-bold text-center mt-5`}>
+                    Your account has been created!
+                  </Text>
+                </View>
+              )
+            }
+          </View>
         );
     }
   };
@@ -98,9 +128,9 @@ export default function RegisterScreen({ navigation }) {
       behavior="padding"
     >
       <SafeAreaView style={tw`flex-1`} forceInset={{ top: "always" }}>
-        <RegisterHeader GoBack={GoBack} />
+        <RegisterHeader GoBack={GoBack} CurrentStep={currentStep} />
         {renderStep()}
-        <RegisterControls currentStep={currentStep} nextStep={nextStep} />
+        <RegisterControls currentStep={currentStep} nextStep={nextStep} isCreatingAccount={isCreatingAccount} navigation={navigation} />
       </SafeAreaView>
     </KeyboardAvoidingView>
   );

@@ -13,8 +13,11 @@ export default function RegisterInput({
   error,
   containerStyle,
 }) {
-  // Initialize showPassword based on the secureTextEntry prop
-  const [showPassword, setShowPassword] = useState(!secureTextEntry);
+  const [showPassword, setShowPassword] = useState(false); // Local state for showPassword
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <View style={[tw`mx-8 mt-3`, containerStyle]}>
@@ -26,14 +29,14 @@ export default function RegisterInput({
           style={tw`flex-1 ml-4`}
           placeholder={placeholder}
           placeholderTextColor={Colors.Alto2}
-          secureTextEntry={secureTextEntry ? !showPassword : false}
+          secureTextEntry={secureTextEntry && !showPassword} // Conditionally set secureTextEntry
           value={value}
           onChangeText={onChangeText}
         />
         {secureTextEntry ? (
           <TouchableOpacity
             style={tw`items-center justify-center opacity-25`}
-            onPress={() => setShowPassword(!showPassword)}
+            onPress={togglePasswordVisibility}
           >
             {showPassword ? (
               <Ionicons name="eye-outline" size={24} color="black" />

@@ -1,15 +1,24 @@
 import { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TouchableOpacity, Alert, Image } from "react-native";
 import tw from "twrnc";
 import Colors from "../../../constants/Colors";
 import { Camera } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
 import { Ionicons } from "@expo/vector-icons";
+import ToggleButton from "../../ToggleButton";
+import Seperator from "../../Seperator";
 
-export default function RegisterIsSeniorCitizen() {
+export default function RegisterIsSeniorCitizen({
+  _isSeniorCitizen,
+  _setIsSeniorCitizen,
+  SeniorCitizenProofUri,
+  setSeniorCitizenProofUri,
+  error,
+}) {
+
   const [hasPermission, setHasPermission] = useState(false);
-  const [isSeniorCitizen, setIsSeniorCitizen] = useState(false);
-  const [image, setImage] = useState(null);
+  const [isSeniorCitizen, setIsSeniorCitizen] = useState(_isSeniorCitizen);
+  const [image, setImage] = useState(SeniorCitizenProofUri);
   const [cameraPermission, setCameraPermission] = useState(false);
   const [galleryPermission, setGalleryPermission] = useState(false);
 
@@ -43,6 +52,7 @@ export default function RegisterIsSeniorCitizen() {
 
     if (result) {
       setImage(result.assets[0].uri);
+      setSeniorCitizenProofUri(result.assets[0].uri);
     }
   };
 
@@ -56,8 +66,18 @@ export default function RegisterIsSeniorCitizen() {
 
     if (result) {
       setImage(result.assets[0].uri);
-      setOrderSummary({ ...orderSummary, pictureUri: image });
+      setSeniorCitizenProofUri(result.assets[0].uri);
     }
+  };
+
+  const SetIsSeniorCitizen = (value) => {
+    _setIsSeniorCitizen(value);
+    setIsSeniorCitizen(value);
+  };
+
+  const ClearImage = () => {
+    setImage(null);
+    setSeniorCitizenProofUri(null);
   };
 
   useEffect(() => {
@@ -80,7 +100,7 @@ export default function RegisterIsSeniorCitizen() {
           <View style={tw`flex-row absolute bottom-0`}>
             <TouchableOpacity
               style={tw`p-2 flex-1 py-5 shadow-md relative`}
-              onPress={() => setImage(null)}
+              onPress={ClearImage}
             >
               <View
                 style={tw`rounded-b-xl absolute left-0 right-0 bottom-0 top-0 bg-black opacity-25`}
@@ -97,29 +117,53 @@ export default function RegisterIsSeniorCitizen() {
 
   return (
     <View style={tw`flex-1`}>
-      <View style={tw`mt-10`}>
-        <Text style={tw`text-center text-2xl font-bold`}>Snap a picture</Text>
-        <Text style={tw`text-center mt-2 px-8`}>
-          If you are a senior citizen, please take a picture of your senior citizen ID.
+      <View style={tw`mt-10 mx-8 flex-row items-center justify-between`}>
+        <Text style={tw`text-center text-xl`}>
+          Are you a Senior Citizen?
         </Text>
+        <ToggleButton _isActive={isSeniorCitizen} _setIsActive={SetIsSeniorCitizen} />
       </View>
-      <View style={tw`flex-1 flex-col items-center pt-15 gap-3 px-8`}>
-        <Button
-          title="Take a Picture"
-          Icon={() => (
-            <Ionicons name="camera-outline" size={30} color={Colors.Froly} />
-          )}
-          onPress={takePicture}
-        />
-        <Text style={tw`text-center text-gray-400`}>or</Text>
-        <Button
-          title="Upload from Gallery"
-          Icon={() => (
-            <Ionicons name="images-outline" size={30} color={Colors.Froly} />
-          )}
-          onPress={pickImage}
-        />
-      </View>
+      {isSeniorCitizen ? (
+        <>
+          <View style={tw`mt-3 mx-8`}>
+          <Seperator />
+          </View>
+          <View style={tw`mt-10`}>
+            <Text style={tw`text-center text-2xl font-bold`}>
+              Snap a picture
+            </Text>
+            <Text style={tw`text-center mt-2 px-8`}>
+              If you are a senior citizen, please take a picture of your senior
+              citizen ID.
+            </Text>
+          </View>
+          <View style={tw`flex-1 flex-col items-center pt-15 gap-3 px-8`}>
+            <Button
+              title="Take a Picture"
+              Icon={() => (
+                <Ionicons
+                  name="camera-outline"
+                  size={30}
+                  color={Colors.Froly}
+                />
+              )}
+              onPress={takePicture}
+            />
+            <Text style={tw`text-center text-gray-400`}>or</Text>
+            <Button
+              title="Upload from Gallery"
+              Icon={() => (
+                <Ionicons
+                  name="images-outline"
+                  size={30}
+                  color={Colors.Froly}
+                />
+              )}
+              onPress={pickImage}
+            />
+          </View>
+        </>
+      ) : <View style={tw`flex-1`} />}
       <View style={tw`px-8`}>
         <Text style={tw`text-center text-gray-400`}>
           Note: This is required for verification purposes.
@@ -130,15 +174,15 @@ export default function RegisterIsSeniorCitizen() {
 }
 
 function Button({ title, Icon, onPress }) {
-	return (
-	  <TouchableOpacity
-		style={tw`w-full p-3 flex-row gap-4 justify-center items-center rounded-xl shadow-md bg-[${Colors.White}]`}
-		onPress={onPress}
-	  >
-		{Icon && <Icon />}
-		<Text style={tw`text-center w-20 text-[${Colors.AlizarinCrimson}]`}>
-		  {title}
-		</Text>
-	  </TouchableOpacity>
-	);
-  }
+  return (
+    <TouchableOpacity
+      style={tw`w-full p-3 flex-row gap-4 justify-center items-center rounded-xl shadow-md bg-[${Colors.White}]`}
+      onPress={onPress}
+    >
+      {Icon && <Icon />}
+      <Text style={tw`text-center w-20 text-[${Colors.AlizarinCrimson}]`}>
+        {title}
+      </Text>
+    </TouchableOpacity>
+  );
+}

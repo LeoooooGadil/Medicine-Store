@@ -10,15 +10,19 @@ import AddressBookScreen from "../screens/AddressBookTabScreen";
 import ViewOrderScreen from "../screens/ViewOrderScreen";
 import AuthScreen from "../screens/AuthScreen";
 import RegisterScreen from "../screens/RegisterScreen";
+import LoadingScreen from "../screens/LoadingScreen";
 
 import LinkingConfiguration from "./LinkingConfiguration";
 import { AuthProvider } from "../hooks/useAuthentication";
+import { RegisterProvider } from "../context/registerContext";
 
 export default function Navigation() {
   return (
     <NavigationContainer linking={LinkingConfiguration}>
       <AuthProvider>
-        <RootNavigator />
+        <RegisterProvider>
+          <RootNavigator />
+        </RegisterProvider>
       </AuthProvider>
     </NavigationContainer>
   );
@@ -35,8 +39,9 @@ function RootNavigator() {
       options={{
         animationTypeForReplace: "none",
       }}
-      initialRouteName="Auth"
+      initialRouteName="Loading"
     >
+      <Stack.Screen name="Loading" component={LoadingScreen} />
       <Stack.Screen name="Auth" component={AuthScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Root" component={BottomTabNavigator} />

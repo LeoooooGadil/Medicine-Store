@@ -24,7 +24,6 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={new QueryClient()}>
-        <RegisterProvider>
           <InAppNotificationProvider>
             <SearchProvider>
               <AddressesProvider>
@@ -40,7 +39,6 @@ export default function App() {
               </AddressesProvider>
             </SearchProvider>
           </InAppNotificationProvider>
-        </RegisterProvider>
       </QueryClientProvider>
     </SafeAreaProvider>
   );
