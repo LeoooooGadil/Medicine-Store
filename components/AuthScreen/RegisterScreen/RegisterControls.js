@@ -9,15 +9,6 @@ export default function RegisterControls({
   navigation
 }) {
 
-  const HandleNext = () => {
-    if (currentStep === 4) {
-      navigation.navigate("Root");
-      return;
-    }
-
-    nextStep();
-  }
-
   return (
     <View style={tw`mt-10 gap-4`}>
       {
@@ -27,7 +18,7 @@ export default function RegisterControls({
             <View style={tw`flex-row px-8`}>
               <TouchableOpacity
                 style={tw`flex-1 justify-center items-center bg-[${Colors.AlizarinCrimson}] rounded-lg h-14`}
-                onPress={HandleNext}
+                onPress={nextStep}
               >
                 <Text style={tw`text-lg text-white`}>
                   {currentStep === 3 ? "Create Account" : "Continue"}
