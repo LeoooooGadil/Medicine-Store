@@ -41,6 +41,7 @@ export const AuthProvider = ({ children }) => {
         username: data.username,
         password: data.password,
       };
+
       setUserDatabase([...userDatabase, newUser]);
       SecureStore.setItemAsync(
         "userDatabase",
@@ -55,6 +56,10 @@ export const AuthProvider = ({ children }) => {
       },
     }
   );
+
+  const checkUsername = (username) => {
+    return userDatabase.find((user) => user.username === username);
+  };
 
   const login = useMutation(async (data) => {
     const user = userDatabase.find((user) => user.username === data.username);
@@ -77,6 +82,11 @@ export const AuthProvider = ({ children }) => {
     navigation.dispatch(StackActions.replace("Auth"));
   };
 
+  const clearDatabase = () => {
+    SecureStore.deleteItemAsync("userDatabase");
+    setUserDatabase([]);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -84,6 +94,8 @@ export const AuthProvider = ({ children }) => {
         register,
         login,
         logout,
+        checkUsername,
+        clearDatabase,
       }}
     >
       {children}

@@ -3,6 +3,7 @@ import tw from "twrnc";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../../constants/Colors";
 import { useAuthentication } from "../../hooks/useAuthentication";
+import { capitalizeEachWord } from "../../helpers";
 
 export default function AccountButton() {
   const { currentUser, logout } = useAuthentication();
@@ -34,11 +35,11 @@ export default function AccountButton() {
             style={tw`bg-[${Colors.DarkOrange}] rounded-full w-10 h-10 items-center justify-center ml-4`}
           >
             <Text style={tw`text-lg text-[${Colors.White}]`}>
-              {currentUser ? currentUser.data.fullName[0] : "G"}
+              {currentUser ? currentUser.data.fullName[0].toUpperCase() : "G"}
             </Text>
           </View>
           <Text style={tw`text-lg ml-4`}>
-            {currentUser ? currentUser.data.fullName : "Guest"}
+            {currentUser ? capitalizeEachWord(currentUser.data.fullName) : "Guest"}
           </Text>
         </View>
         <View>

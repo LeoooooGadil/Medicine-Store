@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { Alert } from "react-native";
 import { PaymentMethod } from "../constants/OrderPaymentMethod";
 import { OrderStatus } from "../constants/OrderStatus";
 import { OrdersPrescriptionValidationStatus } from "../constants/OrdersValidationStatus";
@@ -63,7 +64,10 @@ export const CheckoutProvider = ({ children }) => {
     if (totalAmount < 150) {
       setIsLoading(false);
       setIsCheckingOut(false);
-      alert("Minimum order amount is 150");
+      Alert.alert(
+        "Minimum Order Amount",
+        `You need ₱${150 - totalAmount} more to checkout. Minimum order amount is ₱150.`
+      );
       return;
     }
 

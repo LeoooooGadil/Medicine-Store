@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { useNavigation, StackActions } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAuthentication } from "../hooks/useAuthentication";
 
@@ -7,7 +8,9 @@ const RegisterContext = createContext();
 export const useRegister = () => useContext(RegisterContext);
 
 export const RegisterProvider = ({ children }) => {
-  const { register } = useAuthentication();
+  const { register, checkUsername } = useAuthentication();
+
+  const navigation = useNavigation();
 
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -26,6 +29,10 @@ export const RegisterProvider = ({ children }) => {
     if (FieldValidation() !== "") return;
 
     if (currentStep === 3) CreateAccount();
+    if (currentStep === 4) {
+      navigation.dispatch(StackActions.replace("Root"));
+      setCurrentStep(0);
+    }
 
     setCurrentStep((prevStep) => prevStep + 1);
     setError("");
@@ -59,7 +66,7 @@ export const RegisterProvider = ({ children }) => {
       setSeniorCitizenProofUri("");
       setTimeout(() => {
         setIsCreatingAccount(false);
-      }, 1000);
+      }, 3000);
     }
   };
 
@@ -75,12 +82,18 @@ export const RegisterProvider = ({ children }) => {
         if (username.length < 3)
           return "Username must be at least 3 characters long";
         if (username.includes(" ")) return "Username should not include spaces";
+        if (checkUsername(username))
+          return "Username is already taken, please choose another";
         return "";
       case 2:
         if (password === "") return "Password is required";
         if (password.length < 6)
           return "Password must be at least 6 characters long";
         if (password !== confirmPassword) return "Passwords do not match";
+        return "";
+      case 3:
+        if (isSeniorCitizen && SeniorCitizenProofUri === null)
+          return "Senior Citizen Proof is required";
         return "";
       default:
         return "";
@@ -101,6 +114,7 @@ export const RegisterProvider = ({ children }) => {
         isCreatingAccount,
         nextStep,
         prevStep,
+        setCurrentStep,
         setFullName,
         setUsername,
         setPassword,

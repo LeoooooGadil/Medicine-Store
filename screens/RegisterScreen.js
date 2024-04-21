@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, ScrollView, KeyboardAvoidingView } from "react-native";
+import { View, Text, ScrollView, KeyboardAvoidingView, ActivityIndicator } from "react-native";
 import tw from "twrnc";
 import Colors from "../constants/Colors";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -106,7 +106,7 @@ export default function RegisterScreen({ navigation }) {
             {
               isCreatingAccount ? (
                 <View>
-                  <Text>Creating Account...</Text>
+                  <ActivityIndicator size="large" color={Colors.AlizarinCrimson} />
                 </View>
               ) : (
                 <View style={tw`items-center mx-8 pb-30`}>

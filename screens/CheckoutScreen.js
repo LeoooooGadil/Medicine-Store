@@ -40,8 +40,8 @@ export default function CheckoutScreen({ navigation }) {
         return (
           <ScrollView style={tw`h-full`}>
             <LocationPicker openLocationPicker={openBottomSheet} />
-            <Summary cartItems={cartItems} />
             <DeliveryDate orderSummary={orderSummary} />
+            <Summary cartItems={cartItems} />
           </ScrollView>
         );
       case 1:

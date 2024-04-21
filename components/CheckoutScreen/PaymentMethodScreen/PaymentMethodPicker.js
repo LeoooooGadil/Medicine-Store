@@ -69,24 +69,25 @@ export default function PaymentMethodPicker() {
   const [selected, setSelected] = useState(paymentMethods[0]);
 
   const selectPaymentMethod = (method) => {
-	const lastSelected = selected;
-	if (method.isSetupRequired) {
-		setSelected(lastSelected);
-		Alert.alert(
-		  "Payment Method Unavailable",
-		  `The ${method.name} payment method is not yet available. Please try another payment method.`,
-		  [
-			{
-			  text: "OK",
-			  onPress: () => {
-				console.log("OK Pressed");
-				setSelected(lastSelected);
-			  },
-			},
-		  ]
-		);
-	  }
+    const lastSelected = selected;
     setSelected(method);
+    if (method.isSetupRequired) {
+      setSelected(lastSelected);
+      Alert.alert(
+        "Payment Method Unavailable",
+        `The ${method.name} payment method is not yet available. Please try another payment method.`,
+        [
+          {
+            text: "OK",
+            onPress: () => {
+              console.log("OK Pressed");
+              setSelected(lastSelected);
+            },
+          },
+        ]
+      );
+      return;
+    }
     setOrderSummary({
       ...orderSummary,
       paymentMethod: method.type,

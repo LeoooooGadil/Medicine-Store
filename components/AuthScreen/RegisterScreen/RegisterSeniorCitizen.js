@@ -15,7 +15,6 @@ export default function RegisterIsSeniorCitizen({
   setSeniorCitizenProofUri,
   error,
 }) {
-
   const [hasPermission, setHasPermission] = useState(false);
   const [isSeniorCitizen, setIsSeniorCitizen] = useState(_isSeniorCitizen);
   const [image, setImage] = useState(SeniorCitizenProofUri);
@@ -118,15 +117,22 @@ export default function RegisterIsSeniorCitizen({
   return (
     <View style={tw`flex-1`}>
       <View style={tw`mt-10 mx-8 flex-row items-center justify-between`}>
-        <Text style={tw`text-center text-xl`}>
-          Are you a Senior Citizen?
-        </Text>
-        <ToggleButton _isActive={isSeniorCitizen} _setIsActive={SetIsSeniorCitizen} />
+        <Text style={tw`text-center text-xl`}>Are you a Senior Citizen?</Text>
+        <ToggleButton
+          _isActive={isSeniorCitizen}
+          _setIsActive={SetIsSeniorCitizen}
+        />
       </View>
+      {error && (
+        <View style={tw`flex-row items-center mt-2`}>
+          <AntDesign name="exclamationcircle" size={16} color={Colors.Error} />
+          <Text style={tw`text-sm text-red-500 ml-2`}>{error}</Text>
+        </View>
+      )}
       {isSeniorCitizen ? (
         <>
           <View style={tw`mt-3 mx-8`}>
-          <Seperator />
+            <Seperator />
           </View>
           <View style={tw`mt-10`}>
             <Text style={tw`text-center text-2xl font-bold`}>
@@ -162,13 +168,15 @@ export default function RegisterIsSeniorCitizen({
               onPress={pickImage}
             />
           </View>
+          <View style={tw`px-8`}>
+            <Text style={tw`text-center text-gray-400`}>
+              Note: This is required for verification purposes.
+            </Text>
+          </View>
         </>
-      ) : <View style={tw`flex-1`} />}
-      <View style={tw`px-8`}>
-        <Text style={tw`text-center text-gray-400`}>
-          Note: This is required for verification purposes.
-        </Text>
-      </View>
+      ) : (
+        <View style={tw`flex-1`} />
+      )}
     </View>
   );
 }
