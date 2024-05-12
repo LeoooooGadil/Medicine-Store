@@ -1,16 +1,25 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import tw from "twrnc";
 import Colors from "../../../constants/Colors";
 import { FontAwesome5, AntDesign } from "@expo/vector-icons";
+
+import ProductImages from "../../../assets/images/medicine";
 
 export default function SummaryItem({ item }) {
   return (
     <View style={tw`bg-[${Colors.White}] shadow-md rounded-xl p-4 py-3`}>
       <View style={tw`flex-row justify-between items-center`}>
         <View
-          style={tw`w-13 h-13 bg-[${Colors.SinBad}] justify-center items-center rounded-lg`}
+          style={tw`w-13 h-13 justify-center items-center rounded-lg`}
         >
-          <Text>Image</Text>
+          {item.item.imageUrl != null ? (
+            <Image
+              source={ProductImages[item.item.imageUrl]}
+              style={tw`w-13 h-13`}
+            />
+          ) : (
+            <Text style={tw`text-white text-2xl`}>📷</Text>
+          )}
         </View>
         <View style={tw`flex-1 ml-4 flex-row gap-2 h-full pt-1`}>
           <Text style={tw`font-bold `}>

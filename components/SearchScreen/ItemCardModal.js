@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef, forwardRef } from "react";
-import { View, Text, TouchableOpacity, TextInput } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import tw from "twrnc";
 import Colors from "../../constants/Colors";
 import Seperator from "../Seperator";
 import { useCart } from "../../context/cartContext";
-import { Feather } from '@expo/vector-icons';
+import { Feather } from "@expo/vector-icons";
 import { useInAppNotification } from "../InAppNotification";
+
+import ProductImages from "../../assets/images/medicine";
 
 export default function ItemCard({
   item,
@@ -42,9 +44,13 @@ export default function ItemCard({
   return (
     <View style={tw`bg-[${Colors.BrightGray}] h-full`}>
       <View
-        style={tw`w-full h-42 bg-[${Colors.WedgeWood}] justify-center items-center`}
+        style={tw`w-full h-42 justify-center items-center overflow-hidden`}
       >
-        <Text>Image</Text>
+        {item?.imageUrl != null ? (
+          <Image source={ProductImages[item?.imageUrl]} style={tw`w-full h-42`} />
+        ) : (
+          <Text style={tw`text-white text-4xl`}>📷</Text>
+        )}
       </View>
       <View style={tw`px-8 gap-2`}>
         <View style={tw`py-2 pb-0`}>
@@ -52,10 +58,11 @@ export default function ItemCard({
           <Text style={tw`font-bold text-4xl`}>{item?.name}</Text>
         </View>
         <View style={tw`relative pb-4`}>
-          <View
-            style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.SinBad}]`}
-          >
-            <Text style={tw`text-white`}>{item?.dosage}{item?.dosageType}</Text>
+          <View style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.SinBad}]`}>
+            <Text style={tw`text-white`}>
+              {item?.dosage}
+              {item?.dosageType}
+            </Text>
           </View>
         </View>
         <Seperator />
@@ -76,10 +83,14 @@ export default function ItemCard({
         <Text style={tw`opacity-75 font-bold`}>{item?.manufacturer}</Text>
         <Seperator />
         <Text>
-          {item?.isPrescriptionRequired ? "Prescription Required" : "No Prescription Required"}
+          {item?.isPrescriptionRequired
+            ? "Prescription Required"
+            : "No Prescription Required"}
         </Text>
       </View>
-      <View style={tw`mx-8 p-2 pl-0 shadow-md rounded-xl mt-10 flex-row justify-between bg-[${Colors.White}]`}>
+      <View
+        style={tw`mx-8 p-2 pl-0 shadow-md rounded-xl mt-10 flex-row justify-between bg-[${Colors.White}]`}
+      >
         <View style={tw`flex-row`}>
           <TouchableOpacity
             style={tw`h-10 w-10 rounded-full justify-center items-center`}
@@ -100,7 +111,9 @@ export default function ItemCard({
           </TouchableOpacity>
         </View>
         <View style={tw`flex-row justify-center items-center gap-4`}>
-          <Text style={tw`text-lg ${quantity > 1 ? "font-bold" : ""}`}>₱ {(item?.price * quantity).toFixed(2)}</Text>
+          <Text style={tw`text-lg ${quantity > 1 ? "font-bold" : ""}`}>
+            ₱ {(item?.price * quantity).toFixed(2)}
+          </Text>
           <View>
             <TouchableOpacity
               style={tw`bg-[${Colors.DarkOrange}] rounded-lg p-3`}

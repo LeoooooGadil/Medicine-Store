@@ -1,7 +1,8 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import tw from "twrnc";
 
 import Colors from "../constants/Colors";
+import ProductImages from "../assets/images/medicine";
 
 export default function ItemContainer(props) {
   const {
@@ -40,15 +41,21 @@ export default function ItemContainer(props) {
       onPress={() => OpenItem()}
     >
       <View
-        style={tw`w-40 h-36 bg-[${Colors.WedgeWood}] rounded-t-xl shadow-md justify-center items-center`}
+        style={tw`w-40 h-36 rounded-t-xl justify-center items-center`}
       >
-        <Text style={tw`text-2xl text-[${Colors.White}]`}>Image</Text>
+        {item?.imageUrl != null ? (
+          <Image source={ProductImages[item?.imageUrl]} style={tw`w-40 h-36 rounded-t-xl`} />
+        ) : (
+          <Text style={tw`text-white text-4xl`}>📷</Text>
+        )}
       </View>
       <View style={tw`px-3 pb-3 w-full`}>
         <Text style={tw`text-lg font-bold`}>{item?.brandName}</Text>
         <View style={tw`flex-row justify-between items-center`}>
           <View style={tw`relative pb-1 pt-3 justify-center`}>
-            <View style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.SinBad}]`}>
+            <View
+              style={tw`absolute p-1 px-2 rounded-xl bg-[${Colors.SinBad}]`}
+            >
               <Text style={tw`text-white`}>
                 {item?.dosage}
                 {item?.dosageType}
