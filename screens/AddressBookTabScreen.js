@@ -5,9 +5,9 @@ import Colors from "../constants/Colors";
 import tw from "twrnc";
 
 import { useAddresses } from "../context/addressesContext";
+import { AddressBookHeader, AddressBookList } from "../components/AddressBookScreen";
 
 export default function AddressBookTabScreen({ navigation }) {
-
   // You can use the useAddresses hook here to get the addresses and other functions.
   // data structure is this:
   // {
@@ -22,7 +22,6 @@ export default function AddressBookTabScreen({ navigation }) {
   // if you dont know how to use it, you can ask me or look at the addressesContext.js file.
   // better if you ask me. I can explain it to you.
 
-
   // const {
   //   addresses,
   //   isAddressesBeenUpdated,
@@ -34,9 +33,13 @@ export default function AddressBookTabScreen({ navigation }) {
 
   return (
     <SafeAreaView
-      style={tw`gap-2 bg-[${Colors.BrightGray}] justify-center items-center flex-1`}
+      style={tw`gap-2`}
       forceInset={{ top: "always" }}
     >
+      <AddressBookHeader 
+        GoBack={() => navigation.goBack()}
+      />
+      <AddressBookList />
       {/* Here you can add your components. */}
       {/* Your Components should live inside the components folder add another folder named "AddressBookScreen" */}
       {/* add an index.js. Why? look at the other folders. inside is imported and exported components.  */}
@@ -54,32 +57,6 @@ export default function AddressBookTabScreen({ navigation }) {
 
       {/* Styling: */}
       {/* You can style the components like the cartscreen or the order screen */}
-      <Text style={styles.title}>This is the address book screen!</Text>
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.link}>
-        <Text style={styles.linkText}>Go Back!</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
-  },
-  linkText: {
-    fontSize: 14,
-    color: "#2e78b7",
-  },
-});

@@ -4,7 +4,7 @@ import tw from "twrnc";
 import Colors from "../../constants/Colors";
 import Seperator from "../Seperator";
 import { useCart } from "../../context/cartContext";
-import { Feather } from "@expo/vector-icons";
+import { Feather, FontAwesome5 } from "@expo/vector-icons";
 import { useInAppNotification } from "../InAppNotification";
 
 import ProductImages from "../../assets/images/medicine";
@@ -43,11 +43,12 @@ export default function ItemCard({
 
   return (
     <View style={tw`bg-[${Colors.BrightGray}] h-full`}>
-      <View
-        style={tw`w-full h-42 justify-center items-center overflow-hidden`}
-      >
+      <View style={tw`w-full h-42 justify-center items-center overflow-hidden`}>
         {item?.imageUrl != null ? (
-          <Image source={ProductImages[item?.imageUrl]} style={tw`w-full h-42`} />
+          <Image
+            source={ProductImages[item?.imageUrl]}
+            style={tw`w-full h-42`}
+          />
         ) : (
           <Text style={tw`text-white text-4xl`}>📷</Text>
         )}
@@ -82,11 +83,18 @@ export default function ItemCard({
         <Seperator />
         <Text style={tw`opacity-75 font-bold`}>{item?.manufacturer}</Text>
         <Seperator />
-        <Text>
-          {item?.isPrescriptionRequired
-            ? "Prescription Required"
-            : "No Prescription Required"}
-        </Text>
+        <>
+          {item?.isPrescriptionRequired ? (
+            <View style={tw`flex-row items-center gap-1`}>
+              <FontAwesome5
+                name="prescription"
+                size={13}
+                color={Colors.AlizarinCrimson}
+              />
+              <Text style={tw`text-[${Colors.AlizarinCrimson}]`}>Required</Text>
+            </View>
+          ) : null}
+        </>
       </View>
       <View
         style={tw`mx-8 p-2 pl-0 shadow-md rounded-xl mt-10 flex-row justify-between bg-[${Colors.White}]`}
