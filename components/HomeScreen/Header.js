@@ -43,21 +43,19 @@ export default function HomeScreenHeader({ GoToCart }) {
 
   return (
     <View
-      style={[tw`px-8 pb-3 pt-2 gap-4 h-16 bg-[${Colors.BrightGray}]`]}
+      style={[tw`px-8 pb-1 gap-4 h-16 bg-[${Colors.BrightGray}]`]}
     >
-      <View style={tw`flex-row items-center justify-between`}>
+     <View style={tw`flex-row items-center justify-between`}>
         <View style={tw`flex-row justify-center items-center gap-2`}>
           <Image
-            source={require("../../assets/images/philcure-logo.png")}
+            source={require("../../assets/images/philcure-logo-revised.png")}
             style={{
-              width: 40,
-              height: 40,
+              width: 100,
+              height: 60,
               resizeMode: "contain",
             }}
           />
           <View style={tw`flex-row`}>
-            <Text style={tw`font-bold text-3xl tracking-wide`}>Phil</Text>
-            <Text style={tw`text-3xl tracking-wide`}>Cure</Text>
           </View>
         </View>
         <View style={tw`flex-row items-center`}>
