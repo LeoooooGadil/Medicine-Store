@@ -37,14 +37,14 @@ export default function ItemContainer(props) {
     <TouchableOpacity
       style={tw`flex-col bg-[${
         Colors.White
-      }] rounded-xl shadow-md items-start justify-center gap-1 ${styles()} mb-2`}
+      }] rounded-xl shadow-md items-start justify-center gap-1 ${styles()} mb-2 w-40`}
       onPress={() => OpenItem()}
     >
       <View
-        style={tw`w-40 h-36 rounded-t-xl justify-center items-center`}
+        style={tw`w-full h-36 p-2 rounded-t-xl justify-center items-center`}
       >
         {item?.imageUrl != null ? (
-          <Image source={ProductImages[item?.imageUrl]} style={tw`w-40 h-36 rounded-t-xl`} />
+          <Image source={ProductImages[item?.imageUrl]} style={tw`w-full h-full rounded-t-xl`} />
         ) : (
           <Text style={tw`text-white text-4xl`}>📷</Text>
         )}

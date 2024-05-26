@@ -1,27 +1,110 @@
 import React, { useRef } from "react";
-import { View, Text, Dimensions } from "react-native";
+import { View, Text, Dimensions, TouchableOpacity } from "react-native";
 import tw from "twrnc";
 import Carousel from "react-native-snap-carousel";
 import Colors from "../../constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 const data = [
   {
     title: "Welcome to our store!",
-    description: "Get the best deals on our products.",
+    component: (GoToNextSlide) => {
+      return (
+        <LinearGradient
+          colors={[Colors.AlizarinCrimson, Colors.ApricotPeach, Colors.Froly]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={tw`rounded-xl shadow-md p-0.7 flex-1 h-40`}
+        >
+          <View
+            style={tw`px-4 bg-[${Colors.White}] h-full justify-between py-4 rounded-lg`}
+          >
+            <View style={tw`flex-col justify-center`}>
+              <Text style={tw`text-3xl font-bold text-gray-800`}>
+                Welcome to PhilCure
+              </Text>
+              <Text style={tw`text-lg text-gray-800`}>
+                Get your medicines delivered to your doorstep.
+              </Text>
+            </View>
+            <TouchableOpacity
+              style={tw`flex-row justify-end`}
+              onPress={GoToNextSlide}
+            >
+              <Text
+                style={tw`text-lg text-gray-800 text-[${Colors.DarkOrange}]`}
+              >
+                Swipe to continue
+              </Text>
+              <Text style={tw`text-lg text-gray-800`}>
+                <Ionicons
+                  name="chevron-forward-outline"
+                  color={Colors.DarkOrange}
+                  size={15}
+                />
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </LinearGradient>
+      );
+    },
   },
   {
-    title: "Call a Pharmacist",
-    description: "Get in touch with our pharmacists for free consultation.",
-  },
-  {
-    title: "Special offers",
-    description: "Get special offers on selected products.",
+    title: "How to order?",
+    component: (GoToNextSlide) => {
+      return (
+        <LinearGradient
+          colors={[Colors.SinBad, Colors.WedgeWood, Colors.ApricotPeach]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={tw`rounded-xl shadow-md p-0.7 flex-1 h-40 `}
+        >
+          <View
+            style={tw`px-4 bg-[${Colors.White}] h-full justify-between py-4 rounded-lg relative`}
+          >
+            <Text style={tw`
+              absolute top-2 right-2 bg-[${Colors.DarkOrange}] text-[${Colors.White}] rounded-full w-6 h-6 text-center
+            `}>?</Text>
+            <View style={tw`flex-col justify-center pl-10`}>
+              <Text style={tw`text-3xl font-bold text-gray-800`}>
+                How to order?
+              </Text>
+              <Text style={tw`text-lg text-gray-800`}>
+                A simple 3-step process to order your medicines.
+              </Text>
+            </View>
+            <TouchableOpacity
+              style={tw`flex-row justify-end`}
+              onPress={GoToNextSlide}
+            >
+              <Text
+                style={tw`text-lg text-gray-800 text-[${Colors.DarkOrange}]`}
+              >
+                Step 1
+              </Text>
+              <Text style={tw`text-lg text-gray-800`}>
+                <Ionicons
+                  name="chevron-forward-outline"
+                  color={Colors.DarkOrange}
+                  size={15}
+                />
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </LinearGradient>
+      );
+    },
   },
 ];
 
 export default function WelcomeBanner() {
   const carouselRef = useRef(null);
   const { width } = Dimensions.get("window");
+
+  const GoToNextSlide = () => {
+    carouselRef.current.snapToNext();
+  };
 
   return (
     <View style={tw`pb-2 pt-3`}>
@@ -30,19 +113,8 @@ export default function WelcomeBanner() {
         data={data}
         renderItem={({ item }) => {
           return (
-            <View
-              style={tw`bg-[${Colors.SinBad}] rounded-xl shadow-md h-40 flex-col gap-2 py-8`} 
-            >
-              <View style={tw`flex-1 justify-center`}>
-                <Text style={tw`text-4xl font-bold text-left text-white`}>
-                  {item.title}
-                </Text>
-              </View>
-              <View style={tw`flex-1`}>
-                <Text style={tw`text-left text-sm opacity-75 text-white`}>
-                  {item.description}
-                </Text>
-              </View>
+            <View style={tw`rounded-xl shadow-md h-40`}>
+              {item.component(GoToNextSlide)}
             </View>
           );
         }}
