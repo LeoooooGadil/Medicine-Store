@@ -5,7 +5,13 @@ import Carousel from "react-native-snap-carousel";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+<LinearGradient
+  colors={[Colors.AlizarinCrimson, Colors.ApricotPeach, Colors.Froly]}
+  start={{ x: 0, y: 0 }}
+  end={{ x: 1, y: 1 }}
+  style={tw`rounded-2xl shadow-md p-0.7 flex-1 h-40`}
+></LinearGradient>;
 const data = [
   {
     title: "Welcome to our store!",
@@ -15,17 +21,28 @@ const data = [
           colors={[Colors.AlizarinCrimson, Colors.ApricotPeach, Colors.Froly]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
-          style={tw`rounded-xl shadow-md p-0.7 flex-1 h-40`}
+          style={tw`rounded-2xl shadow-md p-0.7 flex-1 h-40`}
         >
           <View
-            style={tw`px-4 bg-[${Colors.White}] h-full justify-between py-4 rounded-lg`}
+            style={tw`px-4 bg-[${Colors.White}] h-full justify-between py-4 rounded-xl relative overflow-hidden`}
           >
-            <View style={tw`flex-col justify-center`}>
+            <Text
+              style={tw`
+              absolute top-[-2] left-[-15] text-black text-center opacity-5
+            `}
+            >
+              <MaterialCommunityIcons
+                name="storefront"
+                size={200}
+                color="black"
+              />
+            </Text>
+            <View style={tw`flex-col justify-center pl-10`}>
               <Text style={tw`text-3xl font-bold text-gray-800`}>
-                Welcome to PhilCure
+                Welcome to our store!
               </Text>
               <Text style={tw`text-lg text-gray-800`}>
-                Get your medicines delivered to your doorstep.
+                Get your medicines delivered at your doorstep.
               </Text>
             </View>
             <TouchableOpacity
@@ -35,7 +52,57 @@ const data = [
               <Text
                 style={tw`text-lg text-gray-800 text-[${Colors.DarkOrange}]`}
               >
-                Swipe to continue
+                Step 3
+              </Text>
+              <Text style={tw`text-lg text-gray-800`}>
+                <Ionicons
+                  name="chevron-forward-outline"
+                  color={Colors.DarkOrange}
+                  size={15}
+                />
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </LinearGradient>
+      );
+    },
+  },
+  {
+    title: "Call A Pharmacist",
+    component: (GoToNextSlide) => {
+      return (
+        <LinearGradient
+          colors={[Colors.SkyBlue, Colors.ApricotPeach, Colors.Froly]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={tw`rounded-2xl shadow-md p-0.7 flex-1 h-40 `}
+        >
+          <View
+            style={tw`px-4 bg-[${Colors.White}] h-full justify-between py-4 rounded-xl relative overflow-hidden`}
+          >
+            <Text
+              style={tw`
+              absolute top-[-2] left-[-15] text-black text-center opacity-5
+            `}
+            >
+              <MaterialCommunityIcons name="phone" size={200} color="black" />
+            </Text>
+            <View style={tw`flex-col justify-center pl-10`}>
+              <Text style={tw`text-3xl font-bold text-gray-800`}>
+                Call A Pharmacist
+              </Text>
+              <Text style={tw`text-lg text-gray-800`}>
+                Get your queries answered by our pharmacists.
+              </Text>
+            </View>
+            <TouchableOpacity
+              style={tw`flex-row justify-end`}
+              onPress={GoToNextSlide}
+            >
+              <Text
+                style={tw`text-lg text-gray-800 text-[${Colors.DarkOrange}]`}
+              >
+                Call Now
               </Text>
               <Text style={tw`text-lg text-gray-800`}>
                 <Ionicons
@@ -58,14 +125,22 @@ const data = [
           colors={[Colors.SinBad, Colors.WedgeWood, Colors.ApricotPeach]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
-          style={tw`rounded-xl shadow-md p-0.7 flex-1 h-40 `}
+          style={tw`rounded-2xl shadow-md p-0.7 flex-1 h-40 `}
         >
           <View
-            style={tw`px-4 bg-[${Colors.White}] h-full justify-between py-4 rounded-lg relative`}
+            style={tw`px-4 bg-[${Colors.White}] h-full justify-between py-4 rounded-xl relative overflow-hidden`}
           >
-            <Text style={tw`
-              absolute top-2 right-2 bg-[${Colors.DarkOrange}] text-[${Colors.White}] rounded-full w-6 h-6 text-center
-            `}>?</Text>
+            <Text
+              style={tw`
+              absolute top-[-2] left-[-15] text-black text-center opacity-5
+            `}
+            >
+              <MaterialCommunityIcons
+                name="information-variant"
+                size={200}
+                color="black"
+              />
+            </Text>
             <View style={tw`flex-col justify-center pl-10`}>
               <Text style={tw`text-3xl font-bold text-gray-800`}>
                 How to order?

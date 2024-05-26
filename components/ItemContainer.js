@@ -37,7 +37,7 @@ export default function ItemContainer(props) {
     <TouchableOpacity
       style={tw`flex-col bg-[${
         Colors.White
-      }] rounded-xl shadow-md items-start justify-center gap-1 ${styles()} mb-2 w-40`}
+      }] rounded-xl shadow-md items-start justify-between gap-1 ${styles()} mb-2 w-40`}
       onPress={() => OpenItem()}
     >
       <View
@@ -50,7 +50,9 @@ export default function ItemContainer(props) {
         )}
       </View>
       <View style={tw`px-3 pb-3 w-full`}>
-        <Text style={tw`text-lg font-bold`}>{item?.brandName}</Text>
+        <Text style={tw`text-lg font-bold`}>{
+          item?.name.length > 13 ? item?.name.slice(0, 14) + ".." : item?.name
+        }</Text>
         <View style={tw`flex-row justify-between items-center`}>
           <View style={tw`relative pb-1 pt-3 justify-center`}>
             <View

@@ -10,6 +10,7 @@ import {
   ExploreOurProducts,
   ExploreOurCategories,
   SearchBar,
+  CallAPharmacist
 } from "../components/HomeScreen";
 import { Seperator } from "../components";
 import BottomSheetModal from "../components/BottomSheetModal";
@@ -57,6 +58,7 @@ export default function HomeTabScreen({ navigation }) {
             }}
           />
           <WelcomeBanner />
+          <CallAPharmacist />
           <ExploreOurProducts
             GoToSearch={() => navigation.navigate("Search")}
             OpenBottomSheet={openBottomSheet}
