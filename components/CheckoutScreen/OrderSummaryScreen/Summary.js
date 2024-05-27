@@ -10,8 +10,10 @@ export default function Summary({ cartItems }) {
     (acc, item) => acc + item.item.price * item.quantity,
     0
   );
-  const shippingFee = 0;
-  const total = subTotal + shippingFee;
+  const shippingFee = 50;
+  const convenienceFee = subTotal * 0.10;
+  const seniorDiscount = (subTotal + convenienceFee + shippingFee) * 0.20;
+  const total = subTotal + convenienceFee + shippingFee - seniorDiscount;
 
   return (
     <View style={tw`mt-7`}>
@@ -38,7 +40,15 @@ export default function Summary({ cartItems }) {
             </View> */}
             <View style={tw`flex-row justify-between items-center`}>
               <Text>Shipping Fee</Text>
-              <Text style={tw`font-bold`}>₱ {shippingFee}</Text>
+              <Text style={tw`font-bold`}>₱ {shippingFee.toFixed(2)}</Text>
+            </View>
+            <View style={tw`flex-row justify-between items-center`}>
+              <Text>Convenience Fee</Text>
+              <Text style={tw`font-bold`}>₱ {convenienceFee.toFixed(2)}</Text>
+            </View>
+            <View style={tw`flex-row justify-between items-center`}>
+              <Text>Senior Discount</Text>
+              <Text style={tw`font-bold`}>₱ {seniorDiscount.toFixed(2)}</Text>
             </View>
             <View style={tw`flex-row justify-between items-center`}>
               <Text style={tw`text-xl`}>

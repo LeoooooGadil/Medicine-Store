@@ -12,7 +12,8 @@ export default function AppSettingsMenu({ navigation }) {
     },
     "About Us": {
       OnClick: () => {
-        Alert.alert("About Us");
+        Alert.alert
+        ("About Us", "PhilCure is an application dedicated to provide medicinal products to our users nationwide.");
       },
     },
   };

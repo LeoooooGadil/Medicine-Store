@@ -49,7 +49,7 @@ export const CheckoutProvider = ({ children }) => {
     // 259200000 is 3 days in milliseconds
     const randomDeliveryDays = Math.floor(Math.random() * 3) + 1;
     const deliveryDate = new Date(Date.now() + 86400000 * randomDeliveryDays);
-    const deliveryFee = 0.0;
+    const deliveryFee = 0;
     const isPrescriptionRequired = cartItems.some(
       (item) => item.item.isPrescriptionRequired
     );
@@ -60,13 +60,13 @@ export const CheckoutProvider = ({ children }) => {
         0
       ) + deliveryFee;
 
-    // dont allow checkout if total amount is less than 150
-    if (totalAmount < 150) {
+    // dont allow checkout if total amount is less than 80
+    if (totalAmount < 80) {
       setIsLoading(false);
       setIsCheckingOut(false);
       Alert.alert(
         "Minimum Order Amount",
-        `You need ₱${150 - totalAmount} more to checkout. Minimum order amount is ₱150.`
+        `You need ₱${80 - totalAmount} more to checkout. Minimum order amount is ₱80.`
       );
       return;
     }
