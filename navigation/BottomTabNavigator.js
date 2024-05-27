@@ -9,10 +9,14 @@ import SearchTabScreen from "../screens/SearchTabScreen";
 import MenuTabScreen from "../screens/MenuTabScreen";
 import Colors from "../constants/Colors";
 import { View, Text } from "react-native";
+import { useAuthentication } from "../hooks/useAuthentication";
 
 const BottomTab = createBottomTabNavigator();
 
 export default function BottomTabNavigator() {
+  const { currentUser } = useAuthentication();
+
+
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
@@ -71,7 +75,10 @@ export default function BottomTabNavigator() {
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <AccountIcon name="Jann Leo" focused={focused} />
+            <AccountIcon 
+            name={currentUser ? currentUser?.data.fullName[0].toUpperCase() : "G"} 
+            focused={focused} 
+            />
           ),
         }}
       />

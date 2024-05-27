@@ -1,11 +1,11 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import React from "react";
+import React, { useState, useRef } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Colors from "../constants/Colors";
 import tw from "twrnc";
 
 import { useAddresses } from "../context/addressesContext";
-import { AddressBookHeader, AddressBookList } from "../components/AddressBookScreen";
+import { AddressBookHeader, AddressBookList, BottomSheetModal } from "../components/AddressBookScreen";
 
 export default function AddressBookTabScreen({ navigation }) {
   // You can use the useAddresses hook here to get the addresses and other functions.
@@ -31,15 +31,28 @@ export default function AddressBookTabScreen({ navigation }) {
   //   updateAddress,
   // } = useAddresses();
 
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const bottomSheetModalRef = useRef(null);
+
+  const openBottomSheet = () => {
+    setIsBottomSheetOpen(true);
+    bottomSheetModalRef.current?.snapToIndex(0);
+  };
+
   return (
     <SafeAreaView
-      style={tw`gap-2`}
+      style={tw`flex-col gap-2 bg-[${Colors.BrightGray}] flex-1`}
       forceInset={{ top: "always" }}
     >
       <AddressBookHeader 
         GoBack={() => navigation.goBack()}
+        OpenAddAddressModal={openBottomSheet}
       />
       <AddressBookList />
+      <BottomSheetModal
+        bottomSheetRef={bottomSheetModalRef}
+        SetIsBottomSheetOpen={setIsBottomSheetOpen}
+      />
       {/* Here you can add your components. */}
       {/* Your Components should live inside the components folder add another folder named "AddressBookScreen" */}
       {/* add an index.js. Why? look at the other folders. inside is imported and exported components.  */}

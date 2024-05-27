@@ -9,7 +9,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function ExploreOurCategories({ GoToSearch }) {
   return (
-    <View style={tw`pb-2 pt-2`}>
+    <View style={tw`pb-2`}>
       <View style={tw`flex-row justify-between items-center w-full px-8`}>
         <Text style={tw`text-2xl font-bold`}>Explore Our Categories</Text>
       </View>

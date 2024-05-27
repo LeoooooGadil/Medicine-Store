@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, Alert } from "react-native";
 import tw from "twrnc";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function CallAPharmacistButton() {
   const CallAPharmaFullQueue = () => {
@@ -23,16 +24,23 @@ export default function CallAPharmacistButton() {
 
   return (
     <TouchableOpacity
-      style={tw`flex-row bg-[${Colors.WedgeWood}] rounded-xl shadow-lg p-4 mt-2 mx-8 gap-2 items-center`}
+      style={tw`shadow-lg`}
       onPress={() => CallAPharmaFullQueue()}
     >
-      <Ionicons name="call-outline" size={30} color={Colors.White} />
+      <LinearGradient
+          colors={[Colors.WedgeWood, Colors.DarkBlue]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={tw`flex-row rounded-xl p-4 mt-2 mx-8 gap-3 items-center`}
+        >
+      <Ionicons name="call-outline" size={30} color={Colors.LavenderBlue} />
       <View>
         <Text style={tw`text-white text-xl font-bold`}>Call a Pharmacist</Text>
         <Text style={tw`text-white text-sm opacity-50`}>
           Instantly connect with a pharmacist.
         </Text>
       </View>
+      </LinearGradient>
     </TouchableOpacity>
   );
 }

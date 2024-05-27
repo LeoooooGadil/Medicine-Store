@@ -53,7 +53,7 @@ export default function ItemCard({
           <Text style={tw`text-white text-4xl`}>📷</Text>
         )}
       </View>
-      <View style={tw`px-8 gap-2`}>
+      <View style={tw`px-8 gap-2 pt-5`}>
         <View style={tw`py-2 pb-0`}>
           <Text style={tw``}>{item?.brandName}</Text>
           <Text style={tw`font-bold text-4xl`}>{item?.name}</Text>

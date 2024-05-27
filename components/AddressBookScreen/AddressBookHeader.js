@@ -5,7 +5,8 @@ import Colors from "../../constants/Colors";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 
 export default function AddressBookHeader({
-	GoBack
+	GoBack,
+  OpenAddAddressModal,
 }) {
   return (
     <View style={tw`px-8 pt-3 flex-row justify-between items-center h-10`}>
@@ -16,7 +17,7 @@ export default function AddressBookHeader({
         <Text style={tw`text-3xl font-bold`}>Address Book</Text>
       </View>
       <View style={tw`flex-row items-center gap-4`}>
-        <TouchableOpacity style={tw``} onPress={() => {}}>
+        <TouchableOpacity style={tw``} onPress={OpenAddAddressModal}>
           <MaterialCommunityIcons
             name="plus"
             size={25}

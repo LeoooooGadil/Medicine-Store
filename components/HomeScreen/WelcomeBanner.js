@@ -39,29 +39,12 @@ const data = [
             </Text>
             <View style={tw`flex-col justify-center pl-10`}>
               <Text style={tw`text-3xl font-bold text-gray-800`}>
-                Welcome to our store!
+                Welcome to PhilCure
               </Text>
-              <Text style={tw`text-lg text-gray-800`}>
+              <Text style={tw`text-sm text-gray-800 opacity-50`}>
                 Get your medicines delivered at your doorstep.
               </Text>
             </View>
-            <TouchableOpacity
-              style={tw`flex-row justify-end`}
-              onPress={GoToNextSlide}
-            >
-              <Text
-                style={tw`text-lg text-gray-800 text-[${Colors.DarkOrange}]`}
-              >
-                Step 3
-              </Text>
-              <Text style={tw`text-lg text-gray-800`}>
-                <Ionicons
-                  name="chevron-forward-outline"
-                  color={Colors.DarkOrange}
-                  size={15}
-                />
-              </Text>
-            </TouchableOpacity>
           </View>
         </LinearGradient>
       );
@@ -91,12 +74,12 @@ const data = [
               <Text style={tw`text-3xl font-bold text-gray-800`}>
                 Call A Pharmacist
               </Text>
-              <Text style={tw`text-lg text-gray-800`}>
+              <Text style={tw`text-sm text-gray-800 opacity-50`}>
                 Get your queries answered by our pharmacists.
               </Text>
             </View>
             <TouchableOpacity
-              style={tw`flex-row justify-end`}
+              style={tw`flex-row justify-end items-center`}
               onPress={GoToNextSlide}
             >
               <Text
@@ -104,7 +87,7 @@ const data = [
               >
                 Call Now
               </Text>
-              <Text style={tw`text-lg text-gray-800`}>
+              <Text style={tw`text-sm text-gray-800`}>
                 <Ionicons
                   name="chevron-forward-outline"
                   color={Colors.DarkOrange}
@@ -145,7 +128,7 @@ const data = [
               <Text style={tw`text-3xl font-bold text-gray-800`}>
                 How to order?
               </Text>
-              <Text style={tw`text-lg text-gray-800`}>
+              <Text style={tw`text-sm text-gray-800 opacity-50`}>
                 A simple 3-step process to order your medicines.
               </Text>
             </View>
@@ -156,7 +139,7 @@ const data = [
               <Text
                 style={tw`text-lg text-gray-800 text-[${Colors.DarkOrange}]`}
               >
-                Step 1
+                Learn More
               </Text>
               <Text style={tw`text-lg text-gray-800`}>
                 <Ionicons
