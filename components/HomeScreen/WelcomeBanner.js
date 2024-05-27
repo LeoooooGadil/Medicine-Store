@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { View, Text, Dimensions, TouchableOpacity } from "react-native";
+import { View, Text, Dimensions, TouchableOpacity, Image } from "react-native";
 import tw from "twrnc";
 import Carousel from "react-native-snap-carousel";
 import Colors from "../../constants/Colors";
@@ -117,6 +117,63 @@ const data = [
       );
     },
   },
+
+  {
+    title: "",
+    component: (GoToNextSlide) => {
+      return (
+        <LinearGradient
+          colors={[Colors.SinBad, Colors.WedgeWood, Colors.ApricotPeach]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={tw`rounded-xl shadow-md p-0.7 flex-1 h-40 `}
+        >
+          <View
+            style={tw`px-4 bg-[${Colors.White}] h-full justify-center py-4 rounded-lg relative`}
+          >
+             <Image
+            source={require("../../assets/images/your-affordable.png")}
+            style={{
+              width: 350,
+              height: 350,
+              resizeMode: "contain",
+            }}
+          />
+          </View>
+        </LinearGradient>
+      );
+    },
+  },
+
+  {
+    title: "We'll sort your medicines for you!",
+    component: (GoToNextSlide) => {
+      return (
+        <LinearGradient
+          colors={[Colors.AlizarinCrimson, Colors.ApricotPeach, Colors.Froly]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={tw`rounded-xl shadow-md p-0.7 flex-1 h-40`}
+        >
+          <View
+            style={tw`px-4 bg-[${Colors.White}] h-full justify-between py-4 rounded-lg`}
+          >
+            <View style={tw`flex-col justify-center`}>
+              <Text style={tw`text-xl font-bold text-gray-800 text-left `}>
+                Medicines are sorted, just for you!
+              </Text>
+              <Text style={tw`py-4 text-xl text-gray-800`}>
+                PhilCure will sort your prescription, and will be sealed per date, day, and time of consumption.
+              </Text>
+            </View>
+              <Text style={tw`text-lg text-gray-800`}>
+              </Text>
+          </View>
+        </LinearGradient>
+      );
+    },
+  },
+
   {
     title: "How to order?",
     component: (GoToNextSlide) => {
