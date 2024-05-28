@@ -1,11 +1,17 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, createContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Colors from "../constants/Colors";
 import tw from "twrnc";
 
-import { useAddresses } from "../context/addressesContext";
-import { AddressBookHeader, AddressBookList, BottomSheetModal, AddAddressModal } from "../components/AddressBookScreen";
+import {
+  AddressBookHeader,
+  AddressBookList,
+  BottomSheetModal,
+  AddAddressModal,
+  DropdownModal,
+} from "../components/AddressBookScreen";
+
+export const AddressBookPickerContext = createContext();
 
 export default function AddressBookTabScreen({ navigation }) {
   // You can use the useAddresses hook here to get the addresses and other functions.
@@ -30,28 +36,29 @@ export default function AddressBookTabScreen({ navigation }) {
   //   addAddress,
   //   updateAddress,
   // } = useAddresses();
+  const [pickerData, setPickerData] = useState({});
 
-  const [isAddAddressBottomSheetOpen, setIsAddAddressBottomSheetOpen] = useState(false);
-  const [isAddressTypeDropdownOpen, setIsAddressTypeDropdownOpen] = useState(false);
-  const [isSelectRegionDropdownOpen, setIsSelectRegionDropdownOpen] = useState(false);
+  const [isAddAddressBottomSheetOpen, setIsAddAddressBottomSheetOpen] =
+    useState(false);
+  const [isDropdownPickerOpen, setIsDropdownPickerOpen] = useState(false);
+  useState(false);
   const addAddressBottomSheetRef = useRef(null);
-  const addressTypeDropdownRef = useRef(null);
-  const selectRegionDropdownRef = useRef(null);
-
+  const DropdownPickerRef = useRef(null);
 
   const openAddAddressBottomSheet = () => {
     setIsAddAddressBottomSheetOpen(true);
     addAddressBottomSheetRef.current?.snapToIndex(0);
   };
 
-  const openAddressTypeDropdown = () => {
-    setIsAddressTypeDropdownOpen(true);
-    addressTypeDropdownRef.current?.snapToIndex(0);
+  const OpenDropdownPicker = (options, onSelect, value) => {
+    setIsDropdownPickerOpen(true);
+    setPickerData({ options, onSelect, value });
+    DropdownPickerRef.current?.snapToIndex(0);
   };
 
-  const openSelectRegionDropdown = () => {
-    setIsSelectRegionDropdownOpen(true);
-    selectRegionDropdownRef.current?.snapToIndex(0);
+  const CloseDropdownPicker = () => {
+    setIsDropdownPickerOpen(false);
+    DropdownPickerRef.current?.close();
   };
 
   return (
@@ -59,33 +66,30 @@ export default function AddressBookTabScreen({ navigation }) {
       style={tw`flex-col gap-2 bg-[${Colors.BrightGray}] flex-1`}
       forceInset={{ top: "always" }}
     >
-      <AddressBookHeader 
-        GoBack={() => navigation.goBack()}
-        OpenAddAddressModal={openAddAddressBottomSheet}
-      />
-      <AddressBookList />
-      <BottomSheetModal
-        bottomSheetRef={addAddressBottomSheetRef}
-        SetIsBottomSheetOpen={openAddAddressBottomSheet}
-        HandMeTheData={{
-          openAddressTypeDropdown,
-          openSelectRegionDropdown
+      <AddressBookPickerContext.Provider
+        value={{
+          OpenDropdownPicker,
         }}
-        Component={AddAddressModal}
-        _snapPoints={["93%"]}
-      />
-      <BottomSheetModal
-        bottomSheetRef={addressTypeDropdownRef}
-        SetIsBottomSheetOpen={openAddressTypeDropdown}
-        Component={AddressTypeDropdown}
-        _snapPoints={["50%"]}
-      />
-      <BottomSheetModal
-        bottomSheetRef={selectRegionDropdownRef}
-        SetIsBottomSheetOpen={openSelectRegionDropdown}
-        Component={SelectRegionDropdown}
-        _snapPoints={["50%"]}
-      />
+      >
+        <AddressBookHeader
+          GoBack={() => navigation.goBack()}
+          OpenAddAddressModal={openAddAddressBottomSheet}
+        />
+        <AddressBookList />
+        <BottomSheetModal
+          bottomSheetRef={addAddressBottomSheetRef}
+          SetIsBottomSheetOpen={openAddAddressBottomSheet}
+          Component={AddAddressModal}
+          _snapPoints={["93%"]}
+        />
+        <BottomSheetModal
+          bottomSheetRef={DropdownPickerRef}
+          Component={DropdownModal}
+          HandMeTheData={{ closeModal: CloseDropdownPicker, ...pickerData}}
+          _snapPoints={["50%"]}
+        />
+      </AddressBookPickerContext.Provider>
+
       {/* Here you can add your components. */}
       {/* Your Components should live inside the components folder add another folder named "AddressBookScreen" */}
       {/* add an index.js. Why? look at the other folders. inside is imported and exported components.  */}

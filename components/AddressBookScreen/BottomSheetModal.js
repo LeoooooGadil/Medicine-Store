@@ -2,7 +2,6 @@ import React, { useCallback, useMemo } from "react";
 import BottomSheet, { BottomSheetView, BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 import tw from "twrnc";
 import Colors from "../../constants/Colors";
-import AddAddressModal from "./AddAddressModal";
 
 export default function BottomSheetModal({
 	bottomSheetRef,
@@ -42,7 +41,7 @@ export default function BottomSheetModal({
 		>
 			<BottomSheetView style={tw`bg-[${Colors.BrightGray}] flex-1`}>
 				{/* check if component is a component or a function and act accordingly */}
-				{typeof Component === "function" ? <Component HandMeTheData={HandMeTheData} /> : Component}
+				<Component HandMeTheData={HandMeTheData} />
 			</BottomSheetView>
 		</BottomSheet>
 	)

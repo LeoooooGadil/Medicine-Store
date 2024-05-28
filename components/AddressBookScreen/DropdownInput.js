@@ -1,9 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { View, Text, TouchableOpacity, Modal, FlatList } from "react-native";
 import tw from "twrnc";
 import Colors from "../../constants/Colors";
 import { AntDesign } from "@expo/vector-icons";
 import BottomSheetModal from "./BottomSheetModal";
+import { AddressBookPickerContext } from "../../screens/AddressBookTabScreen";
 
 export default function DropdownInput({
   label,
@@ -14,11 +15,10 @@ export default function DropdownInput({
   error,
   containerStyle,
 }) {
-  const [selectedValue, setSelectedValue] = useState(value);
 
-  const toggleModal = () => {
-    openBottomSheet();
-  };
+  const { OpenDropdownPicker } = useContext(AddressBookPickerContext);
+
+  const [selectedValue, setSelectedValue] = useState(value);
 
   const handleSelect = (item) => {
     setSelectedValue(item);
@@ -26,12 +26,8 @@ export default function DropdownInput({
     toggleModal();
   };
 
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-  const bottomSheetModalRef = useRef(null);
-
-  const openBottomSheet = () => {
-    setIsBottomSheetOpen(true);
-    bottomSheetModalRef.current?.snapToIndex(0);
+  const toggleModal = () => {
+    OpenDropdownPicker(options, handleSelect, selectedValue);
   };
 
   return (
@@ -61,9 +57,17 @@ export default function DropdownInput({
   );
 }
 
-function Dropdown({ options, selectedValue, handleSelect }) {
+export function DropdownModal({ HandMeTheData }) {
+
+  const { options, onSelect, selectedValue, closeModal } = HandMeTheData;
+
+  const handleSelect = (item) => {
+    onSelect(item);
+    closeModal();
+  };
+
   return (
-    <View style={tw`bg-white flex-1 shadow-lg rounded-2xl`}>
+    <View style={tw`bg-[${Colors.BrightGray}] flex-1 shadow-lg rounded-2xl`}>
       <FlatList
         data={options}
         renderItem={({ item, index }) => (
@@ -71,7 +75,7 @@ function Dropdown({ options, selectedValue, handleSelect }) {
             style={[
               tw`px-4 py-3 flex-row justify-between items-center mx-8 rounded-xl shadow-md`,
               selectedValue &&
-                selectedValue.value === item.value &&
+                selectedValue === item.value &&
                 tw`bg-gray-100`,
               index === 0 && tw`mt-4`,
             ]}
@@ -81,7 +85,7 @@ function Dropdown({ options, selectedValue, handleSelect }) {
               style={[
                 tw`text-gray-600 text-xl`,
                 selectedValue &&
-                  selectedValue.value === item.value &&
+                  selectedValue === item.value &&
                   tw`font-bold`,
               ]}
             >
