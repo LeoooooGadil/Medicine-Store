@@ -50,6 +50,11 @@ export default function AddressBookTabScreen({ navigation }) {
     addAddressBottomSheetRef.current?.snapToIndex(0);
   };
 
+  const closeAddAddressBottomSheet = () => {
+    setIsAddAddressBottomSheetOpen(false);
+    addAddressBottomSheetRef.current?.close();
+  };
+
   const OpenDropdownPicker = (options, onSelect, value) => {
     setIsDropdownPickerOpen(true);
     setPickerData({ options, onSelect, value });
@@ -69,6 +74,7 @@ export default function AddressBookTabScreen({ navigation }) {
       <AddressBookPickerContext.Provider
         value={{
           OpenDropdownPicker,
+          closeAddAddressBottomSheet
         }}
       >
         <AddressBookHeader
@@ -78,12 +84,14 @@ export default function AddressBookTabScreen({ navigation }) {
         <AddressBookList />
         <BottomSheetModal
           bottomSheetRef={addAddressBottomSheetRef}
-          SetIsBottomSheetOpen={openAddAddressBottomSheet}
+          
+          SetIsBottomSheetOpen={setIsAddAddressBottomSheetOpen}
           Component={AddAddressModal}
-          _snapPoints={["93%"]}
+          _snapPoints={["60%", "80%"]}
         />
         <BottomSheetModal
           bottomSheetRef={DropdownPickerRef}
+          SetIsBottomSheetOpen={setIsDropdownPickerOpen}
           Component={DropdownModal}
           HandMeTheData={{ closeModal: CloseDropdownPicker, ...pickerData}}
           _snapPoints={["50%"]}

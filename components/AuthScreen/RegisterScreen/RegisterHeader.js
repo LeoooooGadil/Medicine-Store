@@ -9,7 +9,7 @@ export default function RegisterHeader({ GoBack, CurrentStep }) {
   return (
     <View style={tw`px-8 pt-3 flex-row h-14`}>
       <View style={tw`flex-row items-center gap-4`}>
-        {CurrentStep !== 4 && (
+        {CurrentStep !== 5 && (
           <>
             <TouchableOpacity style={tw``} onPress={GoBack}>
               <AntDesign name="arrowleft" size={24} color="black" />

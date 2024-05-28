@@ -14,14 +14,14 @@ export default function RegisterControls({
       {
         !isCreatingAccount ? (
           <>
-            { currentStep !== 4 && <TheCircleThingy currentStep={currentStep} /> }
+            { currentStep !== 5 && <TheCircleThingy currentStep={currentStep} /> }
             <View style={tw`flex-row px-8`}>
               <TouchableOpacity
                 style={tw`flex-1 justify-center items-center bg-[${Colors.AlizarinCrimson}] rounded-lg h-14`}
                 onPress={nextStep}
               >
                 <Text style={tw`text-lg text-white`}>
-                  {currentStep === 3 ? "Create Account" : "Continue"}
+                  {currentStep === 4 ? "Create Account" : "Continue"}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -33,7 +33,7 @@ export default function RegisterControls({
 }
 
 export function TheCircleThingy({ currentStep }) {
-  const circlesCount = 4;
+  const circlesCount = 5;
 
   return (
     <View style={tw`flex-row gap-2 justify-center`}>

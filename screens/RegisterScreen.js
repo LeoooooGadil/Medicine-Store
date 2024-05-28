@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, ScrollView, KeyboardAvoidingView, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  KeyboardAvoidingView,
+  ActivityIndicator,
+} from "react-native";
 import tw from "twrnc";
 import Colors from "../constants/Colors";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -10,7 +16,7 @@ import {
   RegisterIsSeniorCitizen,
 } from "../components/AuthScreen";
 import { useRegister } from "../context/registerContext";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function RegisterScreen({ navigation }) {
   const {
@@ -102,21 +108,45 @@ export default function RegisterScreen({ navigation }) {
         );
       case 4:
         return (
+          <ScrollView contentContainerStyle={tw`flex-1`}>
+            {/* By Continuing to create this account you agree to our Terms of Service and Privacy Policy */}
+            <View style={tw`px-8 mt-10 inline`}>
+              <Text style={tw`text-lg`}>
+                By continuing to create this account you agree to our{" "}
+                <Text style={tw`text-[${Colors.AlizarinCrimson}]`}>
+                  Terms of Service
+                </Text>{" "}
+                and{" "}
+                <Text style={tw`text-[${Colors.AlizarinCrimson}]`}>
+                  Privacy Policy
+                </Text>
+                .
+              </Text>
+            </View>
+          </ScrollView>
+        );
+      case 5:
+        return (
           <View style={tw`flex-1 items-center justify-center`}>
-            {
-              isCreatingAccount ? (
-                <View>
-                  <ActivityIndicator size="large" color={Colors.AlizarinCrimson} />
-                </View>
-              ) : (
-                <View style={tw`items-center mx-8 pb-30`}>
-                  <MaterialCommunityIcons name="check-decagram-outline" size={100} color={Colors.Froly} />
-                  <Text style={tw`text-4xl font-bold text-center mt-5`}>
-                    Your account has been created!
-                  </Text>
-                </View>
-              )
-            }
+            {isCreatingAccount ? (
+              <View>
+                <ActivityIndicator
+                  size="large"
+                  color={Colors.AlizarinCrimson}
+                />
+              </View>
+            ) : (
+              <View style={tw`items-center mx-8 pb-30`}>
+                <MaterialCommunityIcons
+                  name="check-decagram-outline"
+                  size={100}
+                  color={Colors.Froly}
+                />
+                <Text style={tw`text-4xl font-bold text-center mt-5`}>
+                  Your account has been created!
+                </Text>
+              </View>
+            )}
           </View>
         );
     }
@@ -130,7 +160,12 @@ export default function RegisterScreen({ navigation }) {
       <SafeAreaView style={tw`flex-1`} forceInset={{ top: "always" }}>
         <RegisterHeader GoBack={GoBack} CurrentStep={currentStep} />
         {renderStep()}
-        <RegisterControls currentStep={currentStep} nextStep={nextStep} isCreatingAccount={isCreatingAccount} navigation={navigation} />
+        <RegisterControls
+          currentStep={currentStep}
+          nextStep={nextStep}
+          isCreatingAccount={isCreatingAccount}
+          navigation={navigation}
+        />
       </SafeAreaView>
     </KeyboardAvoidingView>
   );

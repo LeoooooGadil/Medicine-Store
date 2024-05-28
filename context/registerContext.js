@@ -28,8 +28,8 @@ export const RegisterProvider = ({ children }) => {
     setError(FieldValidation());
     if (FieldValidation() !== "") return;
 
-    if (currentStep === 3) CreateAccount();
-    if (currentStep === 4) {
+    if (currentStep === 4) CreateAccount();
+    if (currentStep === 5) {
       navigation.dispatch(StackActions.replace("Root"));
       setCurrentStep(0);
     }
