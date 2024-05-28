@@ -12,11 +12,21 @@ export default function RegisterInput({
   secureTextEntry,
   error,
   containerStyle,
+  onlyNumeric,
 }) {
-  const [showPassword, setShowPassword] = useState(false); // Local state for showPassword
+  const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleTextChange = (text) => {
+    // If onlyNumeric is true, replace non-numeric characters with an empty string
+    if (onlyNumeric) {
+      text = text.replace(/\D/g, ""); // Replace any character that is not a digit
+    }
+    // Call onChangeText with the modified text
+    if(onChangeText) onChangeText(text);
   };
 
   return (
@@ -29,9 +39,10 @@ export default function RegisterInput({
           style={tw`flex-1 ml-4`}
           placeholder={placeholder}
           placeholderTextColor={Colors.Alto2}
-          secureTextEntry={secureTextEntry && !showPassword} // Conditionally set secureTextEntry
+          secureTextEntry={secureTextEntry && !showPassword}
           value={value}
-          onChangeText={onChangeText}
+          onChangeText={handleTextChange}
+          keyboardType={onlyNumeric ? "numeric" : "default"} // Set keyboardType based on onlyNumeric prop
         />
         {secureTextEntry ? (
           <TouchableOpacity

@@ -50,13 +50,11 @@ export default function HomeScreenHeader({ GoToCart }) {
           <Image
             source={require("../../assets/images/philcure-logo-revised.png")}
             style={{
-              width: 100,
+              width: 120,
               height: 60,
               resizeMode: "contain",
             }}
           />
-          <View style={tw`flex-row`}>
-          </View>
         </View>
         <View style={tw`flex-row items-center`}>
           <TouchableOpacity style={tw`p-1`}

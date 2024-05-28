@@ -35,22 +35,18 @@ export default function SearchScreenHeader({ GoToCart }) {
 
   return (
     <View
-      style={[tw`px-8 pb-4 pt-2 h-16 bg-[${Colors.BrightGray}]`]}
+      style={[tw`px-8 pb-4 h-16 bg-[${Colors.BrightGray}]`]}
     >
       <View style={tw`flex-row items-center justify-between`}>
         <View style={tw`flex-row justify-center items-center gap-2`}>
           <Image
-            source={require("../../assets/images/philcure-logo.png")}
+            source={require("../../assets/images/philcure-logo-revised.png")}
             style={{
-              width: 40,
-              height: 40,
+              width: 120,
+              height: 60,
               resizeMode: "contain",
             }}
           />
-          <View style={tw`flex-row`}>
-            <Text style={tw`font-bold text-3xl tracking-wide`}>Phil</Text>
-            <Text style={tw`text-3xl tracking-wide`}>Cure</Text>
-          </View>
         </View>
         <View style={tw`flex-row items-center`}>
           <TouchableOpacity style={tw`p-1`}

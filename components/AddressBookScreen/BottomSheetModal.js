@@ -7,8 +7,11 @@ import AddAddressModal from "./AddAddressModal";
 export default function BottomSheetModal({
 	bottomSheetRef,
 	SetIsBottomSheetOpen,
+	Component,
+	_snapPoints = ["50%"],
+	HandMeTheData = {},
 }) {
-	const snapPoints = useMemo(() => ["70%"]);
+	const snapPoints = useMemo(() => _snapPoints, [_snapPoints]);
 
 	const handleSheetChanges = useCallback((index) => {
 		if (index == -1) {
@@ -37,8 +40,9 @@ export default function BottomSheetModal({
 			enablePanDownToClose
 			handleStyle={tw`bg-[${Colors.BrightGray}] rounded-t-xl`}
 		>
-			<BottomSheetView style={tw`bg-[${Colors.BrightGray}]`}>
-				<AddAddressModal />
+			<BottomSheetView style={tw`bg-[${Colors.BrightGray}] flex-1`}>
+				{/* check if component is a component or a function and act accordingly */}
+				{typeof Component === "function" ? <Component HandMeTheData={HandMeTheData} /> : Component}
 			</BottomSheetView>
 		</BottomSheet>
 	)

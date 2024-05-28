@@ -5,7 +5,7 @@ import Colors from "../constants/Colors";
 import tw from "twrnc";
 
 import { useAddresses } from "../context/addressesContext";
-import { AddressBookHeader, AddressBookList, BottomSheetModal } from "../components/AddressBookScreen";
+import { AddressBookHeader, AddressBookList, BottomSheetModal, AddAddressModal } from "../components/AddressBookScreen";
 
 export default function AddressBookTabScreen({ navigation }) {
   // You can use the useAddresses hook here to get the addresses and other functions.
@@ -31,12 +31,27 @@ export default function AddressBookTabScreen({ navigation }) {
   //   updateAddress,
   // } = useAddresses();
 
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-  const bottomSheetModalRef = useRef(null);
+  const [isAddAddressBottomSheetOpen, setIsAddAddressBottomSheetOpen] = useState(false);
+  const [isAddressTypeDropdownOpen, setIsAddressTypeDropdownOpen] = useState(false);
+  const [isSelectRegionDropdownOpen, setIsSelectRegionDropdownOpen] = useState(false);
+  const addAddressBottomSheetRef = useRef(null);
+  const addressTypeDropdownRef = useRef(null);
+  const selectRegionDropdownRef = useRef(null);
 
-  const openBottomSheet = () => {
-    setIsBottomSheetOpen(true);
-    bottomSheetModalRef.current?.snapToIndex(0);
+
+  const openAddAddressBottomSheet = () => {
+    setIsAddAddressBottomSheetOpen(true);
+    addAddressBottomSheetRef.current?.snapToIndex(0);
+  };
+
+  const openAddressTypeDropdown = () => {
+    setIsAddressTypeDropdownOpen(true);
+    addressTypeDropdownRef.current?.snapToIndex(0);
+  };
+
+  const openSelectRegionDropdown = () => {
+    setIsSelectRegionDropdownOpen(true);
+    selectRegionDropdownRef.current?.snapToIndex(0);
   };
 
   return (
@@ -46,12 +61,30 @@ export default function AddressBookTabScreen({ navigation }) {
     >
       <AddressBookHeader 
         GoBack={() => navigation.goBack()}
-        OpenAddAddressModal={openBottomSheet}
+        OpenAddAddressModal={openAddAddressBottomSheet}
       />
       <AddressBookList />
       <BottomSheetModal
-        bottomSheetRef={bottomSheetModalRef}
-        SetIsBottomSheetOpen={setIsBottomSheetOpen}
+        bottomSheetRef={addAddressBottomSheetRef}
+        SetIsBottomSheetOpen={openAddAddressBottomSheet}
+        HandMeTheData={{
+          openAddressTypeDropdown,
+          openSelectRegionDropdown
+        }}
+        Component={AddAddressModal}
+        _snapPoints={["93%"]}
+      />
+      <BottomSheetModal
+        bottomSheetRef={addressTypeDropdownRef}
+        SetIsBottomSheetOpen={openAddressTypeDropdown}
+        Component={AddressTypeDropdown}
+        _snapPoints={["50%"]}
+      />
+      <BottomSheetModal
+        bottomSheetRef={selectRegionDropdownRef}
+        SetIsBottomSheetOpen={openSelectRegionDropdown}
+        Component={SelectRegionDropdown}
+        _snapPoints={["50%"]}
       />
       {/* Here you can add your components. */}
       {/* Your Components should live inside the components folder add another folder named "AddressBookScreen" */}
