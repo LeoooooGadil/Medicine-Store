@@ -15,13 +15,16 @@ import LoadingScreen from "../screens/LoadingScreen";
 import LinkingConfiguration from "./LinkingConfiguration";
 import { AuthProvider } from "../hooks/useAuthentication";
 import { RegisterProvider } from "../context/registerContext";
+import { CheckoutProvider } from "../context/checkoutContext";
 
 export default function Navigation() {
   return (
     <NavigationContainer linking={LinkingConfiguration}>
       <AuthProvider>
         <RegisterProvider>
-          <RootNavigator />
+          <CheckoutProvider>
+            <RootNavigator />
+          </CheckoutProvider>
         </RegisterProvider>
       </AuthProvider>
     </NavigationContainer>

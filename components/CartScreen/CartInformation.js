@@ -36,10 +36,6 @@ export default function CartInformation({ cartItems }) {
         <Text style={tw`font-bold`}>₱ {subTotal}</Text>
       </View>
       <View style={tw`flex-row justify-between items-center`}>
-        <Text>Shipping Fee</Text>
-        <Text style={tw`font-bold`}>₱ {shippingFee}</Text>
-      </View>
-      <View style={tw`flex-row justify-between items-center`}>
         <Text style={tw`text-xl`}>
           Total <Text style={tw`text-sm opacity-50`}></Text>
         </Text>

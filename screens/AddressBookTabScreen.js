@@ -1,7 +1,8 @@
-import React, { useState, useRef, createContext } from "react";
+import React, { useState, useRef, createContext, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Colors from "../constants/Colors";
 import tw from "twrnc";
+import { useAddresses } from "../context/addressesContext";
 
 import {
   AddressBookHeader,
@@ -28,15 +29,16 @@ export default function AddressBookTabScreen({ navigation }) {
   // if you dont know how to use it, you can ask me or look at the addressesContext.js file.
   // better if you ask me. I can explain it to you.
 
-  // const {
-  //   addresses,
-  //   isAddressesBeenUpdated,
-  //   loading,
-  //   getAddresses,
-  //   addAddress,
-  //   updateAddress,
-  // } = useAddresses();
+  const {
+    addresses,
+    isAddressesBeenUpdated,
+    loading,
+    getAddresses,
+    addAddress,
+    updateAddress,
+  } = useAddresses();
   const [pickerData, setPickerData] = useState({});
+  const [selectedAddress, setSelectedAddress] = useState(null);
 
   const [isAddAddressBottomSheetOpen, setIsAddAddressBottomSheetOpen] =
     useState(false);
@@ -46,6 +48,7 @@ export default function AddressBookTabScreen({ navigation }) {
   const DropdownPickerRef = useRef(null);
 
   const openAddAddressBottomSheet = () => {
+    setSelectedAddress(null);
     setIsAddAddressBottomSheetOpen(true);
     addAddressBottomSheetRef.current?.snapToIndex(0);
   };
@@ -66,6 +69,18 @@ export default function AddressBookTabScreen({ navigation }) {
     DropdownPickerRef.current?.close();
   };
 
+  const SetSelectedAddress = (address) => {
+    setSelectedAddress(address);
+    openAddAddressBottomSheet();
+  };
+
+  useEffect(() => {
+    setSelectedAddress(null);
+    if (isAddressesBeenUpdated) {
+      getAddresses();
+    }
+  }, [isAddressesBeenUpdated, isAddAddressBottomSheetOpen]);
+
   return (
     <SafeAreaView
       style={tw`flex-col gap-2 bg-[${Colors.BrightGray}] flex-1`}
@@ -81,12 +96,17 @@ export default function AddressBookTabScreen({ navigation }) {
           GoBack={() => navigation.goBack()}
           OpenAddAddressModal={openAddAddressBottomSheet}
         />
-        <AddressBookList />
+        <AddressBookList
+          addresses={addresses}
+          SetSelectedAddress={SetSelectedAddress}
+          loading={loading}
+        />
         <BottomSheetModal
           bottomSheetRef={addAddressBottomSheetRef}
           
           SetIsBottomSheetOpen={setIsAddAddressBottomSheetOpen}
           Component={AddAddressModal}
+          HandMeTheData={{ closeModal: closeAddAddressBottomSheet, Type: selectedAddress ? "Edit" : "Add", ...selectedAddress }}
           _snapPoints={["60%", "80%"]}
         />
         <BottomSheetModal

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useInAppNotification } from "../components/InAppNotification";
 
 const AddressesContext = createContext();
 
@@ -10,6 +11,7 @@ export const AddressesProvider = ({ children }) => {
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [isAddressesBeenUpdated, setIsAddressesBeenUpdated] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { showNotification } = useInAppNotification();
 
   const getAddresses = async () => {
     setLoading(true);
@@ -53,14 +55,18 @@ export const AddressesProvider = ({ children }) => {
     setLoading(true);
     setIsAddressesBeenUpdated(true);
     try {
-      const items = [...addresses];
-      items.push(address);
+      const items = [...addresses]
+      items.push({
+        ...address,
+        id: `${new Date().getTime()}`,
+      });
       await AsyncStorage.setItem("addresses", JSON.stringify(items));
       setAddresses(items);
     } catch (error) {
       console.error("Error adding address: ", error);
     } finally {
       setLoading(false);
+      showNotification("Address added successfully.", "success");
     }
   };
 
@@ -79,6 +85,21 @@ export const AddressesProvider = ({ children }) => {
     }
   };
 
+  const deleteAddress = async (address) => {
+    try {
+      const items = [...addresses];
+      const index = items.findIndex((i) => i.id === address.id);
+      if (index !== -1) {
+        items.splice(index, 1);
+        await AsyncStorage.setItem("addresses", JSON.stringify(items));
+        setAddresses(items);
+      }
+    } catch (error) {
+      console.error("Error deleting address: ", error);
+    } finally {
+    }
+  };
+
   return (
     <AddressesContext.Provider
       value={{
@@ -88,6 +109,7 @@ export const AddressesProvider = ({ children }) => {
         getAddresses,
         addAddress,
         updateAddress,
+        deleteAddress,
         GetSelectedAddress,
         SetSelectedAddress,
       }}

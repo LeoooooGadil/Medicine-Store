@@ -14,11 +14,13 @@ export default function DropdownInput({
   options,
   error,
   containerStyle,
+  defaultValue,
+  disabled,
 }) {
 
   const { OpenDropdownPicker } = useContext(AddressBookPickerContext);
 
-  const [selectedValue, setSelectedValue] = useState(value);
+  const [selectedValue, setSelectedValue] = useState(value || defaultValue);
 
   const handleSelect = (item) => {
     setSelectedValue(item);
@@ -31,13 +33,14 @@ export default function DropdownInput({
   };
 
   return (
-    <View style={[tw`mx-8 mt-3`, containerStyle]}>
+    <View style={[tw`mx-8 mt-3`, containerStyle, disabled && tw`opacity-50`]}>
       {label ? <Text style={tw`text-lg mb-2 ml-1`}>{label}</Text> : null}
       <TouchableOpacity
         style={tw`w-full h-14 pr-4 justify-center border border-[${Colors.Alto}] bg-[${Colors.White}] rounded-xl`}
         onPress={toggleModal}
+        disabled={disabled}
       >
-        <Text style={tw`ml-4 text-gray-600`}>
+        <Text style={tw`ml-4 text-gray-600 ${disabled ? "font-bold" : ""}`}>
           {selectedValue ? selectedValue.label : placeholder}
         </Text>
         <AntDesign

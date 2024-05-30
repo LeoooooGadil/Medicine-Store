@@ -40,6 +40,8 @@ export const AuthProvider = ({ children }) => {
         data: data.data,
         username: data.username,
         password: data.password,
+        isSeniorCitizen: data.isSeniorCitizen,
+        SeniorCitizenProofUri: data.SeniorCitizenProofUri,
       };
 
       setUserDatabase([...userDatabase, newUser]);

@@ -24,21 +24,19 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={new QueryClient()}>
-          <InAppNotificationProvider>
-            <SearchProvider>
-              <AddressesProvider>
-                <CartProvider>
-                  <OrdersProvider>
-                    <CheckoutProvider>
-                      <GestureHandlerRootView style={tw`flex-1`}>
-                        <Navigation />
-                      </GestureHandlerRootView>
-                    </CheckoutProvider>
-                  </OrdersProvider>
-                </CartProvider>
-              </AddressesProvider>
-            </SearchProvider>
-          </InAppNotificationProvider>
+        <InAppNotificationProvider>
+          <SearchProvider>
+            <AddressesProvider>
+              <CartProvider>
+                <OrdersProvider>
+                  <GestureHandlerRootView style={tw`flex-1`}>
+                    <Navigation />
+                  </GestureHandlerRootView>
+                </OrdersProvider>
+              </CartProvider>
+            </AddressesProvider>
+          </SearchProvider>
+        </InAppNotificationProvider>
       </QueryClientProvider>
     </SafeAreaProvider>
   );

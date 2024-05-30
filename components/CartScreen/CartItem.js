@@ -23,18 +23,22 @@ export default function CartItem({ item, quantity, index }) {
   };
 
   const handleRemoveItem = () => {
-    Alert.alert(`Remove ${item?.name}`, `Are you sure you want to remove ${item?.name}?`, [
-      {
-        text: "Cancel",
-        style: "cancel",
-      },
-      {
-        text: "Remove",
-        onPress: () => {
-          removeCartItem(item);
+    Alert.alert(
+      `Remove ${item?.name}`,
+      `Are you sure you want to remove ${item?.name}?`,
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
         },
-      },
-    ]);
+        {
+          text: "Remove",
+          onPress: () => {
+            removeCartItem(item);
+          },
+        },
+      ]
+    );
   };
 
   return (
@@ -53,7 +57,13 @@ export default function CartItem({ item, quantity, index }) {
             <Text style={tw`text-xl`}>{_quantity}</Text>
             <Text style={tw`text-lg opacity-30`}>x</Text>
           </View>
-          <Text style={tw`font-bold`}>{item.name}</Text>
+          <View>
+            <Text style={tw`font-bold`}>{
+              item.name.length > 30
+                ? item.name.slice(0, 30) + "..."
+                : item.name
+            }</Text>
+          </View>
         </View>
         <View>
           <Text style={tw`font-bold opacity-75`}>₱ {item.price}</Text>
@@ -104,7 +114,11 @@ function CartSettings({ quantity, handleQuantityChange, handleRemoveItem }) {
             style={tw`rounded-lg py-3`}
             onPress={handleRemoveItem}
           >
-            <Ionicons name="trash-outline" size={20} color={Colors.DarkOrange} />
+            <Ionicons
+              name="trash-outline"
+              size={20}
+              color={Colors.DarkOrange}
+            />
           </TouchableOpacity>
         </View>
       </View>

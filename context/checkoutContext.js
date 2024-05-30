@@ -5,12 +5,14 @@ import { OrderStatus } from "../constants/OrderStatus";
 import { OrdersPrescriptionValidationStatus } from "../constants/OrdersValidationStatus";
 import { useOrders } from "./ordersContext";
 import { useCart } from "./cartContext";
+import { useAuthentication } from "../hooks/useAuthentication";
 
 const CheckoutContext = createContext();
 
 export const useCheckout = () => useContext(CheckoutContext);
 
 export const CheckoutProvider = ({ children }) => {
+  const { currentUser } = useAuthentication();
   const { addOrder } = useOrders();
   const { clearCartItems } = useCart();
   const [orderSummary, setOrderSummary] = useState({
@@ -49,16 +51,18 @@ export const CheckoutProvider = ({ children }) => {
     // 259200000 is 3 days in milliseconds
     const randomDeliveryDays = Math.floor(Math.random() * 3) + 1;
     const deliveryDate = new Date(Date.now() + 86400000 * randomDeliveryDays);
-    const deliveryFee = 0;
+    
     const isPrescriptionRequired = cartItems.some(
       (item) => item.item.isPrescriptionRequired
     );
 
-    const totalAmount =
+    const deliveryFee = currentUser?.data?.isSeniorCitizen ? 0 : 50;
+
+    let totalAmount =
       cartItems.reduce(
         (acc, item) => acc + item.item.price * item.quantity,
         0
-      ) + deliveryFee;
+      );
 
     // dont allow checkout if total amount is less than 80
     if (totalAmount < 80) {
@@ -70,6 +74,12 @@ export const CheckoutProvider = ({ children }) => {
       );
       return;
     }
+    
+    const convenienceFee = currentUser?.data?.isSeniorCitizen ? 0 : totalAmount * 0.10;
+    const vat = totalAmount * 0.12;
+    const seniorDiscount = currentUser?.data?.isSeniorCitizen ? convenienceFee : 0;
+
+    totalAmount += convenienceFee + vat + deliveryFee;
 
     setIsPrescriptionRequired(isPrescriptionRequired);
 
