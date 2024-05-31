@@ -28,7 +28,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.kyon06.medicinestore"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
@@ -53,6 +58,11 @@
           "faceIDPermission": "Allow $(PRODUCT_NAME) to access your Face ID biometric data."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "0052b294-f0df-4d54-9dee-c3710731faf3"
+      }
+    }
   }
 }
