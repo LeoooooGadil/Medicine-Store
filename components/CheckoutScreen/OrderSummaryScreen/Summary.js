@@ -14,8 +14,10 @@ export default function Summary({ cartItems }) {
   );
   const shippingFee = 50;
   const convenienceFee = subTotal * 0.1;
-  const seniorDiscount = (subTotal + convenienceFee + shippingFee) * 0.2;
-  const total = subTotal + convenienceFee + shippingFee - seniorDiscount;
+  const seniorDiscount = subTotal * 0.20;
+  const vat = subTotal * 0.12;
+  const seniorTotal = subTotal + convenienceFee + shippingFee - seniorDiscount;
+  const nsTotal = subTotal + convenienceFee + shippingFee + vat;
 
   return (
     <View style={tw`mt-7`}>
@@ -51,39 +53,46 @@ export default function Summary({ cartItems }) {
                   </Text>
                 </View>
                 <View style={tw`flex-row justify-between items-center`}>
-                  <Text>Senior Discount</Text>
+                  <Text>VAT</Text>
                   <Text style={tw`font-bold`}>
-                    ₱ {seniorDiscount.toFixed(2)}
+                    ₱ {vat.toFixed(2)}
                   </Text>
                 </View>
+              <View style={tw`flex-row justify-between items-center`}>
+              <Text style={tw`text-xl`}>
+                Total
+                <Text style={tw`text-sm opacity-50`}></Text>
+              </Text>
+              <Text style={tw`text-xl font-bold`}>₱ {nsTotal.toFixed(2)}</Text>
+            </View>
               </>
             ) : (
               <>
                 <View style={tw`flex-row justify-between items-center`}>
                   <Text>Shipping Fee</Text>
-                  <Text style={tw`font-bold`}>₱ 0</Text>
+                  <Text style={tw`font-bold`}>₱ {shippingFee.toFixed(2)} </Text>
                 </View>
                 <View style={tw`flex-row justify-between items-center`}>
                   <Text>Convenience Fee</Text>
                   <Text style={tw`font-bold`}>
-                    ₱ 0
+                    ₱ {convenienceFee.toFixed(2)}
                   </Text>
                 </View>
                 <View style={tw`flex-row justify-between items-center`}>
                   <Text>Senior Discount</Text>
                   <Text style={tw`font-bold`}>
-                    ₱ 0
+                    ₱ {seniorDiscount.toFixed(2)}
                   </Text>
                 </View>
-              </>
-            )}
-            <View style={tw`flex-row justify-between items-center`}>
+              <View style={tw`flex-row justify-between items-center`}>
               <Text style={tw`text-xl`}>
                 Total
                 <Text style={tw`text-sm opacity-50`}></Text>
               </Text>
-              <Text style={tw`text-xl font-bold`}>₱ {total.toFixed(2)}</Text>
+              <Text style={tw`text-xl font-bold`}>₱ {seniorTotal.toFixed(2)}</Text>
             </View>
+              </>
+            )}
           </View>
         </View>
       </View>

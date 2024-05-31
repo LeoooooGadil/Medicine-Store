@@ -56,7 +56,7 @@ export const CheckoutProvider = ({ children }) => {
       (item) => item.item.isPrescriptionRequired
     );
 
-    const deliveryFee = currentUser?.data?.isSeniorCitizen ? 0 : 50;
+    const deliveryFee = 50;
 
     let totalAmount =
       cartItems.reduce(
@@ -75,11 +75,11 @@ export const CheckoutProvider = ({ children }) => {
       return;
     }
     
-    const convenienceFee = currentUser?.data?.isSeniorCitizen ? 0 : totalAmount * 0.10;
-    const vat = totalAmount * 0.12;
-    const seniorDiscount = currentUser?.data?.isSeniorCitizen ? convenienceFee : 0;
+    const convenienceFee = totalAmount * 0.10;
+    const vat = currentUser?.data?.isSeniorCitizen ? 0 : totalAmount * 0.12;
+    const seniorDiscount = currentUser?.data?.isSeniorCitizen ? totalAmount * 0.20 : 0;
 
-    totalAmount += convenienceFee + vat + deliveryFee;
+    totalAmount += convenienceFee + vat + deliveryFee - seniorDiscount;
 
     setIsPrescriptionRequired(isPrescriptionRequired);
 
