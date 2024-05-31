@@ -30,7 +30,7 @@ NOTE: Use command prompt on Windows, and Terminal on Mac
 
 2. Clone this repository in any location within the computer by running the following command:
     ```
-    git clone https://github.com/LeoooooGadil/Medicine-Store.git
+    git clone https://github.com/Nekro06/Medicine-Store.git
     ```
 
 3. Navigate to the project directory:
