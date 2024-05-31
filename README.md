@@ -20,6 +20,7 @@ Medicine Store is a mobile application that allows users to browse, search, and 
 ## Installation
 
 To run the Medicine Store app on your mobile device, follow these steps:
+
 NOTE: Use command prompt on Windows, and Terminal on Mac
 
 1. Install Expo CLI:
