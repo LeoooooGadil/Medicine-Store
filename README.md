@@ -28,7 +28,7 @@ NOTE: Use command prompt on Windows, and Terminal on Mac
     npm install -g expo-cli
     ```
 
-2. Clone this repository:
+2. Clone this repository in any location within the computer by running the following command:
     ```
     git clone https://github.com/LeoooooGadil/Medicine-Store.git
     ```
