@@ -21,12 +21,14 @@ Medicine Store is a mobile application that allows users to browse, search, and 
 
 To run the Medicine Store app on your mobile device, follow these steps:
 
+NOTE: Use command prompt on Windows, and Terminal on Mac
+
 1. Install Expo CLI:
     ```
     npm install -g expo-cli
     ```
 
-2. Clone this repository:
+2. Clone this repository in any location within the computer by running the following command:
     ```
     git clone https://github.com/LeoooooGadil/Medicine-Store.git
     ```
