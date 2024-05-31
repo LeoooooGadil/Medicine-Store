@@ -26,6 +26,7 @@ NOTE: Use command prompt on Windows, and Terminal on Mac
 1. Install Expo CLI:
     ```
     npm install -g expo-cli
+    ![image](https://github.com/Nekro06/Medicine-Store/assets/77954347/057956c2-7bbe-4461-9c34-f78920f166d7)
     ```
 
 2. Clone this repository in any location within the computer by running the following command:
