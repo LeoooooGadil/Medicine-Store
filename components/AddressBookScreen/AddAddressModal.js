@@ -21,10 +21,10 @@ export default function AddAddressModal({HandMeTheData}) {
   });
   const [City, setCity] = useState({ label: "Cavite", value: "Cavite" });
   const [ZipCode, setZipCode] = useState(HandMeTheData?.ZipCode || null);
-  // const [FullName, setFullName] = useState(null);
-  // const [MobileNumber, setMobileNumber] = useState(null);
-  // const [EmailAddress, setEmailAddress] = useState(null);
-  // const [LandlineNumber, setLandlineNumber] = useState(null);
+ // const [FullName, setFullName] = useState(null);
+// const [MobileNumber, setMobileNumber] = useState(null);
+// const [EmailAddress, setEmailAddress] = useState(null);
+//const [LandlineNumber, setLandlineNumber] = useState(null);
 
   const { addAddress, updateAddress, deleteAddress } = useAddresses();
 
@@ -77,10 +77,10 @@ export default function AddAddressModal({HandMeTheData}) {
     setRegion(null);
     setCity(null);
     setZipCode(null);
-    setFullName(null);
-    setMobileNumber(null);
-    setEmailAddress(null);
-    setLandlineNumber(null);
+   // setFullName(null);
+   // setMobileNumber(null);
+   // setEmailAddress(null);
+   // setLandlineNumber(null);
   };
 
   const UpdateAddress = () => {
@@ -234,7 +234,7 @@ export default function AddAddressModal({HandMeTheData}) {
           onlyNumeric={true}
         />
       </View>
-      {/* <View style={tw`mt-10`}>
+      { /*<View style={tw`mt-10`}>
         <Text style={tw`text-2xl font-bold px-8 pt-4`}>
           Who's Address is this?
         </Text>
@@ -260,7 +260,7 @@ export default function AddAddressModal({HandMeTheData}) {
           style={tw``}
           onlyNumeric={true}
         />
-      </View> */}
+        </View> */}
       <View style={tw`h-8`} />
       <AddAddressControls
         HandleControl={HandleControl}
